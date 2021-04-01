@@ -1,4 +1,4 @@
-# learnnfun
+# Learn-N-Fun
 
 A new Flutter project.
 
