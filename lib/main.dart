@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'assets.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 void main() {
   runApp(MyApp());
 }
@@ -63,61 +63,122 @@ class _MyHomePageState extends State<MyHomePage> {
 
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
-          child: Expanded(
-            child: Column(
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
-                  child: Container(
-                      height: height * 0.1,
-                      width: width * 0.2,
-                      alignment: Alignment.topLeft,
-                      child: Assets.backButton),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
+                child: Container(
+                    height: height * 0.1,
+                    width: width * 0.15,
+                    alignment: Alignment.topLeft,
+                    child: Assets.backButton),
+              ),
+            ],
+          ),
+          Container(
+            width: width*0.84 ,
+            height: height * 0.7,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(height*0.1),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x338b8b8b),
+                  blurRadius: 4,
+                  offset: Offset(0, 4),
+
                 ),
               ],
+              color: Colors.white,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: width*0.05, right:width*0.05),
-              child: Container(
-                width: width ,
-                height: height * 0.8,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(height*0.1),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x338b8b8b),
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
-
-                    ),
-                  ],
-                  color: Colors.white,
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:50, right:50),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(height: height*0.02,),
+                Container(
+                  height:height*0.2,
+                  width: width*0.6,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: Padding(
+                      padding: EdgeInsets.only(left:width*0.05, right:width*0.05),
                       child: Assets.lockImage,
                     ),
+                  ),
+                ),
+                Container(height: height*0.02,),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     Text(
-                      "Level 1 \nUnlocked!",
+                      "Level 1",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
-                        fontSize: height*0.1,
+                        fontSize: height*0.045,
                       ),
-                    )
+                    ),
+                    Text(
+                      "Unlocked!",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.quicksand(
+                        color: Color(0xff489fb5),
+                        fontSize: height*0.045,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
                   ],
                 ),
-              ),
+
+              ],
             ),
+          ),
+           GestureDetector(
+             onTap: (){
+
+             },
+             child: Container(
+               margin: EdgeInsets.only(top: height*0.05),
+               height: height*0.08,
+               width: width*0.65,
+               decoration: BoxDecoration(
+                   boxShadow: [
+
+                     BoxShadow(
+                       color: Colors.grey,
+                       blurRadius: 5.0, // soften the shadow
+                       spreadRadius: 2.0, //extend the shadow
+                       offset: Offset(
+                         3.0, // Move to right 10  horizontally
+                         5.0, // Move to bottom 10 Vertically
+                       ),
+                     )
+                   ],
+                   color: Color(0xffffa62b),
+                   border: Border.all(color: Color(0xffffa62b),
+
+                   ),
+                   borderRadius: BorderRadius.all(Radius.circular(20))
+               ),
+               child: Row(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: [
+                   Text("Play now!",style: GoogleFonts.quicksand(
+                    color: Colors.white,
+                     fontWeight: FontWeight.bold,
+                     fontSize: height*0.04
+                   ),),
+                 ],
+               )
+             ),
+           ),
+
         ],
-      ),
-          )),
+      )),
 
       // This trailing comma makes auto-formatting nicer for build methods.
     );
