@@ -64,24 +64,50 @@ class _MyHomePageState extends State<MyHomePage> {
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child: Column(
+
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
 
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 20, 0, 0),
-                child: Container(
-                    height: height * 0.1,
-                    width: width * 0.15,
-                    alignment: Alignment.topLeft,
-                    child: Assets.backButton),
+             Container( /// TODO: keep the circles over a rounded box(maybe use row) and handle image inside
+               height: height*0.07,
+               width: width*0.2,
+               decoration: BoxDecoration(
+                 shape: BoxShape.circle,
+                 // You can use like this way or like the below line
+                 //borderRadius: new BorderRadius.circular(30.0),
+                 color: Color(0xff489fb5),
+               ),
+               child: Padding(
+                 padding: EdgeInsets.only(left:width*0.01, right:width*0.01),
+                 child: Assets.tinyTrophy, /// issues with the image
+               ),
+             ),
+              Container( /// TODO: change the width of this container after the rounded boxes are added
+                height: height*0.15,
+                width: width*0.45,
+              ),
+              Container( /// TODO: keep the circles over a rounded box(maybe use row) and handle image inside
+                height: height*0.07,
+                width: width*0.2,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  // You can use like this way or like the below line
+                  //borderRadius: new BorderRadius.circular(30.0),
+                  color: Color(0xff489fb5),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left:width*0.01, right:width*0.01),
+                  child: Assets.tinyReward, /// issues with the image
+                ),
               ),
             ],
           ),
           Container(
-            width: width*0.84 ,
-            height: height * 0.7,
+            width: width*0.80 ,
+            height: height * 0.6,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(height*0.1),
               boxShadow: [
@@ -97,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: height*0.02,),
+                Container(height: height*0.01,),
                 Container(
                   height:height*0.2,
                   width: width*0.6,
@@ -105,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fit: BoxFit.cover,
                     child: Padding(
                       padding: EdgeInsets.only(left:width*0.05, right:width*0.05),
-                      child: Assets.lockImage,
+                      child: Assets.reward, /// issues with the image
                     ),
                   ),
                 ),
@@ -114,19 +140,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Level 1",
+                      "Task Completed",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
-                        fontSize: height*0.045,
+                        fontSize: height*0.04,
                       ),
                     ),
                     Text(
-                      "Unlocked!",
+                      "YAY!",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
-                        fontSize: height*0.045,
+                        fontSize: height*0.04,
                         fontWeight: FontWeight.bold
                       ),
                     ),
@@ -148,12 +174,12 @@ class _MyHomePageState extends State<MyHomePage> {
                    boxShadow: [
 
                      BoxShadow(
-                       color: Colors.grey,
-                       blurRadius: 5.0, // soften the shadow
+                       color: Color(0xffca7602),
+                       blurRadius: 0.0, // soften the shadow
                        spreadRadius: 2.0, //extend the shadow
                        offset: Offset(
-                         3.0, // Move to right 10  horizontally
-                         5.0, // Move to bottom 10 Vertically
+                         0.0, // Move to right 10  horizontally
+                         4.0, // Move to bottom 10 Vertically
                        ),
                      )
                    ],
@@ -161,13 +187,13 @@ class _MyHomePageState extends State<MyHomePage> {
                    border: Border.all(color: Color(0xffffa62b),
 
                    ),
-                   borderRadius: BorderRadius.all(Radius.circular(20))
+                   borderRadius: BorderRadius.all(Radius.circular(30))
                ),
                child: Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  crossAxisAlignment: CrossAxisAlignment.center,
                  children: [
-                   Text("Play now!",style: GoogleFonts.quicksand(
+                   Text("Continue",style: GoogleFonts.quicksand(
                     color: Colors.white,
                      fontWeight: FontWeight.bold,
                      fontSize: height*0.04
