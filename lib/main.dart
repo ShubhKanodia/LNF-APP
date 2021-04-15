@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import './levels.dart';
-import './Task_completed.dart';
+import './person_list.dart';
 void main() {
   runApp(MyApp());
 }
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: TaskCompleted(),
+      home: PersonList(),
     );
   }
 }
