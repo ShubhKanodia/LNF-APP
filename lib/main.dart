@@ -1,29 +1,89 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
-import 'assets.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/introductionSlider.dart';
+import 'package:learnnfun/registerInfo.dart';
+import 'package:overlay_support/overlay_support.dart';
+
+import 'assets.dart';
+import 'auth.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LearnNFun',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+    final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      // ignore: missing_return
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return Directionality(
+              textDirection: TextDirection.ltr,
+              child: new Container(child: Text("Firebase went wrong")));
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (kDebugMode) {
+            FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
+          }
+          FlutterError.onError =
+              FirebaseCrashlytics.instance.recordFlutterError;
+          BaseAuth auth = new Auth();
+
+          if (auth.getCurrentUser() != null) {
+            auth.signOut();
+            if (auth.getCurrentUser().displayName == null ||
+                auth.getCurrentUser().displayName == "null") {
+              return OverlaySupport(
+                  child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Learn N Fun',
+                      theme: ThemeData(
+                        fontFamily: 'Quicksand',
+                        primaryColor: const Color(0xff16697a),
+                        accentColor: const Color(0xffffa62b),
+                      ),
+                      home: RegistrationInfo()));
+            } else {
+              return OverlaySupport(
+                  child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Learn N Fun',
+                      theme: ThemeData(
+                        fontFamily: 'Quicksand',
+                        primaryColor: const Color(0xff16697a),
+                        accentColor: const Color(0xffffa62b),
+                      ),
+                      home: MyHomePage()));
+            }
+          } else {
+            return OverlaySupport(
+                child: MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Learn N Fun',
+                    theme: ThemeData(
+                      fontFamily: 'Quicksand',
+                      primaryColor: const Color(0xff16697a),
+                      accentColor: const Color(0xffffa62b),
+                    ),
+                    home: IntroductionSlider()));
+          }
+        }
+        // Otherwise, show something whilst waiting for initialization to complete
+        return CircularProgressIndicator(); //TODO : Change to Splash Screen
+      },
     );
   }
 }
@@ -45,9 +105,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -66,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
           Row(
             children: [
               Padding(
@@ -80,16 +136,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           Container(
-            width: width*0.84 ,
+            width: width * 0.84,
             height: height * 0.7,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(height*0.1),
+              borderRadius: BorderRadius.circular(height * 0.1),
               boxShadow: [
                 BoxShadow(
                   color: Color(0x338b8b8b),
                   blurRadius: 4,
                   offset: Offset(0, 4),
-
                 ),
               ],
               color: Colors.white,
@@ -97,19 +152,24 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(height: height*0.02,),
                 Container(
-                  height:height*0.2,
-                  width: width*0.6,
+                  height: height * 0.02,
+                ),
+                Container(
+                  height: height * 0.2,
+                  width: width * 0.6,
                   child: FittedBox(
                     fit: BoxFit.cover,
                     child: Padding(
-                      padding: EdgeInsets.only(left:width*0.05, right:width*0.05),
+                      padding: EdgeInsets.only(
+                          left: width * 0.05, right: width * 0.05),
                       child: Assets.lockImage,
                     ),
                   ),
                 ),
-                Container(height: height*0.02,),
+                Container(
+                  height: height * 0.02,
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -118,65 +178,59 @@ class _MyHomePageState extends State<MyHomePage> {
                       textAlign: TextAlign.center,
                       style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
-                        fontSize: height*0.045,
+                        fontSize: height * 0.045,
                       ),
                     ),
                     Text(
                       "Unlocked!",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.quicksand(
-                        color: Color(0xff489fb5),
-                        fontSize: height*0.045,
-                        fontWeight: FontWeight.bold
-                      ),
+                          color: Color(0xff489fb5),
+                          fontSize: height * 0.045,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
-
               ],
             ),
           ),
-           GestureDetector(
-             onTap: (){
-
-             },
-             child: Container(
-               margin: EdgeInsets.only(top: height*0.05),
-               height: height*0.08,
-               width: width*0.65,
-               decoration: BoxDecoration(
-                   boxShadow: [
-
-                     BoxShadow(
-                       color: Colors.grey,
-                       blurRadius: 5.0, // soften the shadow
-                       spreadRadius: 2.0, //extend the shadow
-                       offset: Offset(
-                         3.0, // Move to right 10  horizontally
-                         5.0, // Move to bottom 10 Vertically
-                       ),
-                     )
-                   ],
-                   color: Color(0xffffa62b),
-                   border: Border.all(color: Color(0xffffa62b),
-
-                   ),
-                   borderRadius: BorderRadius.all(Radius.circular(20))
-               ),
-               child: Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 crossAxisAlignment: CrossAxisAlignment.center,
-                 children: [
-                   Text("Play now!",style: GoogleFonts.quicksand(
-                    color: Colors.white,
-                     fontWeight: FontWeight.bold,
-                     fontSize: height*0.04
-                   ),),
-                 ],
-               )
-             ),
-           ),
-
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+                margin: EdgeInsets.only(top: height * 0.05),
+                height: height * 0.08,
+                width: width * 0.65,
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0, // soften the shadow
+                        spreadRadius: 2.0, //extend the shadow
+                        offset: Offset(
+                          3.0, // Move to right 10  horizontally
+                          5.0, // Move to bottom 10 Vertically
+                        ),
+                      )
+                    ],
+                    color: Color(0xffffa62b),
+                    border: Border.all(
+                      color: Color(0xffffa62b),
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Play now!",
+                      style: GoogleFonts.quicksand(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: height * 0.04),
+                    ),
+                  ],
+                )),
+          ),
         ],
       )),
 

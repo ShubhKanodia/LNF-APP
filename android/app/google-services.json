@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "207043040167",
+    "project_id": "learnnfun",
+    "storage_bucket": "learnnfun.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207043040167:android:e50958b58af995f8995c82",
+        "android_client_info": {
+          "package_name": "com.pesuadrr.learnnfun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207043040167-082379a53i2q7qsk3h55avk43nad23pm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pesuadrr.learnnfun",
+            "certificate_hash": "a84017ab9fc20f1686a2f4f3f8a763ab041ed950"
+          }
+        },
+        {
+          "client_id": "207043040167-lrf5cpd21fcuc6v6hiage444qf4m47kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGhv7HKWs44sDMvU23J35r8s0AER9ZTO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207043040167-lrf5cpd21fcuc6v6hiage444qf4m47kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
