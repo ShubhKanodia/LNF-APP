@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/completedPage.dart';
 import 'package:learnnfun/introductionSlider.dart';
 import 'package:learnnfun/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -43,7 +44,6 @@ class MyApp extends StatelessWidget {
           BaseAuth auth = new Auth();
 
           if (auth.getCurrentUser() != null) {
-            auth.signOut();
             if (auth.getCurrentUser().displayName == null ||
                 auth.getCurrentUser().displayName == "null") {
               return OverlaySupport(
@@ -66,7 +66,8 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a),
                         accentColor: const Color(0xffffa62b),
                       ),
-                      home: MyHomePage()));
+                      home: TaskCompleted(
+                          rewards: 10, task: false, trophies: 10)));
             }
           } else {
             return OverlaySupport(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/completedPage.dart';
 
 import 'assets.dart';
 
@@ -108,44 +109,45 @@ class _ThemeIntroState extends State<ThemeIntro> {
                     ),
                   ],
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    margin: EdgeInsets.only(top: height * 0.01),
-                    height: height * 0.09,
-                    width: width * 0.65,
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xffca7602),
-                            blurRadius: 0.0, // soften the shadow
-                            spreadRadius: 2.0, //extend the shadow
-                            offset: Offset(
-                              0.0, // Move to right 10  horizontally
-                              4.0, // Move to bottom 10 Vertically
-                            ),
-                          )
-                        ],
-                        color: Color(0xffffa62b),
-                        border: Border.all(
-                          color: Color(0xffffa62b),
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Continue",
-                          style: GoogleFonts.quicksand(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: height * 0.04),
-                        ),
-                      ],
+                ElevatedButton(
+                    child: Text("Continue",
+                        style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w700,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.025),
+                        textAlign: TextAlign.left),
+                    style: ButtonStyle(
+                      shadowColor:
+                          MaterialStateProperty.all<Color>(Color(0xffcb7703)),
+                      elevation: MaterialStateProperty.resolveWith<double>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed)) return 0;
+                          return 8; // Use the component's default.
+                        },
+                      ),
+                      minimumSize: MaterialStateProperty.all<Size>(
+                          Size(width * 0.5, height * 0.06)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(26.0),
+                      )),
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed))
+                            return Color(0xffffa62b);
+                          return Color(
+                              0xffffa62b); // Use the component's default.
+                        },
+                      ),
                     ),
-                  ),
-                ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TaskCompleted(),
+                            settings: RouteSettings(name: 'Actual game')),
+                      );
+                    }),
                 Container(
                   height: height * 0.03,
                 ),

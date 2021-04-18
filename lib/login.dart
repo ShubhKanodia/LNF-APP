@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/main.dart';
 import 'package:learnnfun/registerInfo.dart';
+import 'package:learnnfun/themeintro.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
@@ -210,7 +210,7 @@ class _LoginState extends State<Login> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MyHomePage(),
+                                builder: (context) => ThemeIntro(),
                                 settings: RouteSettings(name: 'Main Page')),
                             (Route<dynamic> route) => false,
                           );

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/assets.dart';
 
 class TaskCompleted extends StatefulWidget {
+  bool task;
+  int trophies;
+  int rewards;
+  TaskCompleted(
+      {Key key,
+      @required this.task,
+      @required this.trophies,
+      @required this.rewards})
+      : super(key: key);
+
   @override
   _TaskCompletedState createState() => _TaskCompletedState();
 }
@@ -81,7 +91,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.01, right: width * 0.01),
-                      child: Assets.tinyTrophy,
+                      child: SvgPicture.asset("assets/trophy.svg"),
 
                       /// issues with the image
                     ),
@@ -141,7 +151,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.01, right: width * 0.01),
-                      child: Assets.tinyReward,
+                      child: SvgPicture.asset("assets/medal.svg"),
 
                       /// issues with the image
                     ),
@@ -178,7 +188,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
-                      child: Assets.reward,
+                      child: SvgPicture.asset("assets/bigMedal.svg"),
 
                       /// issues with the image
                     ),
