@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+///Gives the standard button used all throughout the application. USE THIS ONLY
+///need to pass a variable called context and a text in double quotes in the form test:"<Button Content>"
+///Also need to pass what should happen on click of the button to onTap in the form onTap:(){<code goes here>}
 Widget button(context, {@required String text, @required Function onTap}) {
   var width = MediaQuery.of(context).size.width;
   var height = MediaQuery.of(context).size.height;
@@ -39,7 +42,7 @@ Widget button(context, {@required String text, @required Function onTap}) {
             },
           ),
           minimumSize:
-              MaterialStateProperty.all<Size>(Size(width * 0.5, height * 0.65)),
+              MaterialStateProperty.all<Size>(Size(width * 0.6, height * 0.65)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -56,8 +59,15 @@ Widget button(context, {@required String text, @required Function onTap}) {
   );
 }
 
+///Gives a white screen with some slight elevation as is used across the entire application.
+///You need to pass a variable called context(don't worry aboout it)
+///You need to pass a List of widgets (Similar to what you pass into column) [Widget1,Widget2]
+///You can also pass a padding variable if you feel you want some padding on all sides
+
 Widget whiteScreen(context,
-    {@required double height, @required List<Widget> children}) {
+    {@required double height,
+    double padding = 0,
+    @required List<Widget> children}) {
   return Container(
       width: MediaQuery.of(context).size.width * 0.80,
       height: height,
@@ -72,11 +82,15 @@ Widget whiteScreen(context,
         ],
         color: Colors.white,
       ),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: children));
+      child: Padding(
+        padding: EdgeInsets.all(padding),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: children),
+      ));
 }
 
+///Use this for the default back button. Using this as the first element of your column will make it standard everywhere
 Widget backButton(context) {
   return Container(
     alignment: Alignment.topLeft,
