@@ -29,6 +29,14 @@ class _TaskIntroState extends State<TaskIntro> {
       "Let’s compare all the categories to prioritise one and then think of ideas for gifts!",
       "There are 8 categries.\n  You have 5 seconds for each round.\n  Tap continue when you are ready to play!"
     ],
+    [
+      "Level 1",
+      "Task 3",
+      "Let’s dive into task 3. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
+      "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
+      "Do not worry about the feasability or cost of the gift.",
+      "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+    ],
   ];
 
   @override

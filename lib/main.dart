@@ -3,9 +3,9 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learnnfun/basketball.dart';
 import 'package:learnnfun/introductionSlider.dart';
 import 'package:learnnfun/registerInfo.dart';
-import 'package:learnnfun/taskIntro.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
@@ -64,9 +64,8 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a),
                         accentColor: const Color(0xffffa62b),
                       ),
-                      home: TaskIntro(
-                          taskNumber:
-                              1))); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
+                      home:
+                          Basketball())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
