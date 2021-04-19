@@ -8,7 +8,9 @@ import 'package:learnnfun/registerInfo.dart';
 import 'package:learnnfun/taskIntro.dart';
 import 'package:overlay_support/overlay_support.dart';
 
+
 import 'auth.dart';
+import 'introductionSlider.dart';
 
 void main() {
   runApp(MyApp());
