@@ -10,7 +10,7 @@ import 'package:overlay_support/overlay_support.dart';
 
 import 'assets.dart';
 import 'auth.dart';
-import './person_list.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -65,7 +65,8 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a),
                         accentColor: const Color(0xffffa62b),
                       ),
-                      home: IntroductionSlider()));
+                      home:
+                          IntroductionSlider())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
@@ -238,4 +239,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
