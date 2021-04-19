@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ///Gives the standard button used all throughout the application. USE THIS ONLY
@@ -98,5 +99,116 @@ Widget backButton(context) {
         iconSize: 50,
         icon: Icon(Icons.chevron_left),
         onPressed: () => Navigator.pop(context)),
+  );
+}
+
+Widget squareBlueButton(context,
+    {@required String insideImageUrl, @required Function onTap}) {
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
+  return Container(
+    decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xff489fb5),
+            blurRadius: 1.0, // soften the shadow
+            spreadRadius: 1.0, //extend the shadow
+            offset: Offset(
+              0.0, // Move to right 10  horizontally
+              2.0, // Move to bottom 10 Vertically
+            ),
+          )
+        ],
+        color: Color(0xff489fb5),
+        borderRadius: BorderRadius.all(Radius.circular(20))),
+    child: ElevatedButton(
+        child: Container(
+            width: width * 0.1, child: SvgPicture.asset(insideImageUrl)),
+        style: ButtonStyle(
+          shadowColor: MaterialStateProperty.all<Color>(Color(0xff489fb5)),
+          elevation: MaterialStateProperty.resolveWith<double>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) return 0;
+              return 8; // Use the component's default.
+            },
+          ),
+          minimumSize:
+              MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          )),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed))
+                return Color(0xfa489fb5);
+              return Color(0xff489fb5); // Use the component's default.
+            },
+          ),
+        ),
+        onPressed: onTap),
+  );
+}
+
+Widget circularOrangeButton(context,
+    {@required String text,
+    @required bool enabled,
+    @required bool number,
+    bool light = false,
+    Function onTap}) {
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
+  return Container(
+    decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: light ? Color(0xfffad207) : Color(0x66cb7703),
+            blurRadius: 1.0, // soften the shadow
+            spreadRadius: 0.0, //extend the shadow
+            offset: Offset(
+              0.0, // Move to right 10  horizontally
+              2.0, // Move to bottom 10 Vertically
+            ),
+          )
+        ],
+        color: light ? Color(0xfffaf063) : Color(0xfffbc67e),
+        borderRadius: BorderRadius.all(Radius.circular(100))),
+    child: ElevatedButton(
+        child: Text(
+          text.toString(),
+          style: GoogleFonts.quicksand(
+              color: light ? Color(0xff16697a) : Color(0xffffffff),
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+              fontSize: number ? height * 0.04 : height * 0.02),
+        ),
+        style: ButtonStyle(
+          shadowColor: MaterialStateProperty.all<Color>(
+              light ? Color(0xfffad207) : Color(0x66cb7703)),
+          elevation: MaterialStateProperty.resolveWith<double>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) return 0;
+              return 8; // Use the component's default.
+            },
+          ),
+          minimumSize:
+              MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          )),
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed))
+                return enabled ? Color(0xfafbc67e) : Color(0xfffbc67e);
+              return enabled
+                  ? light
+                      ? Color(0xfafaf063)
+                      : Color(0xffffa62b)
+                  : Color(0xfffbc67e); // Use the component's default.
+            },
+          ),
+        ),
+        onPressed: onTap),
   );
 }
