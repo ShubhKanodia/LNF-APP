@@ -10,7 +10,7 @@ import 'package:overlay_support/overlay_support.dart';
 
 import 'assets.dart';
 import 'auth.dart';
-
+import './person_list.dart';
 void main() {
   runApp(MyApp());
 }
@@ -238,3 +238,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
