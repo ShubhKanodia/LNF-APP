@@ -1,8 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/completedPage.dart';
-
-import 'assets.dart';
+import 'package:learnnfun/widgets.dart';
 
 class ThemeIntro extends StatefulWidget {
   ThemeIntro({Key key}) : super(key: key);
@@ -38,33 +38,15 @@ class _ThemeIntroState extends State<ThemeIntro> {
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            height: height * 0.15,
-          ),
-          Container(
-            width: width * 0.84,
+          whiteScreen(
+            context,
             height: height * 0.7,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(height * 0.1),
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x338b8b8b),
-                  blurRadius: 4,
-                  offset: Offset(0, 4),
-                ),
-              ],
-              color: Colors.white,
-            ),
-            child: Column(
-              /// TODO: Replace lock image with gift and a cross
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: height * 0.1,
-                ),
-                Container(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Container(
                   height: height * 0.08,
                   width: width * 0.45,
                   child: FittedBox(
@@ -72,16 +54,17 @@ class _ThemeIntroState extends State<ThemeIntro> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
-                      child: Assets.lockImage,
+                      child: Image.asset("assets/gift.png"),
                     ),
                   ),
                 ),
-                Container(
-                  height: height * 0.1,
-                ),
-                Column(
-                  /// TODO: Left and right padding on the text
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: width * 0.02,
+                    right: width * 0.02,
+                    top: height * 0.04),
+                child: Column(
                   children: [
                     Text(
                       "Gift a Friend",
@@ -109,50 +92,24 @@ class _ThemeIntroState extends State<ThemeIntro> {
                     ),
                   ],
                 ),
-                ElevatedButton(
-                    child: Text("Continue",
-                        style: GoogleFonts.quicksand(
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontSize: height * 0.025),
-                        textAlign: TextAlign.left),
-                    style: ButtonStyle(
-                      shadowColor:
-                          MaterialStateProperty.all<Color>(Color(0xffcb7703)),
-                      elevation: MaterialStateProperty.resolveWith<double>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.pressed)) return 0;
-                          return 8; // Use the component's default.
-                        },
-                      ),
-                      minimumSize: MaterialStateProperty.all<Size>(
-                          Size(width * 0.5, height * 0.06)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(26.0),
-                      )),
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.pressed))
-                            return Color(0xffffa62b);
-                          return Color(
-                              0xffffa62b); // Use the component's default.
-                        },
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TaskCompleted(),
-                            settings: RouteSettings(name: 'Actual game')),
-                      );
-                    }),
-                Container(
-                  height: height * 0.03,
-                ),
-              ],
-            ),
+              ),
+              button(
+                  text: "Continue",
+                  height: height * 0.06,
+                  width: width * 0.5,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TaskCompleted(
+                                rewards: 0,
+                                trophies: 0,
+                                task: false,
+                              ),
+                          settings: RouteSettings(name: 'Actual game')),
+                    );
+                  })
+            ],
           ),
         ],
       )),

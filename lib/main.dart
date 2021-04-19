@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/completedPage.dart';
 import 'package:learnnfun/introductionSlider.dart';
 import 'package:learnnfun/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -66,8 +65,8 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a),
                         accentColor: const Color(0xffffa62b),
                       ),
-                      home: TaskCompleted(
-                          rewards: 10, task: false, trophies: 10)));
+                      home: IntroductionSlider()));
+              //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
             return OverlaySupport(
