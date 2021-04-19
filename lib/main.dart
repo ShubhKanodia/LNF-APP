@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                          Levels())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
+                          Tasks())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
