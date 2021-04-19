@@ -36,7 +36,8 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
           curve: Curves.easeIn,
         );
       }
-      if (_currentPage == slideList.length - 1) {
+      if (_currentPage == slideList.length - 1 ||
+          _currentPage == slideList.length - 1) {
         setState(() {
           buttonVisible = true;
         });
@@ -105,14 +106,10 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
               ),
               Visibility(
                   visible: buttonVisible,
-                  child: button(
-                      text: "Get Started",
-                      height: height * 0.06,
-                      width: width * 0.6,
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Login()));
-                      }))
+                  child: button(context, text: "Get Started", onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  }))
             ],
           ),
         ),

@@ -93,22 +93,18 @@ class _ThemeIntroState extends State<ThemeIntro> {
                   ],
                 ),
               ),
-              button(
-                  text: "Continue",
-                  height: height * 0.06,
-                  width: width * 0.5,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => TaskCompleted(
-                                rewards: 0,
-                                trophies: 0,
-                                task: false,
-                              ),
-                          settings: RouteSettings(name: 'Actual game')),
-                    );
-                  })
+              button(context, text: "Continue", onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TaskCompleted(
+                            rewards: 0,
+                            trophies: 0,
+                            task: false,
+                          ),
+                      settings: RouteSettings(name: 'Actual game')),
+                );
+              })
             ],
           ),
         ],

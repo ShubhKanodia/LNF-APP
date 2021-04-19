@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/introductionSlider.dart';
+import 'package:learnnfun/person_list.dart';
 import 'package:learnnfun/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                          IntroductionSlider())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
+                          PersonList())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {

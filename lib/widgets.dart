@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget button(
-    {@required String text,
-    @required double height,
-    @required double width,
-    @required Function onTap}) {
+Widget button(context, {@required String text, @required Function onTap}) {
+  var width = MediaQuery.of(context).size.width;
+  var height = MediaQuery.of(context).size.height;
   return Container(
+    height: height * 0.065,
     decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -29,7 +28,7 @@ Widget button(
             style: GoogleFonts.quicksand(
                 fontWeight: FontWeight.w700,
                 fontStyle: FontStyle.normal,
-                fontSize: height * 0.5),
+                fontSize: height * 0.03),
             textAlign: TextAlign.left),
         style: ButtonStyle(
           shadowColor: MaterialStateProperty.all<Color>(Color(0xffcb7703)),
@@ -39,7 +38,8 @@ Widget button(
               return 8; // Use the component's default.
             },
           ),
-          minimumSize: MaterialStateProperty.all<Size>(Size(width, height)),
+          minimumSize:
+              MaterialStateProperty.all<Size>(Size(width * 0.5, height * 0.65)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
@@ -58,23 +58,31 @@ Widget button(
 
 Widget whiteScreen(context,
     {@required double height, @required List<Widget> children}) {
-  return Center(
-    child: Container(
-        width: MediaQuery.of(context).size.width * 0.80,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(height * 0.1),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0x338b8b8b),
-              blurRadius: 4,
-              offset: Offset(0, 4),
-            ),
-          ],
-          color: Colors.white,
-        ),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: children)),
+  return Container(
+      width: MediaQuery.of(context).size.width * 0.80,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(height * 0.1),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x338b8b8b),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
+        ],
+        color: Colors.white,
+      ),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: children));
+}
+
+Widget backButton(context) {
+  return Container(
+    alignment: Alignment.topLeft,
+    child: IconButton(
+        iconSize: 50,
+        icon: Icon(Icons.chevron_left),
+        onPressed: () => Navigator.pop(context)),
   );
 }
