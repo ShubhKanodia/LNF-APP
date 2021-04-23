@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/menupage.dart';
+import 'package:learnnfun/person_list.dart';
 import 'package:learnnfun/themeintro.dart';
 import 'package:learnnfun/widgets.dart';
 
@@ -55,12 +56,12 @@ class Levels extends StatelessWidget {
           bottom: height * 0.33,
           right: width * 0.25,
           child: circularOrangeButton(context,
-              enabled: true, number: true, light: true, text: "1", onTap: (){ Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Tasks(),
-                    settings: RouteSettings(name: 'Actual game')),
-              );}),
+              enabled: true, number: true, light: true, text: "1", onTap: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ThemeIntro(),
+                        settings: RouteSettings(name: 'Actual game'))); }),
         ),
         Positioned(
           bottom: height * 0.45,
@@ -91,7 +92,6 @@ class Tasks extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Color(0x1A489fb5),
         body: Stack(
           children: [
             Container(
@@ -181,8 +181,9 @@ class Tasks extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ThemeIntro(),
-                          settings: RouteSettings(name: 'Actual game')));
+                          builder: (context) => PersonList(),
+                          settings: RouteSettings(name: 'Actual game')),
+                    );
                   }),
             ),
             Positioned(
