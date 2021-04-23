@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/completedPage.dart';
+import 'package:learnnfun/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
 
 class EmpathizeOneOne extends StatefulWidget {
@@ -26,7 +28,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
             child: Center(
           child: SingleChildScrollView(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -281,7 +283,20 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                     );
                                                   },
                                                 ),
-                                              ):button(context, text: "Continue", onTap: null),
+                                              ):button(context, text: "Continue", onTap: (){
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => TaskCompleted(task: true, trophies: 1, rewards: 1, onTap: (){
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (context) => TaskIntro(taskNumber: 1),
+                                                                settings: RouteSettings(name: 'Task 2')));
+                                                      },),
+                                                      settings: RouteSettings(name: 'Task Completed')),
+                                                );
+                                              }),
                                             ],
                                           ),
                                   ),
@@ -316,23 +331,23 @@ final questionList = [
   Question(
     quesText: "What sport do you like to play the most?",
     ansText:
-        "I like to read, sometimes I like to paint and occasionally I sing at open mics.",
+        "I like to play basketball",
     qFollowUp: [
       Question(
-          quesText: "What kind of books do you like to read?",
-          ansText: 'Roald Dahl',
+          quesText: "Which position do you play",
+          ansText: 'Center',
           qFollowUp: [
             Question(ansText: 'Ok', quesText: 'Nice'),
           ]),
       Question(
-          quesText: "Do you like the mystery genre?",
-          ansText: 'No',
+          quesText: "Which player do you like?",
+          ansText: 'Lebron James',
           qFollowUp: [
             Question(ansText: 'Ok', quesText: 'Nice'),
           ]),
       Question(
-          quesText: "Have you read Agatha Christie?",
-          ansText: 'No',
+          quesText: "How often do you watch it ",
+          ansText: 'Regularly',
           qFollowUp: [
             Question(ansText: 'Ok', quesText: 'Nice'),
           ]),

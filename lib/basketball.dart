@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/completedPage.dart';
 
 class Basketball extends StatefulWidget {
   @override
@@ -10,15 +11,9 @@ class Basketball extends StatefulWidget {
 }
 
 class _BasketballState extends State<Basketball> {
-  int hoopsLeft = 8;
+  int hoopsLeft = 2;
   List<Map<String, bool>> options = [
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
-    {"Basketball": true, "Football": false},
+    {"Lebron James": true, "Someone Else": false},
     {"Basketball": true, "Football": false},
   ];
   int points = 0;
@@ -63,7 +58,7 @@ class _BasketballState extends State<Basketball> {
               // Open Sans | 10px All
               Padding(
                 padding: EdgeInsets.only(left: 5),
-                child: Text(options[8 - hoopsLeft].keys.first,
+                child: Text(options[options.length - hoopsLeft].keys.first,
                     style: GoogleFonts.quicksand(
                         color: const Color(0xff489fb5),
                         fontWeight: FontWeight.w700,
@@ -73,7 +68,7 @@ class _BasketballState extends State<Basketball> {
               ),
               Padding(
                 padding: EdgeInsets.only(right: 5),
-                child: Text(options[8 - hoopsLeft].keys.last,
+                child: Text(options[options.length - hoopsLeft].keys.last,
                     style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
                         fontWeight: FontWeight.w700,
@@ -89,10 +84,14 @@ class _BasketballState extends State<Basketball> {
               DragTarget<bool>(
                   onWillAccept: (data) => true,
                   onAccept: (data) {
-                    if (options[8 - hoopsLeft]
-                        [options[8 - hoopsLeft].keys.first]) points++;
+                    if (options[options.length - hoopsLeft]
+                        [options[options.length - hoopsLeft].keys.first]) points++;
                     if (hoopsLeft == 1)
-                      print("Done"); //TODO : Go to some other page
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TaskCompleted(task: true, trophies: 0, rewards: points+1),
+                              settings: RouteSettings(name: 'Actual game')));
                     else {
                       setState(() {
                         hoopsLeft--;
@@ -141,7 +140,7 @@ class _BasketballState extends State<Basketball> {
               DragTarget<bool>(
                 onWillAccept: (data) => true,
                 onAccept: (data) {
-                  if (options[8 - hoopsLeft][options[8 - hoopsLeft].keys.last])
+                  if (options[options.length - hoopsLeft][options[options.length - hoopsLeft].keys.last])
                     points++;
                   if (hoopsLeft == 1)
                     print("Done"); //TODO : Go to some other page

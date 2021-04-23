@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/menupage.dart';
 import 'package:learnnfun/themeintro.dart';
 import 'package:learnnfun/widgets.dart';
 
@@ -20,7 +21,11 @@ class Levels extends StatelessWidget {
           top: height * 0.1,
           left: width * 0.04,
           child: squareBlueButton(context,
-              insideImageUrl: "assets/hamburger.svg", onTap: null),
+              insideImageUrl: "assets/hamburger.svg", onTap:(){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MenuPage(),
+                      settings: RouteSettings(name: 'Actual game')));}),
         ),
         Positioned(
           bottom: height * 0.1,

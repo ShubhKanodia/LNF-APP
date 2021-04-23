@@ -8,11 +8,13 @@ class TaskCompleted extends StatefulWidget {
   bool task;
   int trophies;
   int rewards;
+  Function onTap;
   TaskCompleted(
       {Key key,
       @required this.task,
       @required this.trophies,
-      @required this.rewards})
+      @required this.rewards,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -191,39 +193,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                 ],
               ),
             ]),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: height * 0.08,
-                width: width * 0.65,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xffca7602),
-                        blurRadius: 0.0, // soften the shadow
-                        spreadRadius: 2.0, //extend the shadow
-                        offset: Offset(
-                          0.0, // Move to right 10  horizontally
-                          4.0, // Move to bottom 10 Vertically
-                        ),
-                      )
-                    ],
-                    color: Color(0xffffa62b),
-                    border: Border.all(
-                      color: Color(0xffffa62b),
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Center(
-                  child: Text(
-                    "Continue",
-                    style: GoogleFonts.quicksand(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: height * 0.04),
-                  ),
-                ),
-              ),
-            ),
+            button(context, text: "Continue", onTap: widget.onTap)
           ],
         )),
       ),

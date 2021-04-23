@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/basketball.dart';
+import 'package:learnnfun/empathizeOneOne.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskIntro extends StatefulWidget {
@@ -12,14 +14,16 @@ class TaskIntro extends StatefulWidget {
 }
 
 class _TaskIntroState extends State<TaskIntro> {
-  List<List<String>> pageContent = [
+  List<List<dynamic>> pageContent = [
     [
       "Level 1",
       "Task 1",
       "Welcome to your first task. It is important to understand the person that you are designing a gift for. Let’s chat with them to get to know them!",
       " Tap on the question which you think is the right way of asking the person about their interests.",
       "When you looked at the giftee card, you already learnt a lot about them. You’ll be great at this!",
-      "There are 5 questions.Tap continue when you are ready to play!"
+      "There are 5 questions.Tap continue when you are ready to play!",
+
+
     ],
     [
       "Level 1",
@@ -132,7 +136,21 @@ class _TaskIntroState extends State<TaskIntro> {
                         fontSize: height * 0.025),
                     textAlign: TextAlign.center,
                   ),
-                  button(context, text: "Continue", onTap: () {})
+                  button(context, text: "Continue", onTap: () {
+                    if(widget.taskNumber==0)
+                      Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EmpathizeOneOne(),
+                        settings: RouteSettings(name: 'Actual game')),
+                  );
+                  else if (widget.taskNumber==1)
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Basketball(),
+                            settings: RouteSettings(name: 'Actual game')));
+                  })
                 ]),
           )
         ])));
