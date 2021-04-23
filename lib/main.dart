@@ -3,9 +3,11 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learnnfun/courseCompletion.dart';
 import 'package:learnnfun/introductionSlider.dart';
 import 'package:learnnfun/levels.dart';
 import 'package:learnnfun/registerInfo.dart';
+import 'package:learnnfun/themeintro.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
@@ -67,7 +69,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                      EmpathizeOneOne())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
+                      Levels())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
