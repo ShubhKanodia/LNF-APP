@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/levels.dart';
 import 'package:learnnfun/themeintro.dart';
 
 import 'auth.dart';
@@ -210,9 +211,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                     Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ThemeIntro(),
+                                          builder: (context) => Levels(),
                                           settings: RouteSettings(
-                                              name: 'Theme Intro')),
+                                              name: 'Levels')),
                                       (Route<dynamic> route) => false,
                                     );
                                   }),

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
 
 class PersonList extends StatefulWidget {
@@ -263,7 +264,12 @@ class _PersonListState extends State<PersonList> {
                           ])
                     ],
                   ),
-                  button(context, text: "Select Receiver", onTap: () {})
+                  button(context, text: "Select Receiver", onTap: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TaskIntro(taskNumber: 0),
+                        settings: RouteSettings(name: 'Task Introduction')),
+                  );})
                 ])));
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/completedPage.dart';
+import 'package:learnnfun/person_list.dart';
 import 'package:learnnfun/widgets.dart';
 
 class ThemeIntro extends StatefulWidget {
@@ -97,11 +98,7 @@ class _ThemeIntroState extends State<ThemeIntro> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TaskCompleted(
-                            rewards: 0,
-                            trophies: 0,
-                            task: false,
-                          ),
+                      builder: (context) => PersonList(),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               })
