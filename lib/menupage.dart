@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learnnfun/login.dart';
+import 'package:learnnfun/registerInfo.dart';
 import 'package:learnnfun/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'auth.dart';
 
 class MenuPage extends StatefulWidget {
   @override
@@ -29,7 +33,12 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.08),
-                child: button(context, text: 'Profile', onTap: null),
+                child: button(context, text: 'Profile', onTap: (){
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => RegistrationInfo(),
+    settings: RouteSettings(name: 'Actual game')));}),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
@@ -45,7 +54,17 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: button(context, text: 'About Us', onTap: null),
+                child: button(context, text: 'Log Out', onTap: (){
+                  Auth().signOut();
+  Navigator.pushAndRemoveUntil(
+  context,
+  MaterialPageRoute(
+  builder: (context) => Login(),
+  settings: RouteSettings(
+  name: 'Login')),
+  (Route<dynamic> route) => false,
+  );
+  })
               )
             ],
           ),

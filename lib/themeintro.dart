@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/completedPage.dart';
+import 'package:learnnfun/levels.dart';
 import 'package:learnnfun/person_list.dart';
 import 'package:learnnfun/widgets.dart';
 
@@ -98,9 +99,10 @@ class _ThemeIntroState extends State<ThemeIntro> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => PersonList(),
+                      builder: (context) => Tasks(),
                       settings: RouteSettings(name: 'Actual game')),
                 );
+
               })
             ],
           ),

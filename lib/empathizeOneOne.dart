@@ -16,17 +16,29 @@ class EmpathizeOneOne extends StatefulWidget {
 
 class _EmpathizeOneOne extends State<EmpathizeOneOne> {
   List<Question> questionSelected = [];
+  final ScrollController _scrollController = ScrollController();
+  bool _needsScroll = false;
+
+  _scrollToEnd() async {
+    _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent, duration: Duration(seconds: 1), curve: Curves.decelerate,);
+  }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    if (_needsScroll) {
+      WidgetsBinding.instance.addPostFrameCallback(
+              (_) => _scrollToEnd());
+      _needsScroll = false;
+    }
 
     return Scaffold(
         backgroundColor: Color(0xfff4f4f4),
         body: SafeArea(
-            child: Center(
-          child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              controller: _scrollController,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -94,7 +106,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                 Expanded(
                                   child: ListView.builder(
                                     shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics:  ClampingScrollPhysics(),
                                     itemCount: questionList.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -104,18 +116,28 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                           setState(() {
                                             questionSelected.removeRange(0, questionSelected.length);
                                             questionSelected.add(question);
+                                            _needsScroll = true;
                                           });
                                         },
-                                        child: Container(
-                                          color: questionSelected.isEmpty?Colors.white:questionSelected[0] == questionList[index]
-                                              ? Colors.green
-                                              : Colors.white,
-                                          child: Text(question.quesText,
-                                              style: GoogleFonts.quicksand(
-                                                  color: const Color(0xff1a1b41),
-                                                  fontStyle: FontStyle.normal,
-                                                  fontSize: height * 0.018),
-                                              textAlign: TextAlign.center),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [Container(
+                                            width:width * 0.7,
+                                                  color: questionSelected.isEmpty?Colors.white:questionSelected[0] == questionList[index]
+                                                      ? Colors.green
+                                                      : Colors.white,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(top:height*0.016, bottom: height*0.016, left: width*0.01),
+                                                    child: Text(question.quesText,
+                                                      style: GoogleFonts.quicksand(
+                                                          color: const Color(0xff1a1b41),
+                                                          fontStyle: FontStyle.normal,
+                                                          fontSize: height * 0.018),
+                                                      textAlign: TextAlign.center),
+                                                ),
+                                              ),
+                                            Divider(thickness: height*0.001,)
+                                          ],
                                         ),
                                       );
                                     },
@@ -239,13 +261,15 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                   qSel.ansText,
                                                   textAlign: TextAlign.left,
                                                   style: GoogleFonts.quicksand(
+                                                    fontWeight: FontWeight.bold,
                                                     color: Color(0xff1a1b41),
-                                                    fontSize: height * 0.018,
+                                                    fontSize: height * 0.022,
                                                   ),
                                                 ),
                                               ),
                                               qSel.qFollowUp!=null?Expanded(
                                                 child: ListView.builder(
+                                                  physics: ClampingScrollPhysics(),
                                                   itemCount: qSel.qFollowUp.length,
                                                   itemBuilder:
                                                       (BuildContext context,
@@ -259,26 +283,36 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
 
                                                           questionSelected.removeRange(index+1, questionSelected.length);
                                                           questionSelected.add(question);
+                                                          _needsScroll = true;
                                                         });
                                                       },
-                                                      child: Container(
-                                                        color: questionSelected.contains(question)
-                                                            ? Colors.green
-                                                            : Colors.white,
-                                                        child: Text(
-                                                            question.quesText,
-                                                            style: GoogleFonts
-                                                                .quicksand(
-                                                                    color: const Color(
-                                                                        0xff1a1b41),
-                                                                    fontStyle:
-                                                                        FontStyle
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        height *
-                                                                            0.018),
-                                                            textAlign:
-                                                                TextAlign.center),
+                                                      child: Column(
+                                                        children: [
+                                                          Container(
+
+                                                            width:width * 0.7,
+                                                            color: questionSelected.contains(question)
+                                                                ? Colors.green
+                                                                : Colors.white,
+                                                            child: Padding(
+                                                            padding: EdgeInsets.only(top:height*0.016, bottom: height*0.016, left: width*0.01),
+                                                            child:Text(
+                                                                question.quesText,
+                                                                style: GoogleFonts
+                                                                    .quicksand(
+                                                                        color: const Color(
+                                                                            0xff1a1b41),
+                                                                        fontStyle:
+                                                                            FontStyle
+                                                                                .normal,
+                                                                        fontSize:
+                                                                            height *
+                                                                                0.018),
+                                                                textAlign:
+                                                                    TextAlign.center)),
+                                                          ),
+                                                          Divider(thickness: height*0.001,)
+                                                        ],
                                                       ),
                                                     );
                                                   },
@@ -311,7 +345,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                   ),
                 ]),
           ),
-        )));
+        ));
   }
 }
 
