@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/levels.dart';
-import 'package:learnnfun/themeintro.dart';
 
-import 'auth.dart';
+import 'package:learnnfun/auth.dart';
+import 'package:learnnfun/overallPages/levels.dart';
 
 class RegistrationInfo extends StatefulWidget {
   @override

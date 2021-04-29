@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/basketball.dart';
-import 'package:learnnfun/empathizeOneOne.dart';
+import 'package:learnnfun/tasks/2_define_bb.dart';
+import 'package:learnnfun/tasks/1_chat_empathize.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskIntro extends StatefulWidget {

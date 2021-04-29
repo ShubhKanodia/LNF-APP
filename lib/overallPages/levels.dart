@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/menupage.dart';
-import 'package:learnnfun/person_list.dart';
-import 'package:learnnfun/themeintro.dart';
+import 'package:learnnfun/commonPages/menupage.dart';
+import 'package:learnnfun/commonPages/themeintro.dart';
+import 'package:learnnfun/tasks/0_person_list.dart';
 import 'package:learnnfun/widgets.dart';
 
 class Levels extends StatelessWidget {

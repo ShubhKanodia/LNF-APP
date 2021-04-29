@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/completedPage.dart';
+import 'package:learnnfun/commonPages/completedPage.dart';
 
 class Basketball extends StatefulWidget {
   @override

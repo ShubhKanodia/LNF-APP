@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/login.dart';
+import 'package:learnnfun/overallPages/login.dart';
 import 'package:learnnfun/widgets.dart';
 
 class IntroductionSlider extends StatefulWidget {
