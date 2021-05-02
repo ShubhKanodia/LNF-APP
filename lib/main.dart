@@ -9,6 +9,7 @@ import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
+import 'commonPages/library.dart';
 
 void main() {
   runApp(MyApp());
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                          Levels())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
+                      Levels())); //TODO: Change this to whatever you want while testing, but change to ThemeIntro() before pushing
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
