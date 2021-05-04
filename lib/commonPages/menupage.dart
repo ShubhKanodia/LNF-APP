@@ -15,7 +15,6 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
       body: SafeArea(

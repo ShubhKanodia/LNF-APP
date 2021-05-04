@@ -125,7 +125,6 @@ class _PersonListState extends State<PersonList> {
   }
 
   Widget personPopup(context, Person person) {
-    var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return BackdropFilter(
         filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),

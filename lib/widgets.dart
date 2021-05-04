@@ -105,7 +105,6 @@ Widget backButton(context) {
 Widget squareBlueButton(context,
     {@required String insideImageUrl, @required Function onTap}) {
   var width = MediaQuery.of(context).size.width;
-  var height = MediaQuery.of(context).size.height;
   return Container(
     decoration: BoxDecoration(
         boxShadow: [

@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskCompleted extends StatefulWidget {
-  bool task;
-  int trophies;
-  int rewards;
-  Function onTap;
+  final bool task;
+  final int trophies;
+  final int rewards;
+  final Function onTap;
   TaskCompleted(
       {Key key,
       @required this.task,
