@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/completedPage.dart';
+import 'package:learnnfun/commonPages/informationCard.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
 
@@ -325,8 +326,14 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                         Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
-                                                                builder: (context) => TaskIntro(taskNumber: 1),
-                                                                settings: RouteSettings(name: 'Task 2')));
+                                                                builder: (context) => InformationCard(cardNumber: 1, onTap:(){
+                                                                  Navigator.push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) => TaskIntro(taskNumber:1),
+                                                                          settings: RouteSettings(name: 'Task 2')));
+                                                                }),
+                                                                settings: RouteSettings(name: 'Actual game')));
                                                       },),
                                                       settings: RouteSettings(name: 'Task Completed')),
                                                 );

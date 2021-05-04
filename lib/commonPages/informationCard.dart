@@ -12,15 +12,26 @@ class InformationCard extends StatefulWidget {
 }
 
 class _InformationCardState extends State<InformationCard> {
-  List<List<String>> pageContent = [
+  List<List<dynamic>> pageContent = [
     [
       "In this task you learnt the first step of design thinking",
       "Empathise",
       "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+      
     ],
     [
-      "In this task you learnt the first step of design thinking",
-      "Empathise",
+      "In this task you learnt the second step of design thinking",
+      "Define",
+      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+    ],
+    [
+      "In this task you learnt the third step of design thinking",
+      "Ideate",
+      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+    ],
+    [
+      "In this task you learnt the fourth step of design thinking",
+      "Prototype",
       "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
     ],
   ];
@@ -47,19 +58,7 @@ class _InformationCardState extends State<InformationCard> {
                 fontStyle: FontStyle.normal,
                 fontSize: height * 0.05),
           ),
-          Padding(
-              padding: EdgeInsets.only(
-                  top: height * 0.02, left: width * 0.15, right: width * 0.15),
-              child: Text(
-                pageContent[widget.cardNumber][2],
-                maxLines: null,
-                style: GoogleFonts.quicksand(
-                    color: const Color(0xff1a1b41),
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: height * 0.02),
-                textAlign: TextAlign.center,
-              )),
+
           Padding(
             padding: EdgeInsets.only(top: height * 0.03),
             child: whiteScreen(context,
@@ -67,14 +66,16 @@ class _InformationCardState extends State<InformationCard> {
                 padding: 14,
                 children: [
                   Text(
-                    "Instructions",
+                    pageContent[widget.cardNumber][2],
+                    maxLines: null,
                     style: GoogleFonts.quicksand(
-                        color: const Color(0xff16697a),
-                        fontWeight: FontWeight.w500,
+                        color: const Color(0xff1a1b41),
+                        fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
-                        fontSize: height * 0.04),
+                        fontSize: height * 0.025),
+                    textAlign: TextAlign.center,
                   ),
-                  Text(
+                 /* Text(
                     pageContent[widget.cardNumber][3],
                     maxLines: null,
                     style: GoogleFonts.quicksand(
@@ -103,8 +104,8 @@ class _InformationCardState extends State<InformationCard> {
                         fontStyle: FontStyle.normal,
                         fontSize: height * 0.025),
                     textAlign: TextAlign.center,
-                  ),
-                  button(context, text: "Continue", onTap: () {})
+                  ),*/
+                  button(context, text: "Continue", onTap: widget.onTap)
                 ]),
           )
         ])));

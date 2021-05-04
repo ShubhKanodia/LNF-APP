@@ -3,7 +3,11 @@ import 'dart:math';
 
 import 'package:bubble_chart/bubble_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/commonPages/informationCard.dart';
+import 'package:learnnfun/commonPages/taskIntro.dart';
+import 'package:learnnfun/widgets.dart';
 
 class Ideate extends StatefulWidget {
   @override
@@ -25,7 +29,11 @@ class _IdeateState extends State<Ideate> {
     timer = Timer.periodic(Duration(seconds: 1),
     (Timer timer) {
       if (time == 0) {
-
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Ideate2(),
+                settings: RouteSettings(name: 'IdeationPhase2')));
       } else {
         setState(() {
           time--;
@@ -110,3 +118,115 @@ List storedIdeas = [];
     );
   }
 }
+
+class Ideate2 extends StatefulWidget {
+  @override
+  _Ideate2State createState() => _Ideate2State();
+}
+
+class _Ideate2State extends State<Ideate2> {
+
+  Timer timer;
+  int time=10; //TODO : Change to 300
+  void startTimer(){
+    timer = Timer.periodic(Duration(seconds: 1),
+            (Timer timer) {
+          if (time == 0) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => InformationCard(cardNumber: 3, onTap:(){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TaskIntro(taskNumber: 3),
+                              settings: RouteSettings(name: 'Task 2')));
+                    }),
+                    settings: RouteSettings(name: 'Actual game')));
+          } else {
+            setState(() {
+              time--;
+            });
+          }
+        });
+  }
+
+  TextEditingController idea = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Scaffold(
+        backgroundColor: Color(0xfff4f4f4),
+    body: Center(
+      child: Column(
+        children: [
+          backButton(context),
+        Text("Ideate",
+          style: GoogleFonts.quicksand(
+              color: const Color(0xff489fb5),
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+              fontSize: height * 0.05)
+        ),
+          Padding(
+            padding: EdgeInsets.only(left:width*0.2, right : width*0.2, top:height*0.001, bottom:height*0.001 ),
+            child: Text("List all the ideas you come up with for gifts in the next 5 minutes. The timer will begin once you tap on the page.",
+                style: GoogleFonts.quicksand(
+                    color: const Color(0xff1a1b41),
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.02)
+            ),
+          ),
+        Expanded(
+          child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: Svg('assets/ideation/notepad.svg'),
+              fit: BoxFit.fill
+
+            ),
+          ),
+              child:
+             TextField(
+                  onTap: startTimer,
+                  controller: idea,
+                  keyboardType: TextInputType.multiline,
+                  minLines: 1,//Normal textInputField will be displayed
+                  maxLines: 10,
+                  style: TextStyle(
+                    height: MediaQuery.of(context).viewInsets.bottom==0?height*0.0028:height*0.0013,
+                  ),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: width*0.15, right: width*0.1, top: height*0.04, bottom: height*0.02 ),
+                    hintText: "Type here...",
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    disabledBorder: InputBorder.none,
+                  ),
+
+                ),
+          ),
+        ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(time>60?time%60>10?"Time left- ${(time~/60)}:${(time%60)} minutes":"Time left- ${(time~/60)}:0${(time%60)} minutes":"Time left- $time seconds",
+              style: GoogleFonts.quicksand(
+                  color: const Color(0xffffa62b),
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.normal,
+                  fontSize: height * 0.04),
+              textAlign: TextAlign.left),
+            ),
+        ],
+      )
+    )
+    );
+  }
+}
+

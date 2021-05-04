@@ -105,7 +105,7 @@ packages:
       name: cupertino_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   dots_indicator:
     dependency: "direct main"
     description:
@@ -208,7 +208,14 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.21.0+1"
+    version: "0.22.0"
+  flutter_svg_provider:
+    dependency: "direct main"
+    description:
+      name: flutter_svg_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.9"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -253,7 +260,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.1"
+    version: "0.13.3"
   http_parser:
     dependency: transitive
     description:
@@ -358,7 +365,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   pedantic:
     dependency: transitive
     description:

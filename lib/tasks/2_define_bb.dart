@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/completedPage.dart';
+import 'package:learnnfun/commonPages/informationCard.dart';
+import 'package:learnnfun/commonPages/taskIntro.dart';
 
 class Basketball extends StatefulWidget {
   @override
@@ -143,7 +145,17 @@ class _BasketballState extends State<Basketball> {
                   if (options[options.length - hoopsLeft][options[options.length - hoopsLeft].keys.last])
                     points++;
                   if (hoopsLeft == 1)
-                    print("Done"); //TODO : Go to some other page
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InformationCard(cardNumber: 2, onTap:(){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TaskIntro(taskNumber: 2),
+                                      settings: RouteSettings(name: 'Task 2')));
+                            }),
+                            settings: RouteSettings(name: 'Actual game'))); //TODO : Go to some other page
                   else {
                     setState(() {
                       hoopsLeft--;

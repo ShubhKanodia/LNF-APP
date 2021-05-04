@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/tasks/2_define_bb.dart';
 import 'package:learnnfun/tasks/1_chat_empathize.dart';
+import 'package:learnnfun/tasks/3_ideate.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskIntro extends StatefulWidget {
   final int taskNumber;
+  final Widget nextPage;
 
-  TaskIntro({Key key, @required this.taskNumber}) : super(key: key);
+  TaskIntro({Key key, @required this.taskNumber, @required this.nextPage}) : super(key: key);
 
   @override
   _TaskIntroState createState() => _TaskIntroState();
@@ -37,6 +39,14 @@ class _TaskIntroState extends State<TaskIntro> {
       "Level 1",
       "Task 3",
       "Let’s dive into task 3. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
+      "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
+      "Do not worry about the feasability or cost of the gift.",
+      "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+    ],
+    [
+      "Level 1",
+      "Task 4",
+      "Let’s dive into task 4. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
       "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
       "Do not worry about the feasability or cost of the gift.",
       "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
@@ -137,19 +147,12 @@ class _TaskIntroState extends State<TaskIntro> {
                     textAlign: TextAlign.center,
                   ),
                   button(context, text: "Continue", onTap: () {
-                    if(widget.taskNumber==0)
                       Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => EmpathizeOneOne(),
+                        builder: (context) => widget.nextPage,
                         settings: RouteSettings(name: 'Actual game')),
                   );
-                  else if (widget.taskNumber==1)
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Basketball(),
-                            settings: RouteSettings(name: 'Actual game')));
                   })
                 ]),
           )
