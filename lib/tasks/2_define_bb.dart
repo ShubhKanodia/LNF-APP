@@ -103,7 +103,7 @@ class _BasketballState extends State<Basketball> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  InformationCard(cardNumber: 2),
+                                  InformationCard(cardNumber: 1),
                               settings: RouteSettings(name: 'Actual game')));
                     }
                     else {

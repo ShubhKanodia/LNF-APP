@@ -329,10 +329,11 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                 currentProgress.rewards=1;
                                                 currentProgress.trophies=1;
                                                 Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) => TaskCompleted(isTask: true,),
-                                                      settings: RouteSettings(name: 'Task Completed')),
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            InformationCard(cardNumber: 0),
+                                                        settings: RouteSettings(name: 'Actual game'))
                                                 );
                                               }),
                                             ],

@@ -19,7 +19,7 @@ class Ideate extends StatefulWidget {
 
 class _IdeateState extends State<Ideate> {
 
-  int time=10;
+  int time=5;
   Timer timer;
   List<Color> colors = [];
 
@@ -28,10 +28,17 @@ class _IdeateState extends State<Ideate> {
     colors.addAll(List.generate(ideas.length, (index) =>  Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.2)));
   }
 
+  void dispose(){
+    super.dispose();
+    timer.cancel();
+  }
+
+
   void startTimer(){
     timer = Timer.periodic(Duration(seconds: 1),
     (Timer timer) {
       if (time == 0) {
+        timer.cancel();
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -46,12 +53,13 @@ class _IdeateState extends State<Ideate> {
   }
 
 /// Keep first one blank for some reason
-  List ideas = ["", "CD PLayer", "Earrings", "Help", "What", "WHo"];
+  List ideas = ["", "CD PLayer", "Basketball", "Football", "Shoes", "Red Bull", "Charger", "Speaker", "Wallet", "Gym Membership"];
 List storedIdeas = [];
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         backgroundColor: Color(0xffffffff),
         body: SafeArea(
@@ -78,12 +86,13 @@ List storedIdeas = [];
             Expanded(
               child:BubbleChartLayout(
                 root: BubbleNode.node(
-                  padding:30,
+                  padding:20,
                   children: ideas.length==0?[]:List.generate(ideas.length, (index) => bubble(ideas[index], index, height) ),
               ),
               ),
             ),
             Container(
+              width:width,
                 height: height * 0.1,
                 decoration: BoxDecoration(color: Color(0xfff4f4f4)),
             child: Text("Pop the bubbles with the best ideas",
@@ -91,7 +100,7 @@ List storedIdeas = [];
                     color: const Color(0xffffa62b),
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.normal,
-                    fontSize: height * 0.01),
+                    fontSize: height * 0.028),
                 textAlign: TextAlign.left),),
           ],
         ))));
@@ -99,7 +108,6 @@ List storedIdeas = [];
 
 
   BubbleNode bubble(String text, int index, height) {
-    print(text);
     return BubbleNode.leaf(value: index,
     options: BubbleOptions(
         onTap: () {
@@ -130,11 +138,12 @@ class Ideate2 extends StatefulWidget {
 class _Ideate2State extends State<Ideate2> {
 
   Timer timer;
-  int time=10; //TODO : Change to 300
+  int time=20; //TODO : Change to 300
   void startTimer(){
     timer = Timer.periodic(Duration(seconds: 1),
             (Timer timer) {
-          if (time == 0) {
+          if (time == 0 && mounted) {
+            timer.cancel();
             userDocReference.update({
               "trophies":3,
               "rewards":FieldValue.increment(1),
@@ -147,7 +156,7 @@ class _Ideate2State extends State<Ideate2> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => InformationCard(cardNumber: 3),
+                    builder: (context) => InformationCard(cardNumber: 2),
                     settings: RouteSettings(name: 'Actual game')));
           } else {
             setState(() {
