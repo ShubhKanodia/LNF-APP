@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:bubble_chart/bubble_chart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
+
+import '../auth.dart';
 
 class Ideate extends StatefulWidget {
   @override
@@ -132,16 +135,19 @@ class _Ideate2State extends State<Ideate2> {
     timer = Timer.periodic(Duration(seconds: 1),
             (Timer timer) {
           if (time == 0) {
+            userDocReference.update({
+              "trophies":3,
+              "rewards":FieldValue.increment(1),
+              "taskUnlocked":4
+            });
+
+            currentProgress.taskUnlocked = 4;
+            currentProgress.rewards+=1;
+            currentProgress.trophies=3;
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => InformationCard(cardNumber: 3, onTap:(){
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TaskIntro(taskNumber: 3),
-                              settings: RouteSettings(name: 'Task 2')));
-                    }),
+                    builder: (context) => InformationCard(cardNumber: 3),
                     settings: RouteSettings(name: 'Actual game')));
           } else {
             setState(() {

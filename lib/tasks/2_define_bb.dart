@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/completedPage.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/commonPages/taskIntro.dart';
+
+import '../auth.dart';
+import '../widgets.dart';
 
 class Basketball extends StatefulWidget {
   @override
@@ -88,12 +90,22 @@ class _BasketballState extends State<Basketball> {
                   onAccept: (data) {
                     if (options[options.length - hoopsLeft]
                         [options[options.length - hoopsLeft].keys.first]) points++;
-                    if (hoopsLeft == 1)
+                    if (hoopsLeft == 1) {
+                      userDocReference.update({
+                        "trophies":2,
+                        "rewards":FieldValue.increment(points),
+                        "taskUnlocked":3
+                      });
+                      currentProgress.taskUnlocked = 3;
+                      currentProgress.rewards+=points;
+                      currentProgress.trophies=2;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => TaskCompleted(task: true, trophies: 0, rewards: points+1),
+                              builder: (context) =>
+                                  InformationCard(cardNumber: 2),
                               settings: RouteSettings(name: 'Actual game')));
+                    }
                     else {
                       setState(() {
                         hoopsLeft--;
@@ -144,18 +156,23 @@ class _BasketballState extends State<Basketball> {
                 onAccept: (data) {
                   if (options[options.length - hoopsLeft][options[options.length - hoopsLeft].keys.last])
                     points++;
-                  if (hoopsLeft == 1)
-                        Navigator.push(
+                  if (hoopsLeft == 1) {
+                    userDocReference.update({
+                      "trophies": 2,
+                      "rewards": FieldValue.increment(points),
+                      "taskUnlocked":3
+                    });
+
+                    currentProgress.taskUnlocked = 3;
+                    currentProgress.rewards+=points;
+                    currentProgress.trophies=2;
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => InformationCard(cardNumber: 2, onTap:(){
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => TaskIntro(taskNumber: 2),
-                                      settings: RouteSettings(name: 'Task 2')));
-                            }),
-                            settings: RouteSettings(name: 'Actual game'))); //TODO : Go to some other page
+                            builder: (context) =>
+                                InformationCard(cardNumber: 2),
+                            settings: RouteSettings(name: 'Actual game')));
+                  }//TODO : Go to some other page
                   else {
                     setState(() {
                       hoopsLeft--;

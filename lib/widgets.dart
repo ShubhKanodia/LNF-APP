@@ -1,9 +1,29 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'auth.dart';
+
+Progress currentProgress = Progress(
+    taskUnlocked:0,
+rewards:0,
+trophies:0
+);
+
+class Progress{
+  int taskUnlocked=0;
+  int rewards=0;
+  int trophies=0;
+    Progress({
+      this.taskUnlocked=0,
+      this.rewards=0,
+      this.trophies=0
+    });
+}
+
 ///Gives the standard button used all throughout the application. USE THIS ONLY
-///need to pass a variable called context and a text in double quotes in the form test:"<Button Content>"
+///need to pass a variable called context and a text in double quotes in the form text:"<Button Content>"
 ///Also need to pass what should happen on click of the button to onTap in the form onTap:(){<code goes here>}
 Widget button(context, {@required String text, @required Function onTap}) {
   var width = MediaQuery.of(context).size.width;
@@ -106,6 +126,8 @@ Widget squareBlueButton(context,
     {@required String insideImageUrl, @required Function onTap}) {
   var width = MediaQuery.of(context).size.width;
   return Container(
+    height:width * 0.15,
+    width:width * 0.15,
     decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -154,10 +176,25 @@ Widget circularOrangeButton(context,
     @required bool enabled,
     @required bool number,
     bool light = false,
-    Function onTap}) {
+    @required Function onTap}) {
   var width = MediaQuery.of(context).size.width;
   var height = MediaQuery.of(context).size.height;
-  return Container(
+  ConfettiController confettiController = ConfettiController(duration : Duration(seconds:1));
+  if(light) confettiController.play();
+  return ConfettiWidget(
+    confettiController: confettiController,
+    blastDirectionality: BlastDirectionality
+        .explosive, // don't specify a direction, blast randomly
+    shouldLoop:
+    false, // start again as soon as the animation is finished
+    colors: const [
+      Colors.green,
+      Colors.blue,
+      Colors.pink,
+      Colors.orange,
+      Colors.purple
+    ],
+    child:  Container(
     decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -208,6 +245,6 @@ Widget circularOrangeButton(context,
             },
           ),
         ),
-        onPressed: onTap),
-  );
+        onPressed: enabled?onTap:null),
+  ));
 }

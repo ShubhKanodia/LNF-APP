@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/tasks/2_define_bb.dart';
 import 'package:learnnfun/tasks/1_chat_empathize.dart';
 import 'package:learnnfun/tasks/3_ideate.dart';
+import 'package:learnnfun/tasks/4_prototype.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskIntro extends StatefulWidget {
   final int taskNumber;
-  final Widget nextPage;
 
-  TaskIntro({Key key, @required this.taskNumber, @required this.nextPage}) : super(key: key);
+  TaskIntro({Key key, @required this.taskNumber, }) : super(key: key);
 
   @override
   _TaskIntroState createState() => _TaskIntroState();
@@ -24,7 +24,7 @@ class _TaskIntroState extends State<TaskIntro> {
       " Tap on the question which you think is the right way of asking the person about their interests.",
       "When you looked at the giftee card, you already learnt a lot about them. You’ll be great at this!",
       "There are 5 questions.Tap continue when you are ready to play!",
-
+      EmpathizeOneOne()
 
     ],
     [
@@ -33,7 +33,8 @@ class _TaskIntroState extends State<TaskIntro> {
       "Welcome to task 2. Now that you’ve learnt a bit about your giftee, let’s define their needs and wants to prioritise them.",
       "Shoot the basketball into the hoop that is labelled with the item that the giftee likes better.",
       "Let’s compare all the categories to prioritise one and then think of ideas for gifts!",
-      "There are 8 categries.\n  You have 5 seconds for each round.\n  Tap continue when you are ready to play!"
+      "There are 8 categries.\n  You have 5 seconds for each round.\n  Tap continue when you are ready to play!",
+      Basketball()
     ],
     [
       "Level 1",
@@ -42,6 +43,7 @@ class _TaskIntroState extends State<TaskIntro> {
       "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
       "Do not worry about the feasability or cost of the gift.",
       "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+      Ideate()
     ],
     [
       "Level 1",
@@ -50,6 +52,7 @@ class _TaskIntroState extends State<TaskIntro> {
       "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
       "Do not worry about the feasability or cost of the gift.",
       "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+      Prototype()
     ],
   ];
 
@@ -150,7 +153,7 @@ class _TaskIntroState extends State<TaskIntro> {
                       Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => widget.nextPage,
+                        builder: (context) => pageContent[widget.taskNumber][6],
                         settings: RouteSettings(name: 'Actual game')),
                   );
                   })

@@ -80,7 +80,7 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
                     vertical: height / 40, horizontal: width / 9),
                 child: Container(
                   child: Text(
-                    "Grasp",
+                    "Learn N Fun",
                     style: GoogleFonts.quicksand(
                         color: const Color(0xff16697a),
                         fontWeight: FontWeight.w400,
@@ -179,19 +179,19 @@ class Slide {
 final slideList = [
   Slide(
     imageUrl: 'assets/awardGuy.png',
-    title: 'Grasp',
+    title: 'Learn N Fun',
     description:
         'Learn the Design Thinking process by playing fun games and activities!',
   ),
   Slide(
     imageUrl: 'assets/awardGuy.png',
-    title: 'Grasp',
+    title: 'Learn N Fun',
     description:
         'Each game helps you understand a step of the Design Thinking Methodology.',
   ),
   Slide(
     imageUrl: 'assets/awardGuy.png',
-    title: 'Grasp',
+    title: 'Learn N Fun',
     description:
         'Unlock new levels by completing the tasks and earning rewards. Complete all levels to master the course!',
   ),

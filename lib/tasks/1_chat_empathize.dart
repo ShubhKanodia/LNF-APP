@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/auth.dart';
 import 'package:learnnfun/commonPages/completedPage.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
@@ -319,22 +320,18 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                   },
                                                 ),
                                               ):button(context, text: "Continue", onTap: (){
+                                                userDocReference.update({
+                                                  "trophies":1,
+                                                  "rewards":1,
+                                                  "taskUnlocked":1
+                                                });
+                                                currentProgress.taskUnlocked = 2;
+                                                currentProgress.rewards=1;
+                                                currentProgress.trophies=1;
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                      builder: (context) => TaskCompleted(task: true, trophies: 1, rewards: 1, onTap: (){
-                                                        Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (context) => InformationCard(cardNumber: 1, onTap:(){
-                                                                  Navigator.push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                          builder: (context) => TaskIntro(taskNumber:1),
-                                                                          settings: RouteSettings(name: 'Task 2')));
-                                                                }),
-                                                                settings: RouteSettings(name: 'Actual game')));
-                                                      },),
+                                                      builder: (context) => TaskCompleted(isTask: true,),
                                                       settings: RouteSettings(name: 'Task Completed')),
                                                 );
                                               }),
@@ -368,6 +365,8 @@ class Question {
   });
 }
 
+
+///Add a list of Questions in qFollowUp to be able to continue the chat. if there is no qFollowp, it will end there.
 final questionList = [
   Question(
     quesText: "What sport do you like to play the most?",
@@ -378,82 +377,70 @@ final questionList = [
           quesText: "Which position do you play",
           ansText: 'Center',
           qFollowUp: [
-            Question(ansText: 'Ok', quesText: 'Nice'),
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+          ),
       Question(
           quesText: "Which player do you like?",
           ansText: 'Lebron James',
-          qFollowUp: [
-            Question(ansText: 'Ok', quesText: 'Nice'),
-          ]),
+          ),
       Question(
           quesText: "How often do you watch it ",
           ansText: 'Regularly',
           qFollowUp: [
-            Question(ansText: 'Ok', quesText: 'Nice'),
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+          ),
     ],
   ),
   Question(
     quesText: "What do you like to do in your free time?",
     ansText:
-        "I like to read, sometimes I like to paint and occasionally I sing at open mics.",
+        "I enjoy playing Basketball a lot",
     qFollowUp: [
       Question(
-          quesText: "What kind of books do you like to read?",
-          ansText: '',
+        quesText: "Which position do you play",
+        ansText: 'Center',
           qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+      ),
       Question(
-          quesText: "Do you like the mystery genre?",
-          ansText: '',
-          qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+        quesText: "Which player do you like?",
+        ansText: 'Lebron James',
+      ),
       Question(
-          quesText: "Have you read Agatha Christie?",
-          ansText: '',
+        quesText: "How often do you watch it ",
+        ansText: 'Regularly',
           qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+      ),
     ],
   ),
   Question(
     quesText: "Do you like to play sports?",
     ansText:
-        "I like to read, sometimes I like to paint and occasionally I sing at open mics.",
+        "Yes I do. I enjoy playing Basketball the most",
     qFollowUp: [
       Question(
-          quesText: "What kind of books do you like to read?",
-          ansText: '',
+        quesText: "Which position do you play",
+        ansText: 'Center',
           qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+      ),
       Question(
-          quesText: "Do you like the mystery genre?",
-          ansText: '',
-          qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+        quesText: "Which player do you like?",
+        ansText: 'Lebron James',
+      ),
       Question(
-          quesText: "Have you read Agatha Christie?",
-          ansText: '',
+        quesText: "How often do you watch it ",
+        ansText: 'Regularly',
           qFollowUp: [
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: ''),
-            Question(ansText: '', quesText: '')
-          ]),
+            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+          ]
+      ),
     ],
   ),
 ];

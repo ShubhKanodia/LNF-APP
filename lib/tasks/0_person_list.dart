@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
+import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
+
+import '../auth.dart';
 
 class PersonList extends StatefulWidget {
   @override
@@ -263,12 +266,21 @@ class _PersonListState extends State<PersonList> {
                           ])
                     ],
                   ),
-                  button(context, text: "Select Receiver", onTap: () {Navigator.push(
+                  button(context, text: "Select Receiver", onTap: () {
+                    userDocReference.update({
+                      "taskUnlocked":1
+                    });
+                    currentProgress.taskUnlocked = 1;
+                    currentProgress.rewards=1;
+                    currentProgress.trophies=1;
+                    Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TaskIntro(taskNumber: 0),
-                        settings: RouteSettings(name: 'Task Introduction')),
-                  );})
+                        builder: (context) => Tasks(),
+                        settings: RouteSettings(name: 'Tasks')),
+                        (Route<dynamic> route) => false,
+                  );
+                  })
                 ])));
   }
 }

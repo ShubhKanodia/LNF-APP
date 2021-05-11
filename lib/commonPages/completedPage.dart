@@ -2,26 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/auth.dart';
+import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskCompleted extends StatefulWidget {
-  final bool task;
-  final int trophies;
-  final int rewards;
-  final Function onTap;
-  TaskCompleted(
-      {Key key,
-      @required this.task,
-      @required this.trophies,
-      @required this.rewards,
-      this.onTap})
-      : super(key: key);
+  final bool isTask;
+
+  TaskCompleted({Key key, @required this.isTask}) : super(key: key);
 
   @override
   _TaskCompletedState createState() => _TaskCompletedState();
 }
 
 class _TaskCompletedState extends State<TaskCompleted> {
+
+  void initState() {
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -68,13 +68,13 @@ class _TaskCompletedState extends State<TaskCompleted> {
                             color: Colors.white),
                         child: Padding(
                           padding: const EdgeInsets.all(8),
-                          child: Text(widget.trophies.toString(),
-                              style: GoogleFonts.quicksand(
-                                color: Color(0xff16697a),
-                                fontSize: height * 0.045,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.end),
+                          child: Text(currentProgress.trophies.toString(),
+                                  style: GoogleFonts.quicksand(
+                                    color: Color(0xff16697a),
+                                    fontSize: height * 0.045,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.end),
                         ),
                       ),
                       Container(
@@ -122,13 +122,13 @@ class _TaskCompletedState extends State<TaskCompleted> {
                             color: Colors.white),
                         child: Padding(
                           padding: const EdgeInsets.all(8),
-                          child: Text(widget.rewards.toString(),
-                              style: GoogleFonts.quicksand(
-                                color: Color(0xff16697a),
-                                fontSize: height * 0.045,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.end),
+                          child: Text(currentProgress.rewards.toString(),
+                                  style: GoogleFonts.quicksand(
+                                    color: Color(0xff16697a),
+                                    fontSize: height * 0.045,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  textAlign: TextAlign.end),
                         ),
                       ),
                       Container(
@@ -163,7 +163,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                   child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
-                      child: widget.task
+                      child: widget.isTask
                           ? SvgPicture.asset("assets/bigMedal.svg")
                           : Image.asset("assets/awardGuy.png")),
                 ),
@@ -175,7 +175,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.task ? "Task Completed" : "Level Completed",
+                    widget.isTask ? "Task Completed" : "Level Completed",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.quicksand(
                       color: Color(0xff489fb5),
@@ -193,7 +193,27 @@ class _TaskCompletedState extends State<TaskCompleted> {
                 ],
               ),
             ]),
-            button(context, text: "Continue", onTap: widget.onTap)
+            button(context, text: "Continue", onTap: () {
+              if (currentProgress.taskUnlocked==6 ){
+
+              }
+              else if(widget.isTask)
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Tasks(),
+                      settings: RouteSettings(name: 'Tasks')),
+                  (Route<dynamic> route) => false,
+                );
+              else
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Levels(),
+                      settings: RouteSettings(name: 'Levels')),
+                  (Route<dynamic> route) => false,
+                );
+            })
           ],
         )),
       ),

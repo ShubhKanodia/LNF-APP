@@ -8,6 +8,8 @@ import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:learnnfun/tasks/3_ideate.dart';
 import 'package:learnnfun/tasks/4_prototype.dart';
+import 'package:learnnfun/tasks/5_test.dart';
+import 'package:learnnfun/widgets.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
@@ -44,6 +46,15 @@ class MyApp extends StatelessWidget {
           BaseAuth auth = new Auth();
 
           if (auth.getCurrentUser() != null) {
+            userDocReference.get().then((value) {
+              if (value.data()["taskUnlocked"] != null &&
+                  value.data()["rewards"] != null &&
+                  value.data()["trophies"] != null)
+                currentProgress = Progress(
+                    taskUnlocked: value.data()["taskUnlocked"],
+                    rewards: value.data()["rewards"],
+                    trophies: value.data()["trophies"]);
+            });
             if (auth.getCurrentUser().displayName == null ||
                 auth.getCurrentUser().displayName == "null") {
               return OverlaySupport(
@@ -67,7 +78,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                          Levels())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
+                          Test())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }

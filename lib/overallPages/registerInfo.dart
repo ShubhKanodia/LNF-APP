@@ -185,23 +185,17 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                     if (profileSelected != null)
                                       Auth().getCurrentUser().updateProfile(
                                           photoURL: profileSelected);
-                                    if ((await databaseReference
-                                            .collection("users")
-                                            .doc(Auth().getCurrentUser().uid)
+                                    if ((await userDocReference
                                             .get())
                                         .exists)
-                                      databaseReference
-                                          .collection("users")
-                                          .doc(Auth().getCurrentUser().uid)
+                                      userDocReference
                                           .update({
                                         "name": name.text,
                                         "profile": profileSelected,
                                         "age": age
                                       });
                                     else
-                                      databaseReference
-                                          .collection("users")
-                                          .doc(Auth().getCurrentUser().uid)
+                                      userDocReference
                                           .set({
                                         "name": name.text,
                                         "profile": profileSelected,
