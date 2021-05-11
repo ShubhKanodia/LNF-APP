@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
+import 'package:davinci/davinci.dart';
+import 'package:davinci/core/davinci_capture.dart';
+
+import '../auth.dart';
 
 class CourseCompletion extends StatefulWidget {
-  final int cardNumber;
-
-  CourseCompletion({Key key, @required this.cardNumber}) : super(key: key);
+  CourseCompletion({Key key}) : super(key: key);
 
   @override
   _CourseCompletion createState() => _CourseCompletion();
 }
 
 class _CourseCompletion extends State<CourseCompletion> {
+
+  GlobalKey certificate;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -37,100 +42,121 @@ class _CourseCompletion extends State<CourseCompletion> {
                       fontStyle: FontStyle.normal,
                       fontSize: height * 0.05),
                 ),
-                    Container(
-                      height: height*0.6,
-                      width: width*0.8,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Course Completion",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff16697a),
-                                  fontWeight: FontWeight.w700,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.04),
-                            ),
-                            Column(
+                    Davinci(
+                      builder:(key) {
+                        this.certificate = key;
+                        return Container(
+                          height: height * 0.6,
+                          width: width * 0.8,
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  "This is to certify that",
-                                  style: GoogleFonts.quicksand(
-                                      color: const Color(0xff373c44),
-                                      fontWeight: FontWeight.w700,
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: height * 0.02),
-                                ),
-                                Text(
-                                  "JOHN PAUL",
-                                  style: GoogleFonts.quicksand(
-                                      color: const Color(0xff489fb5),
-                                      fontWeight: FontWeight.w700,
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: height * 0.05),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width*0.06, right: width*0.06,),
-                              child: Text(
-                                "has completed a a course on design thinking that includes EDIPT process via a gamified model of learning.",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.quicksand(
-                                    color: const Color(0xff373c44),
-                                    fontWeight: FontWeight.w700,
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: height * 0.02),
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  "Design Thinking",
+                                  "Course Completion",
                                   style: GoogleFonts.quicksand(
                                       color: const Color(0xff16697a),
                                       fontWeight: FontWeight.w700,
                                       fontStyle: FontStyle.normal,
                                       fontSize: height * 0.04),
                                 ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "This is to certify that",
+                                      style: GoogleFonts.quicksand(
+                                          color: const Color(0xff373c44),
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: height * 0.02),
+                                    ),
+                                    Text(
+                                      Auth()
+                                          .getCurrentUser()
+                                          .displayName,
+                                      style: GoogleFonts.quicksand(
+                                          color: const Color(0xff489fb5),
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: height * 0.05),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    left: width * 0.06, right: width * 0.06,),
+                                  child: Text(
+                                    "has completed a a course on design thinking that includes EDIPT process via a gamified model of learning.",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.quicksand(
+                                        color: const Color(0xff373c44),
+                                        fontWeight: FontWeight.w700,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Design Thinking",
+                                      style: GoogleFonts.quicksand(
+                                          color: const Color(0xff16697a),
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: height * 0.04),
+                                    ),
+                                    Text(
+                                      "gifting a friend",
+                                      style: GoogleFonts.quicksand(
+                                          color: const Color(0xff16697a),
+                                          fontWeight: FontWeight.w700,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: height * 0.02),
+                                    ),
+                                  ],
+                                ),
                                 Text(
-                                  "gifting a friend",
+                                  "Certified By",
                                   style: GoogleFonts.quicksand(
-                                      color: const Color(0xff16697a),
+                                      color: const Color(0xff373c44),
                                       fontWeight: FontWeight.w700,
                                       fontStyle: FontStyle.normal,
                                       fontSize: height * 0.02),
                                 ),
+                                Container(
+                                  height: height * 0.03,
+                                  width: width * 0.03,
+                                  child: Image.asset("assets/grasp.png"),
+
+                                  ///TODO: Image not appearing
+                                ),
                               ],
                             ),
-                            Text(
-                              "Certified By",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff373c44),
-                                  fontWeight: FontWeight.w700,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Container(
-                              height: height * 0.03,
-                              width: width * 0.03,
-                              child: Image.asset("assets/grasp.png"), ///TODO: Image not appearing
-                            ),
-                          ],
-                        ),
+                          ),
+                        );
+                      }),
+                    button(context, text: "share", onTap: () async {await DavinciCapture.click(certificate, fileName: "Design Thinking Certificate ");}),
+                    TextButton(
+                      onPressed: (){
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Levels(),
+                              settings: RouteSettings(
+                                  name: 'Levels')),
+                              (Route<dynamic> route) => false,
+                        );
+                      },
+                      child: Text(
+                        "Continue",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff16697a),
+                            fontWeight: FontWeight.w700,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.04),
                       ),
-                    ),
-                    button(context, text: "share", onTap: () {}),
-                    Text(
-                      "Continue",
-                      style: GoogleFonts.quicksand(
-                          color: const Color(0xff16697a),
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.normal,
-                          fontSize: height * 0.04),
                     ),
               ]),
             )));

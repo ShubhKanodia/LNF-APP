@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/auth.dart';
+import 'package:learnnfun/commonPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 
@@ -195,7 +196,13 @@ class _TaskCompletedState extends State<TaskCompleted> {
             ]),
             button(context, text: "Continue", onTap: () {
               if (currentProgress.taskUnlocked==6 ){
-
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CourseCompletion(),
+                      settings: RouteSettings(name: 'Tasks')),
+                      (Route<dynamic> route) => false,
+                );
               }
               else if(widget.isTask)
                 Navigator.pushAndRemoveUntil(

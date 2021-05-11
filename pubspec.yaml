@@ -41,6 +41,7 @@ dependencies:
   bubble_chart: ^0.2.0
   flutter_svg_provider: ^0.1.9
   confetti: ^0.5.5
+  davinci: ^0.0.3
 
 dev_dependencies:
   flutter_test:
