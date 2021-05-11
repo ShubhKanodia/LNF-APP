@@ -93,7 +93,7 @@ class _Library extends State<Library> {
 
                           ),
                             ListView.builder(
-                              physics: AlwaysScrollableScrollPhysics(),
+                              physics: ClampingScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: topic.vids,
                               itemBuilder: (BuildContext context, int index) {

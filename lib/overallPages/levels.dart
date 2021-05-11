@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/library.dart';
+import 'package:learnnfun/overallPages/library.dart';
 import 'package:learnnfun/commonPages/menupage.dart';
 import 'package:learnnfun/commonPages/themeintro.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';

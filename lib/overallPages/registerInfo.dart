@@ -19,6 +19,17 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
     "https://i.pravatar.cc/300"
   ];
 
+  void initState(){
+    super.initState();
+    userDocReference.get().then((value){
+      setState(() {
+        name.text = value.data()["name"];
+        age = value.data()["age"];
+
+      });
+    });
+  }
+
   List<Widget> profilePictures(height) {
     List<Widget> avatars = [];
     for (int i = 0; i < profilePictureURL.length; i++) {
@@ -94,7 +105,7 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                             ),
                           ),
                           SizedBox(height: height * 0.09),
-                          Text("Age",
+                          Text("Age : ${age.toInt()}",
                               style: GoogleFonts.quicksand(
                                   color: const Color(0xff1a1b41),
                                   fontWeight: FontWeight.w400,

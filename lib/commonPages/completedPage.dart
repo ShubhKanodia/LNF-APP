@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/auth.dart';
-import 'package:learnnfun/commonPages/courseCompletion.dart';
+import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 
