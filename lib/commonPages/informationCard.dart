@@ -56,20 +56,20 @@ class _InformationCardState extends State<InformationCard> {
             child: Center(
           child: Column(children: [
             backButton(context),
-            Text(
-              pageContent[widget.cardNumber][1],
-              style: GoogleFonts.quicksand(
-                  color: const Color(0xff489fb5),
-                  fontWeight: FontWeight.w700,
-                  fontStyle: FontStyle.normal,
-                  fontSize: height * 0.05),
-            ),
             Padding(
               padding: EdgeInsets.only(top: height * 0.03),
               child: whiteScreen(context,
                   height: height * 0.65,
                   padding: 14,
                   children: [
+                    Text(
+                      pageContent[widget.cardNumber][1],
+                      style: GoogleFonts.quicksand(
+                          color: const Color(0xff489fb5),
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height * 0.05),
+                    ),
                     Text(
                       pageContent[widget.cardNumber][2],
                       maxLines: null,

@@ -163,7 +163,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                   fit: BoxFit.cover,
                   child: Padding(
                       padding: EdgeInsets.only(
-                          left: width * 0.05, right: width * 0.05),
+                          left: width * 0.05, right: width * 0.05, top: height*0.2),
                       child: widget.isTask
                           ? SvgPicture.asset("assets/bigMedal.svg")
                           : Image.asset("assets/awardGuy.png")),

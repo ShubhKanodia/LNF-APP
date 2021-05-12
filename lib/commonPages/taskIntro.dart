@@ -4,6 +4,7 @@ import 'package:learnnfun/tasks/2_define_bb.dart';
 import 'package:learnnfun/tasks/1_chat_empathize.dart';
 import 'package:learnnfun/tasks/3_ideate.dart';
 import 'package:learnnfun/tasks/4_prototype.dart';
+import 'package:learnnfun/tasks/5_test.dart';
 import 'package:learnnfun/widgets.dart';
 
 class TaskIntro extends StatefulWidget {
@@ -48,11 +49,20 @@ class _TaskIntroState extends State<TaskIntro> {
     [
       "Level 1",
       "Task 4",
-      "Let’s dive into task 4. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
+      "Let’s dive into task 4. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to try prototypinh",
+      "Just click next for now",
+      "Do not worry about the feasability or cost of the gift.",
+      "Tap continue when you are ready to play!",
+      Prototype()
+    ],
+    [
+      "Level 1",
+      "Task 5",
+      "Let’s dive into task 5. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
       "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
       "Do not worry about the feasability or cost of the gift.",
       "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
-      Prototype()
+      Test()
     ],
   ];
 

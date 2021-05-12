@@ -39,11 +39,20 @@ class _IdeateState extends State<Ideate> {
     (Timer timer) {
       if (time == 0) {
         timer.cancel();
+        userDocReference.update({
+          "trophies":0,
+          "rewards":FieldValue.increment(1),
+          "taskUnlocked":4
+        });
+
+        currentProgress.taskUnlocked = 4;
+        currentProgress.rewards+=1;
+        currentProgress.trophies=0;
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Ideate2(),
-                settings: RouteSettings(name: 'IdeationPhase2')));
+                builder: (context) => InformationCard(cardNumber: 2),
+                settings: RouteSettings(name: 'Actual game')));
       } else {
         setState(() {
           time--;
@@ -145,14 +154,14 @@ class _Ideate2State extends State<Ideate2> {
           if (time == 0 && mounted) {
             timer.cancel();
             userDocReference.update({
-              "trophies":3,
+              "trophies":0,
               "rewards":FieldValue.increment(1),
               "taskUnlocked":4
             });
 
             currentProgress.taskUnlocked = 4;
             currentProgress.rewards+=1;
-            currentProgress.trophies=3;
+            currentProgress.trophies=0;
             Navigator.push(
                 context,
                 MaterialPageRoute(

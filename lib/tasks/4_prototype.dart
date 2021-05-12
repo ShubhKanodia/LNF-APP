@@ -110,13 +110,13 @@ class _PrototypeState extends State<Prototype> {
                                     icon: Icon(Icons.check),
                                     onPressed: () {
                                       userDocReference.update({
-                                        "trophies": 4,
+                                        "trophies": 0,
                                         "rewards": FieldValue.increment(1),
                                         "taskUnlocked":5
                                       });
                                       currentProgress.taskUnlocked = 5;
                                       currentProgress.rewards+=1;
-                                      currentProgress.trophies=4;
+                                      currentProgress.trophies=0;
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

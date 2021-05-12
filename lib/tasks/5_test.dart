@@ -78,13 +78,13 @@ class _TestState extends State<Test> {
                     }
                     if (angleToChange > 0.7) {
                       userDocReference.update({
-                        "trophies": 5,
+                        "trophies": 1,
                         "rewards": FieldValue.increment(1),
                         "taskUnlocked": 6
                       });
                       currentProgress.taskUnlocked = 6;
                       currentProgress.rewards += 1;
-                      currentProgress.trophies = 5;
+                      currentProgress.trophies = 1;
                       Navigator.push(
                           context,
                           MaterialPageRoute(

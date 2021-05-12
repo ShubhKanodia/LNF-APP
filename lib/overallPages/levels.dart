@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/commonPages/taskIntro.dart';
+import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/library.dart';
 import 'package:learnnfun/commonPages/menupage.dart';
 import 'package:learnnfun/commonPages/themeintro.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
-import 'package:learnnfun/tasks/1_chat_empathize.dart';
-import 'package:learnnfun/tasks/2_define_bb.dart';
-import 'package:learnnfun/tasks/3_ideate.dart';
-import 'package:learnnfun/tasks/4_prototype.dart';
-import 'package:learnnfun/tasks/5_test.dart';
 import 'package:learnnfun/widgets.dart';
 
 class Levels extends StatelessWidget {
@@ -77,11 +74,22 @@ class Levels extends StatelessWidget {
           right: width * 0.25,
           child: circularOrangeButton(context,
               enabled: true, number: true, light: true, text: "1", onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ThemeIntro(),
-                    settings: RouteSettings(name: 'Actual game')));
+                if(currentProgress.taskUnlocked>2)
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Tasks(),
+                        settings: RouteSettings(name: 'Actual game')),
+                  );
+
+                }else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ThemeIntro(),
+                          settings: RouteSettings(name: 'Actual game')));
+                }
           }),
         ),
         Positioned(
@@ -123,7 +131,13 @@ class Tasks extends StatelessWidget {
           top: height * 0.1,
           left: width * 0.04,
           child: squareBlueButton(context,
-              insideImageUrl: "assets/hamburger.svg", onTap: null),
+              insideImageUrl: "assets/hamburger.svg", onTap:() {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MenuPage(),
+                        settings: RouteSettings(name: 'Actual game')));
+              }),
         ),
         Positioned(
             top: height * 0.12,
@@ -208,7 +222,7 @@ class Tasks extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => EmpathizeOneOne(),
+                  builder: (context) => TaskIntro(taskNumber: 0),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),
@@ -224,7 +238,7 @@ class Tasks extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Basketball(),
+                    builder: (context) => TaskIntro(taskNumber: 1),
                     settings: RouteSettings(name: 'Actual game')),
               );
             })),
@@ -239,7 +253,7 @@ class Tasks extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Ideate(),
+                  builder: (context) => TaskIntro(taskNumber: 2),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),
@@ -255,7 +269,7 @@ class Tasks extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Prototype(),
+                  builder: (context) => TaskIntro(taskNumber: 3),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),
@@ -271,7 +285,7 @@ class Tasks extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Test(),
+                  builder: (context) => TaskIntro(taskNumber: 4),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),
@@ -280,11 +294,11 @@ class Tasks extends StatelessWidget {
           bottom: height * 0.74,
           left: width * 0.2,
           child: circularOrangeButton(context,
-              enabled: false, number: false, text: "Finish", onTap: () {
+              enabled: currentProgress.taskUnlocked >= 6, number: false, text: "Finish", onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => EmpathizeOneOne(),
+                  builder: (context) => CourseCompletion(),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),

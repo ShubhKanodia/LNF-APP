@@ -13,6 +13,7 @@ import 'package:learnnfun/widgets.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
+import 'overallPages/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget {
                       primaryColor: const Color(0xff16697a),
                       accentColor: const Color(0xffffa62b),
                     ),
-                    home: IntroductionSlider()));
+                    home: Login()));
           }
         }
         // Otherwise, show something whilst waiting for initialization to complete

@@ -92,13 +92,13 @@ class _BasketballState extends State<Basketball> {
                         [options[options.length - hoopsLeft].keys.first]) points++;
                     if (hoopsLeft == 1) {
                       userDocReference.update({
-                        "trophies":2,
+                        "trophies":0,
                         "rewards":FieldValue.increment(points),
                         "taskUnlocked":3
                       });
                       currentProgress.taskUnlocked = 3;
                       currentProgress.rewards+=points;
-                      currentProgress.trophies=2;
+                      currentProgress.trophies=0;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -158,14 +158,14 @@ class _BasketballState extends State<Basketball> {
                     points++;
                   if (hoopsLeft == 1) {
                     userDocReference.update({
-                      "trophies": 2,
+                      "trophies": 0,
                       "rewards": FieldValue.increment(points),
                       "taskUnlocked":3
                     });
 
                     currentProgress.taskUnlocked = 3;
                     currentProgress.rewards+=points;
-                    currentProgress.trophies=2;
+                    currentProgress.trophies=0;
                     Navigator.push(
                         context,
                         MaterialPageRoute(

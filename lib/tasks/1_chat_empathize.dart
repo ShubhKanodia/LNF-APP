@@ -47,14 +47,17 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                   Row(
                     children: [
                       backButton(context),
-                      Text("Empathise",
-                          style: GoogleFonts.quicksand(
-                              textStyle: TextStyle(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w700,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.05)),
-                          textAlign: TextAlign.center),
+                      Padding(
+                        padding: EdgeInsets.only(left:width*0.13),
+                        child: Text("Empathise",
+                            style: GoogleFonts.quicksand(
+                                textStyle: TextStyle(
+                                    color: const Color(0xff489fb5),
+                                    fontWeight: FontWeight.w700,
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: height * 0.05)),
+                            textAlign: TextAlign.center),
+                      ),
                     ],
                   ),
                   Container(
@@ -321,13 +324,13 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                 ),
                                               ):button(context, text: "Continue", onTap: (){
                                                 userDocReference.update({
-                                                  "trophies":1,
+                                                  "trophies":0,
                                                   "rewards":1,
                                                   "taskUnlocked":1
                                                 });
                                                 currentProgress.taskUnlocked = 2;
                                                 currentProgress.rewards=1;
-                                                currentProgress.trophies=1;
+                                                currentProgress.trophies=0;
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(

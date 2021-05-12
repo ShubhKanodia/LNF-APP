@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/overallPages/introductionSlider.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -21,6 +22,7 @@ class _LoginState extends State<Login> {
   bool userChecked = false;
   LoginSettings loginSettings = LoginSettings();
   bool loading = false;
+  bool googleLoading = false;
 
   void setLoginSettings() async {
     FocusScope.of(context).unfocus();
@@ -201,7 +203,7 @@ class _LoginState extends State<Login> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegistrationInfo(),
+                                builder: (context) => IntroductionSlider(),
                                 settings:
                                     RouteSettings(name: 'Profile Creation')),
                             (Route<dynamic> route) => false,
@@ -243,12 +245,44 @@ class _LoginState extends State<Login> {
                       )),
                       side: MaterialStateProperty.all<BorderSide>(BorderSide(
                           color: Color(0xffffa62b), width: width * 0.005))),
-                  onPressed: () => Auth().signInWithGoogle(),
+                  onPressed: () {
+                    if(!googleLoading) {
+                      setState(() {
+                        googleLoading = true;
+                      });
+                      Auth().signInWithGoogle().then((value) {
+                        userDocReference.get().then((snapshot) {
+                          setState(() {
+                            googleLoading = true;
+                          });
+                          if (!snapshot.exists) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => IntroductionSlider(),
+                                  settings:
+                                  RouteSettings(name: 'Profile Creation')),
+                                  (Route<dynamic> route) => false,
+                            );
+                          } else {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Levels(),
+                                  settings: RouteSettings(
+                                      name: 'Levels')),
+                                  (Route<dynamic> route) => false,
+                            );
+                          }
+                        });
+                      });
+                    }
+                  },
                   icon: Image.asset(
                     "assets/google.png",
                     scale: height * 0.004,
                   ),
-                  label: Text("Login through Google",
+                  label: googleLoading?CircularProgressIndicator():Text("Login through Google",
                       style: GoogleFonts.quicksand(
                           color: const Color(0xffffa62b),
                           fontWeight: FontWeight.w700,
