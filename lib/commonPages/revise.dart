@@ -158,12 +158,12 @@ class _Revise extends State<Revise> {
                 whiteScreen(context, height: height * 0.5, children: [
                   Container(
                     height: height * 0.2,
-                    width: width * 0.6,
+                    width: width * 0.7,
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: Padding(
                           padding: EdgeInsets.only(
-                              left: width * 0.05, right: width * 0.05, top: height*0.2),
+                              left: width * 0.03, right: width * 0.03, top: height*0.2),
                           child: Image.asset("assets/revising.png")),
                     ),
                   ),
