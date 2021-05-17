@@ -70,18 +70,20 @@ Widget button(context, {@required String text, @required Function onTap}) {
 
 Widget whiteScreen(context,
     {@required double height,
+      double width,
     double padding = 0,
+      double elevation = 4,
     @required List<Widget> children}) {
   return Container(
-      width: MediaQuery.of(context).size.width * 0.80,
+      width: width==null?MediaQuery.of(context).size.width * 0.80:width,
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(height * 0.1),
         boxShadow: [
           BoxShadow(
             color: Color(0x338b8b8b),
-            blurRadius: 4,
-            offset: Offset(0, 4),
+            blurRadius: elevation,
+            offset: Offset(0, elevation),
           ),
         ],
         color: Colors.white,

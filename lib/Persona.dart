@@ -272,4 +272,66 @@ Progress currentProgress = Progress(
     trophies:0
 );
 
+class MCQ {
+  final String question;
+  final List<String> answers;
+  final int correctAnswer;
+
+  MCQ(
+      {@required this.question,
+        @required this.answers,
+        @required this.correctAnswer});
+}
+
+
+final mtfList = [
+  {"Empathise":"Understanding the user","Define":"Tangible form of ideas","Ideate":"Concept Generalisation","Prototype":"Simulation","Testing":"Checking"}
+];
+
+
+final mcqList = [
+  MCQ(
+    question: "What are the steps of Design Thinking Process?",
+    answers: [
+      "Understand > Draw > Ideate > Create > Test",
+      "Empathise > Define > Ideate > Prototype > Test",
+      "Empathise > Design > Implement > Produce > Test",
+      "Understand > Define > Ideate > Produce > Try"
+    ],
+    correctAnswer: 1,
+  ),
+  MCQ(
+    question: "What are the three elements of Innovation?",
+    answers: [
+      "Desirability, Feasibility, Viability",
+      "Originality, Profitability, Technicality",
+      "Originality, Feasibility, Technicality",
+      "Desirability, Profitability, Viability"
+    ],
+    correctAnswer: 0,
+  ),
+  MCQ(
+    question:
+    "Which one of the following does NOT resonate with the Empathy Stage?",
+    answers: [
+      "Personal interviews with users",
+      "Seek to understand users",
+      "Shadowing the users",
+      "Mock-up of the solution"
+    ],
+    correctAnswer: 3,
+  ),
+  MCQ(
+    question: "Which of the below is incorrect? [DT = Design Thinking]",
+    answers: [
+      "PepsiCo has turned DT into its strategy",
+      "GE Healthcare built a MR scanner for children using DT",
+      "AirBnB turned profitable avoiding bankruptcy using DT",
+      "All of the options are correct"
+    ],
+    correctAnswer: 3,
+  ),
+];
+
+
 

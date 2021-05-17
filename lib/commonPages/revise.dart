@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/commonPages/quiz.dart';
 import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
 
@@ -166,10 +167,7 @@ class _Revise extends State<Revise> {
                   Container(
                     height: height * 0.02,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
+                  Text(
                         "Let's Revise!",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.quicksand(
@@ -177,10 +175,28 @@ class _Revise extends State<Revise> {
                             fontSize: height * 0.04,
                             fontWeight: FontWeight.bold),
                       ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "You will be presented with a quiz and you will receive +2 for the correct answer and -1 for a wrong answer. \n All the best!",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.quicksand(
+                            color: Color(0xff489fb5),
+                            fontSize: height * 0.02,
+                        ),
+                      ),
                     ],
                   ),
                 ]),
-                button(context, text: "Begin", onTap: null)
+                button(context, text: "Begin", onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Quiz(),
+                        settings: RouteSettings(name: 'Tasks')),
+                  );
+                })
               ],
             )),
       ),
