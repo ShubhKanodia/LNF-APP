@@ -8,6 +8,7 @@ import 'package:learnnfun/commonPages/menupage.dart';
 import 'package:learnnfun/commonPages/themeintro.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
 import 'package:learnnfun/widgets.dart';
+import '../Persona.dart';
 
 class Levels extends StatelessWidget {
   @override

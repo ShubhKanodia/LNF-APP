@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/auth.dart';
-import 'package:learnnfun/commonPages/completedPage.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
+
+import '../Persona.dart';
 
 class EmpathizeOneOne extends StatefulWidget {
   EmpathizeOneOne({Key key}) : super(key: key);
@@ -112,10 +112,10 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                   child: ListView.builder(
                                     shrinkWrap: true,
                                     physics:  ClampingScrollPhysics(),
-                                    itemCount: questionList.length,
+                                    itemCount: currentPersona.chat.length,
                                     itemBuilder:
                                         (BuildContext context, int index) {
-                                      Question question = questionList[index];
+                                      Question question = currentPersona.chat[index];
                                       return GestureDetector(
                                         onTap: () {
                                           setState(() {
@@ -128,7 +128,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [Container(
                                             width:width * 0.7,
-                                                  color: questionSelected.isEmpty?Colors.white:questionSelected[0] == questionList[index]
+                                                  color: questionSelected.isEmpty?Colors.white:questionSelected[0] == currentPersona.chat[index]
                                                       ? Colors.green
                                                       : Colors.white,
                                                   child: Padding(
@@ -357,94 +357,8 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
   }
 }
 
-class Question {
-  final String quesText;
-  final String ansText;
-  final List<Question> qFollowUp;
 
-  Question({
-    @required this.quesText,
-    @required this.ansText,
-    this.qFollowUp,
-  });
-}
 
 
 ///Add a list of Questions in qFollowUp to be able to continue the chat. if there is no qFollowp, it will end there.
-final questionList = [
-  Question(
-    quesText: "What sport do you like to play the most?",
-    ansText:
-        "I like to play basketball",
-    qFollowUp: [
-      Question(
-          quesText: "Which position do you play",
-          ansText: 'Center',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-          ),
-      Question(
-          quesText: "Which player do you like?",
-          ansText: 'Lebron James',
-          ),
-      Question(
-          quesText: "How often do you watch it ",
-          ansText: 'Regularly',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-          ),
-    ],
-  ),
-  Question(
-    quesText: "What do you like to do in your free time?",
-    ansText:
-        "I enjoy playing Basketball a lot",
-    qFollowUp: [
-      Question(
-        quesText: "Which position do you play",
-        ansText: 'Center',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-      ),
-      Question(
-        quesText: "Which player do you like?",
-        ansText: 'Lebron James',
-      ),
-      Question(
-        quesText: "How often do you watch it ",
-        ansText: 'Regularly',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-      ),
-    ],
-  ),
-  Question(
-    quesText: "Do you like to play sports?",
-    ansText:
-        "Yes I do. I enjoy playing Basketball the most",
-    qFollowUp: [
-      Question(
-        quesText: "Which position do you play",
-        ansText: 'Center',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-      ),
-      Question(
-        quesText: "Which player do you like?",
-        ansText: 'Lebron James',
-      ),
-      Question(
-        quesText: "How often do you watch it ",
-        ansText: 'Regularly',
-          qFollowUp: [
-            Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-          ]
-      ),
-    ],
-  ),
-];
+

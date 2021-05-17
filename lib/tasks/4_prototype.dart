@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/commonPages/taskIntro.dart';
-import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 
 import '../auth.dart';
+import '../Persona.dart';
 
 class Prototype extends StatefulWidget {
   const Prototype({Key key}) : super(key: key);

@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/widgets.dart';
 
 import '../auth.dart';
+import '../Persona.dart';
 
 class Ideate extends StatefulWidget {
   @override
@@ -25,7 +25,7 @@ class _IdeateState extends State<Ideate> {
 
   void initState(){
     super.initState();
-    colors.addAll(List.generate(ideas.length, (index) =>  Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.2)));
+    colors.addAll(List.generate(currentPersona.ideas.length, (index) =>  Color((Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.2)));
   }
 
   void dispose(){
@@ -62,7 +62,7 @@ class _IdeateState extends State<Ideate> {
   }
 
 /// Keep first one blank for some reason
-  List ideas = ["", "CD PLayer", "Basketball", "Football", "Shoes", "Red Bull", "Charger", "Speaker", "Wallet", "Gym Membership"];
+
 List storedIdeas = [];
 
   @override
@@ -96,7 +96,7 @@ List storedIdeas = [];
               child:BubbleChartLayout(
                 root: BubbleNode.node(
                   padding:20,
-                  children: ideas.length==0?[]:List.generate(ideas.length, (index) => bubble(ideas[index], index, height) ),
+                  children: currentPersona.ideas.length==0?[]:List.generate(currentPersona.ideas.length, (index) => bubble(currentPersona.ideas.keys.elementAt(index), index, height) ),
               ),
               ),
             ),
@@ -117,12 +117,12 @@ List storedIdeas = [];
 
 
   BubbleNode bubble(String text, int index, height) {
-    return BubbleNode.leaf(value: index,
+    return BubbleNode.leaf(value: 1000,
     options: BubbleOptions(
         onTap: () {
           if(timer==null || !timer.isActive) startTimer();
           setState(() {
-            ideas.removeAt(index);
+            currentPersona.ideas.remove(text);
           });
           storedIdeas.add(text);
         },

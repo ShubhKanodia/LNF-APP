@@ -5,6 +5,7 @@ import 'package:learnnfun/commonPages/informationCard.dart';
 
 import '../auth.dart';
 import '../widgets.dart';
+import '../Persona.dart';
 
 class Test extends StatefulWidget {
   const Test({Key key}) : super(key: key);

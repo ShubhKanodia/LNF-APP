@@ -3,24 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'auth.dart';
 
-Progress currentProgress = Progress(
-    taskUnlocked:0,
-rewards:0,
-trophies:0
-);
-
-class Progress{
-  int taskUnlocked=0;
-  int rewards=0;
-  int trophies=0;
-    Progress({
-      this.taskUnlocked=0,
-      this.rewards=0,
-      this.trophies=0
-    });
-}
 
 ///Gives the standard button used all throughout the application. USE THIS ONLY
 ///need to pass a variable called context and a text in double quotes in the form text:"<Button Content>"

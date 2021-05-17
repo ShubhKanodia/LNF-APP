@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 
 import '../auth.dart';
+import '../Persona.dart';
 
 class PersonList extends StatefulWidget {
   @override
@@ -47,9 +47,9 @@ class _PersonListState extends State<PersonList> {
                   child: ListView.builder(
                     physics: AlwaysScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: personList.length,
+                    itemCount: allPersonasLevel1.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Person person = personList[index];
+                      Person person = allPersonasLevel1[index];
                       return GestureDetector(
                         onTap: () => showDialog(
                           context: context,
@@ -270,6 +270,7 @@ class _PersonListState extends State<PersonList> {
                     userDocReference.update({
                       "taskUnlocked":1
                     });
+                    currentPersona = person;
                     currentProgress.taskUnlocked = 1;
                     currentProgress.rewards=1;
                     currentProgress.trophies=1;
@@ -285,76 +286,5 @@ class _PersonListState extends State<PersonList> {
   }
 }
 
-class Person {
-  final String imageUrl;
-  final String firstName;
-  final String lastName;
-  final int age;
-  final String profession;
-  final String likes;
-  final String dislikes;
-  final String hobbies;
-  final String description;
 
-  Person(
-      {@required this.firstName,
-      @required this.lastName,
-      @required this.age,
-      @required this.profession,
-      @required this.likes,
-      @required this.dislikes,
-      @required this.hobbies,
-      @required this.imageUrl,
-      @required this.description});
-}
 
-final personList = [
-  Person(
-    firstName: "Jessica",
-    lastName: "Pearson",
-    description:
-        "A lawyer in her mid 30s, loves to cook and watch sports during",
-    profession: "Lawyer",
-    age: 30,
-    hobbies: 'Watching Tv, Dancing',
-    dislikes: "Cats, Heels, Makeup",
-    imageUrl: "assets/gifting/JessicaPearson.svg",
-    likes: "Gym, Dog, Travel",
-  ),
-  Person(
-    firstName: "Jessica",
-    lastName: "Pearson",
-    description:
-        "A lawyer in her mid 30s, loves to cook and watch sports during",
-    profession: "Lawyer",
-    age: 30,
-    hobbies: 'Watching Tv, Dancing',
-    dislikes: "Cats, Heels, Makeup",
-    imageUrl: "assets/gifting/JessicaPearson.svg",
-    likes: "Gym, Dog, Travel",
-  ),
-  Person(
-    firstName: "Jessica",
-    lastName: "Pearson",
-    description:
-        "A lawyer in her mid 30s, loves to cook and watch sports during",
-    profession: "Lawyer",
-    age: 30,
-    hobbies: 'Watching Tv, Dancing',
-    dislikes: "Cats, Heels, Makeup",
-    imageUrl: "assets/gifting/JessicaPearson.svg",
-    likes: "Gym, Dog, Travel",
-  ),
-  Person(
-    firstName: "Jessica",
-    lastName: "Pearson",
-    description:
-        "A lawyer in her mid 30s, loves to cook and watch sports during",
-    profession: "Lawyer",
-    age: 30,
-    hobbies: 'Watching Tv, Dancing',
-    dislikes: "Cats, Heels, Makeup",
-    imageUrl: "assets/gifting/JessicaPearson.svg",
-    likes: "Gym, Dog, Travel",
-  ),
-];

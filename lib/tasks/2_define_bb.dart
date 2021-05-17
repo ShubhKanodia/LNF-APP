@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/commonPages/informationCard.dart';
 
 import '../auth.dart';
-import '../widgets.dart';
+import '../Persona.dart';
 
 class Basketball extends StatefulWidget {
   @override
@@ -15,11 +15,8 @@ class Basketball extends StatefulWidget {
 }
 
 class _BasketballState extends State<Basketball> {
-  int hoopsLeft = 2;
-  List<Map<String, bool>> options = [
-    {"Lebron James": true, "Someone Else": false},
-    {"Basketball": true, "Football": false},
-  ];
+  int hoopsLeft = currentPersona.likeChoices.length;
+
   int points = 0;
 
   @override
@@ -62,7 +59,7 @@ class _BasketballState extends State<Basketball> {
               // Open Sans | 10px All
               Padding(
                 padding: EdgeInsets.only(left: 5),
-                child: Text(options[options.length - hoopsLeft].keys.first,
+                child: Text(currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft].keys.first,
                     style: GoogleFonts.quicksand(
                         color: const Color(0xff489fb5),
                         fontWeight: FontWeight.w700,
@@ -72,7 +69,7 @@ class _BasketballState extends State<Basketball> {
               ),
               Padding(
                 padding: EdgeInsets.only(right: 5),
-                child: Text(options[options.length - hoopsLeft].keys.last,
+                child: Text(currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft].keys.last,
                     style: GoogleFonts.quicksand(
                         color: Color(0xff489fb5),
                         fontWeight: FontWeight.w700,
@@ -88,8 +85,8 @@ class _BasketballState extends State<Basketball> {
               DragTarget<bool>(
                   onWillAccept: (data) => true,
                   onAccept: (data) {
-                    if (options[options.length - hoopsLeft]
-                        [options[options.length - hoopsLeft].keys.first]) points++;
+                    if (currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft]
+                        [currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft].keys.first]) points++;
                     if (hoopsLeft == 1) {
                       userDocReference.update({
                         "trophies":0,
@@ -154,7 +151,7 @@ class _BasketballState extends State<Basketball> {
               DragTarget<bool>(
                 onWillAccept: (data) => true,
                 onAccept: (data) {
-                  if (options[options.length - hoopsLeft][options[options.length - hoopsLeft].keys.last])
+                  if (currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft][currentPersona.likeChoices[currentPersona.likeChoices.length - hoopsLeft].keys.last])
                     points++;
                   if (hoopsLeft == 1) {
                     userDocReference.update({
@@ -172,7 +169,7 @@ class _BasketballState extends State<Basketball> {
                             builder: (context) =>
                                 InformationCard(cardNumber: 2),
                             settings: RouteSettings(name: 'Actual game')));
-                  }//TODO : Go to some other page
+                  }
                   else {
                     setState(() {
                       hoopsLeft--;

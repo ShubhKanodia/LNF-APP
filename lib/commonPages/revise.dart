@@ -2,15 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/auth.dart';
-import 'package:learnnfun/overallPages/courseCompletion.dart';
-import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
+import '../Persona.dart';
 
 class Revise extends StatefulWidget {
-  final bool isTask;
-
-  Revise({Key key, @required this.isTask}) : super(key: key);
+  Revise({Key key,}) : super(key: key);
 
   @override
   _Revise createState() => _Revise();
@@ -184,9 +180,7 @@ class _Revise extends State<Revise> {
                     ],
                   ),
                 ]),
-                button(context, text: "Begin", onTap: () {
-
-                })
+                button(context, text: "Begin", onTap: null)
               ],
             )),
       ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/overallPages/introductionSlider.dart';
 import 'package:learnnfun/overallPages/levels.dart';
-import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import '../auth.dart';
