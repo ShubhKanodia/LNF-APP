@@ -58,10 +58,10 @@ class _TaskIntroState extends State<TaskIntro> {
     [
       "Level 1",
       "Task 5",
-      "Let’s dive into task 5. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
-      "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
-      "Do not worry about the feasability or cost of the gift.",
-      "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+      "Let’s dive into task 5. It’s time to test your prototype. Let’s play a game to list down some ideas.",
+      "Slide the lever across the screen",
+      "This is the final stage and will be explained in more depth",
+      "Tap continue when you are ready to play!",
       Test()
     ],
   ];

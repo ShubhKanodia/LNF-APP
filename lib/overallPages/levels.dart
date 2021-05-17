@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/commonPages/revise.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/library.dart';
@@ -276,7 +277,7 @@ class Tasks extends StatelessWidget {
           }),
         ),
         Positioned(
-          bottom: height * 0.74,
+          bottom: height * 0.62,
           right: width * 0.1,
           child: circularOrangeButton(context,
               enabled: currentProgress.taskUnlocked >= 5,
@@ -292,10 +293,23 @@ class Tasks extends StatelessWidget {
           }),
         ),
         Positioned(
-          bottom: height * 0.74,
+          bottom: height * 0.745,
+          right: width * 0.2,
+          child: circularOrangeButton(context,
+              enabled: currentProgress.taskUnlocked >= 6, number: false,light: currentProgress.taskUnlocked == 6, text: "Quiz", onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Revise(),
+                      settings: RouteSettings(name: 'Actual game')),
+                );
+              }),
+        ),
+        Positioned(
+          bottom: height * 0.745,
           left: width * 0.2,
           child: circularOrangeButton(context,
-              enabled: currentProgress.taskUnlocked >= 6, number: false, text: "Finish", onTap: () {
+              enabled: currentProgress.taskUnlocked >= 7, number: false, text: "Finish", onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(

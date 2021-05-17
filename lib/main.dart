@@ -49,10 +49,12 @@ class MyApp extends StatelessWidget {
             userDocReference.get().then((value) {
               if (value.data()["taskUnlocked"] != null &&
                   value.data()["rewards"] != null &&
-                  value.data()["trophies"] != null)
+                  value.data()["trophies"] != null ) {
                 currentProgress.taskUnlocked = value.data()["taskUnlocked"];
-              currentProgress.rewards = value.data()["rewards"];
-              currentProgress.trophies = value.data()["trophies"];
+                currentProgress.rewards = value.data()["rewards"];
+                currentProgress.trophies = value.data()["trophies"];
+              }
+              if(value.data()["personIndex"] != null) currentPersona = allPersonasLevel1[value.data()["personIndex"]];
             });
             if (auth.getCurrentUser().displayName == null ||
                 auth.getCurrentUser().displayName == "null") {

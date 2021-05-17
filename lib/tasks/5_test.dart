@@ -78,6 +78,13 @@ class _TestState extends State<Test> {
                       });
                     }
                     if (angleToChange > 0.7) {
+                      userDocReference.update({
+                        "rewards": FieldValue.increment(1),
+                        "taskUnlocked": 6
+                      });
+                      currentProgress.taskUnlocked = 6;
+                      currentProgress.rewards += 1;
+                      currentProgress.trophies = 0;
                       Navigator.push(
                           context,
                           MaterialPageRoute(

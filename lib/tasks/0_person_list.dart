@@ -54,7 +54,7 @@ class _PersonListState extends State<PersonList> {
                         onTap: () => showDialog(
                           context: context,
                           builder: (BuildContext context) =>
-                              personPopup(context, person),
+                              personPopup(context, person, index),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -127,7 +127,7 @@ class _PersonListState extends State<PersonList> {
         ));
   }
 
-  Widget personPopup(context, Person person) {
+  Widget personPopup(context, Person person, int index) {
     var height = MediaQuery.of(context).size.height;
     return BackdropFilter(
         filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
@@ -268,7 +268,8 @@ class _PersonListState extends State<PersonList> {
                   ),
                   button(context, text: "Select Receiver", onTap: () {
                     userDocReference.update({
-                      "taskUnlocked":1
+                      "taskUnlocked":1,
+                      "personIndex" : index
                     });
                     currentPersona = person;
                     currentProgress.taskUnlocked = 1;

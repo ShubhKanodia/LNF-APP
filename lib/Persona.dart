@@ -166,7 +166,7 @@ List<Person> allPersonasLevel1 = [
       {"Lebron James": true, "Someone": false},
       {"Basketball": true, "Football": false},
     ],
-    ideas:  {"":false,"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true}
+    ideas:  {"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true}
   ),
   Person(
     firstName: "Jessica",
@@ -259,7 +259,8 @@ List<Person> allPersonasLevel1 = [
     likeChoices: [
       {"Lebron James": true, "Someone Else": false},
       {"Basketball": true, "Football": false},
-    ]
+    ],
+      ideas:  {"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true}
   ),
 ];
 

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/widgets.dart';
 
 import '../Persona.dart';
+import '../auth.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -154,13 +156,22 @@ class _Quiz extends State<Quiz> {
                                 buttonPressed = null;
                                 scoreChangeVisible = false;
                               });
-                            else
+                            else {
+                              userDocReference.update({
+                                "trophies": 1,
+                                "rewards": FieldValue.increment(quizScore),
+                                "taskUnlocked": 7
+                              });
+                              currentProgress.taskUnlocked = 7;
+                              currentProgress.rewards += quizScore;
+                              currentProgress.trophies = 1;
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => CourseCompletion(),
                                     settings: RouteSettings(name: 'Tasks')),
                               );
+                            }
                             else {
                               if (buttonPressed ==
                                   mcqList[index].correctAnswer) {
