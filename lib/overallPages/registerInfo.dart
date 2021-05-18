@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/Persona.dart';
 
 import 'package:learnnfun/auth.dart';
 import 'package:learnnfun/overallPages/levels.dart';
@@ -212,6 +213,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                         "profile": profileSelected,
                                         "age": age
                                       });
+                                    currentProgress.trophies = 0;
+                                    currentProgress.rewards = 0;
+                                    currentProgress.taskUnlocked = 0;
                                     Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
