@@ -35,7 +35,7 @@ class _Library extends State<Library> {
                 Text("learn more!",
                     style: GoogleFonts.quicksand(
                       color: Color(0xff489fb5),
-                      fontSize: height * 0.035,
+                      fontSize: height * 0.025,
                       fontWeight: FontWeight.bold,
                     )),
                 Expanded(
@@ -59,6 +59,13 @@ class _Library extends State<Library> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: height*0, right: width*0.06),
+                                      child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Image.asset("designThinking.png"),
+                                      ),
+                                    ),
                                     Text(topic.title,
                                             style: GoogleFonts.quicksand(
                                             color: Color(0xff16697a),
@@ -90,58 +97,7 @@ class _Library extends State<Library> {
                                     color: const Color(0xffffffff)
                                 )
                             ),
-
                           ),
-                            ListView.builder(
-                              physics: ClampingScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: topic.vids,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(left: width*0.1,bottom: height*0.02, top: height*0.02,right: width*0.11,),
-                                          child: Container(
-                                            height: height * 0.2,
-                                            width: width * 0.4,
-                                            decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.all(
-                                                      Radius.circular(30)
-                                                      ),
-                                                      boxShadow: [BoxShadow(
-                                                      color: const Color(0x33000000),
-                                                      offset: Offset(0,4),
-                                                      blurRadius: 4,
-                                                      spreadRadius: 0
-                                                      )] ,
-                                                      color: const Color(0xffffffff)
-                                                      ),
-
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: width * 0.05, right: width * 0.05),
-                                                child: Image.asset("assets/play.png"),
-                                              ),
-
-                                          ),
-                                        ),
-                                        Text("watch more",
-                                            //textAlign: TextAlign.center,
-                                            style: GoogleFonts.quicksand(
-                                                color: Color(0xff16697a),
-                                                fontSize: height * 0.02,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
                         ],
                       );
                     },
