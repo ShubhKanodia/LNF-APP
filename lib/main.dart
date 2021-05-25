@@ -13,6 +13,7 @@ import 'package:overlay_support/overlay_support.dart';
 import 'overallPages/levelEvaluation.dart';
 
 import 'auth.dart';
+import 'commonPages/completedPage.dart';
 import 'overallPages/login.dart';
 
 void main() {
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                          Levels())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
+                      TaskCompleted())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
 
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
