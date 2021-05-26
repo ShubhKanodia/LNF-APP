@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learnnfun/Persona.dart';
 import 'package:learnnfun/commonPages/quiz.dart';
+import 'package:learnnfun/commonPages/quizIntro.dart';
 import 'package:learnnfun/commonPages/revise.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
@@ -81,7 +82,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                      Test())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
+                      Levels())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
 
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
