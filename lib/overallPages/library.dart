@@ -53,37 +53,49 @@ class _Library extends State<Library> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                                 width: width*0.85,
-                                height: height*0.2,
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(top: height*0, right: width*0.06),
-                                      child: Align(
-                                        alignment: Alignment.topCenter,
-                                        child: Image.asset("designThinking.png"),
+                                height: height*0.5,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(top: height*0, right: width*0.06),
+                                        child: Align(
+                                          alignment: Alignment.topCenter,
+                                          child: Image.asset("designThinking.png"),
+                                        ),
                                       ),
-                                    ),
-                                    Text(topic.title,
-                                            style: GoogleFonts.quicksand(
-                                            color: Color(0xff16697a),
-                                            fontSize: height * 0.035,
-                                            fontWeight: FontWeight.bold)),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: width*0.06),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("BY" + topic.by,
-                                            textAlign: TextAlign.left,
-                                            style: GoogleFonts.quicksand(
-                                                color: Color(0xff16697a),
-                                                fontSize: height * 0.015,)),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                              Text(topic.title,
+                                                      style: GoogleFonts.quicksand(
+                                                      color: Color(0xff16697a),
+                                                      fontSize: height * 0.035,
+                                                      fontWeight: FontWeight.bold)),
+                                               Text("Article by "+topic.by,
+                                                  style: GoogleFonts.quicksand(
+                                                      color: Color(0xff16697a),
+                                                      fontSize: height * 0.015, )),
+                                             Row(
+                                               children: [
+                                                 Text("Read article",
+                                                      style: GoogleFonts.quicksand(
+                                                          color: Color(0xffffa62b),
+                                                          fontSize: height * 0.02,
+                                                          fontWeight: FontWeight.bold)),
+                                                 Image.asset("assets/tag.png")
+                                               ],
+                                             ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                      //alignment: Alignment.centerRight,
+                                    ],
+                                  ),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(40)
@@ -112,35 +124,29 @@ class _Library extends State<Library> {
 
 class Topic {
   final String title;
-  final int vids;
   final String by;
 
   Topic(
       {@required this.title,
-        @required this.vids,
         @required this.by,
        });
 }
 
 final topicList = [
   Topic(
-    title: "EDIPT Process",
-    vids: 2,
-    by: "_______",
+    title: "What is Design Thinking and why is it important?",
+    by: "Rim Razzouk, Valerie Shute",
   ),
   Topic(
     title: "Design Thinking the BASICS",
-    vids: 3,
       by: "_______",
   ),
   Topic(
     title: "Jessica",
-    vids: 2,
     by: "_______",
   ),
   Topic(
     title: "Jessica",
-    vids: 3,
     by: "_______",
   ),
 ];
