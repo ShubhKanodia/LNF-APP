@@ -15,7 +15,7 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  double _angle = 0;
+  double _angle = 0.0;
 
   double _oldAngle = 0.0;
   double _angleDelta = 0.0;
@@ -54,55 +54,20 @@ class _TestState extends State<Test> {
             whiteScreen(context, height: height * 0.55, children: [
               GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onPanStart: (details) {
-                    final touchPositionFromCenter =
-                        details.localPosition - Offset(width / 2, 130);
-                    _angleDelta = _oldAngle - touchPositionFromCenter.direction;
-                  },
-                  onPanEnd: (details) {
-                    setState(
-                      () {
-                        _oldAngle = _angle;
-                      },
-                    );
-                  },
-                  onPanUpdate: (details) {
-                    double angleToChange =
-                        (details.localPosition - Offset(width / 2, 130))
-                                .direction +
-                            _angleDelta;
-
-                    if (angleToChange > 0 && angleToChange < 0.7) {
-                      setState(() {
-                        _angle = angleToChange;
-                      });
-                    }
-                    if (angleToChange > 0.7) {
-                      userDocReference.update({
-                        "rewards": FieldValue.increment(1),
-                        "taskUnlocked": 6
-                      });
-                      currentProgress.taskUnlocked = 6;
-                      currentProgress.rewards += 1;
-                      currentProgress.trophies = 0;
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  InformationCard(cardNumber: 4),
-                              settings: RouteSettings(name: 'Actual game')));
-                    }
-                  },
+                  onVerticalDragDown: (DragDownDetails details){
+                    setState(() {
+                        _angle = 3.14;
+                    });
+                  } ,
                   child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.07),
+                    padding: EdgeInsets.only(left: width * 0.07,right: width * 0.07),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Transform.rotate(
-                        origin: Offset(50, 150),
                         angle: _angle,
                         child: Container(
                             height: height * 0.4,
-                            child: Image.asset("assets/test/lever.png")),
+                            child: Image.asset("assets/test/lever2.png")),
                       ),
                     ),
                   ))
