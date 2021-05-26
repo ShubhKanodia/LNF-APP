@@ -22,7 +22,13 @@ class _Library extends State<Library> {
           child: Center(
             child: Column(
               children: [
-                backButton(context),
+                Row(
+                  children: [
+                    backButton(context),
+                    Image.asset("assets/tagSelect.png",
+                      height: height*0.025,)
+                  ],
+                ),
                 Text(
                   "Library",
                   style: GoogleFonts.quicksand(
@@ -53,44 +59,51 @@ class _Library extends State<Library> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                                 width: width*0.85,
-                                height: height*0.5,
+                                height: height*0.4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(top: height*0, right: width*0.06),
-                                        child: Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Image.asset("designThinking.png"),
-                                        ),
-                                      ),
                                       Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                              Text(topic.title,
-                                                      style: GoogleFonts.quicksand(
-                                                      color: Color(0xff16697a),
-                                                      fontSize: height * 0.035,
-                                                      fontWeight: FontWeight.bold)),
-                                               Text("Article by "+topic.by,
-                                                  style: GoogleFonts.quicksand(
-                                                      color: Color(0xff16697a),
-                                                      fontSize: height * 0.015, )),
-                                             Row(
-                                               children: [
-                                                 Text("Read article",
-                                                      style: GoogleFonts.quicksand(
-                                                          color: Color(0xffffa62b),
-                                                          fontSize: height * 0.02,
-                                                          fontWeight: FontWeight.bold)),
-                                                 Image.asset("assets/tag.png")
-                                               ],
-                                             ),
-                                          ],
+                                          alignment: Alignment.topCenter,
+                                          child: Image.asset("assets/designThinking.png"),
+                                        ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(7.0),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                                Text(topic.title,
+                                                        style: GoogleFonts.quicksand(
+                                                        color: Color(0xff16697a),
+                                                        fontSize: height * 0.035,
+                                                        fontWeight: FontWeight.bold)),
+                                                 Text("Article by "+topic.by,
+                                                    style: GoogleFonts.quicksand(
+                                                        color: Color(0xff16697a),
+                                                        fontSize: height * 0.015, )),
+                                               Row(
+                                                 children: [
+                                                   Text("Read article",
+                                                        style: GoogleFonts.quicksand(
+                                                            color: Color(0xffffa62b),
+                                                            fontSize: height * 0.02,
+                                                            fontWeight: FontWeight.bold)),
+                                                     Align(
+                                                       alignment: Alignment.centerRight,
+                                                       child: Padding(
+                                                         padding: const EdgeInsets.all(7.0),
+                                                         child: Image.asset("assets/tagUnselect.png",
+                                                         height: height*0.025,),
+                                                       ),
+                                                     ),
+                                                 ],
+                                               ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       //alignment: Alignment.centerRight,
