@@ -26,7 +26,7 @@ class _Library extends State<Library> {
                   children: [
                     backButton(context),
                     Image.asset("assets/tagSelect.png",
-                      height: height*0.025,)
+                        height: height*0.04,),
                   ],
                 ),
                 Text(
