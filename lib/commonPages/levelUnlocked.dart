@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/assets.dart';
 import 'package:learnnfun/widgets.dart';
 
 class LevelUnlocked extends StatefulWidget {
@@ -57,7 +57,7 @@ class _LevelUnlockedState extends State<LevelUnlocked> {
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05),
-                      child: Assets.lockImage,
+                      child: SvgPicture.asset("assets/levelUnlocked.svg")
                     ),
                   ),
                 ),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:learnnfun/widgets.dart';
@@ -69,48 +70,50 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
-      body: Container(
-        child: Padding(
-          padding: EdgeInsets.all(width / 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    vertical: height / 40, horizontal: width / 9),
-                child: Container(
-                  child: Text(
-                    "Learn N Fun",
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff16697a),
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: height * 0.04),
-                    textAlign: TextAlign.center,
+      body: SafeArea(
+        child: Container(
+          child: Padding(
+            padding: EdgeInsets.all(width / 25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      vertical: height / 40, horizontal: width / 9),
+                  child: Container(
+                    child: Text(
+                      "Learn N Fun",
+                      style: GoogleFonts.quicksand(
+                          color:  const Color(0xffffa62b),
+                          fontWeight: FontWeight.w700,
+                          fontStyle:  FontStyle.normal,
+                          fontSize: height * 0.04),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Stack(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  children: <Widget>[
-                    PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      controller: _pageController,
-                      onPageChanged: _onPageChanged,
-                      itemCount: slideList.length,
-                      itemBuilder: (context, i) => SlideItem(i),
-                    ),
-                  ],
+                Expanded(
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    children: <Widget>[
+                      PageView.builder(
+                        scrollDirection: Axis.horizontal,
+                        controller: _pageController,
+                        onPageChanged: _onPageChanged,
+                        itemCount: slideList.length,
+                        itemBuilder: (context, i) => SlideItem(i),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Visibility(
-                  visible: buttonVisible,
-                  child: button(context, text: "Get Started", onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => RegistrationInfo()));
-                  }))
-            ],
+                Visibility(
+                    visible: buttonVisible,
+                    child: button(context, text: "Get Started", onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => RegistrationInfo()));
+                    }))
+              ],
+            ),
           ),
         ),
       ),
@@ -133,7 +136,7 @@ class SlideItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         whiteScreen(context, height: height * 0.5, children: [
-          Image.asset(slideList[index].imageUrl,
+          SvgPicture.asset(slideList[index].imageUrl,
               width: width / 3, height: height / 3.5, fit: BoxFit.fitHeight)
         ]),
         Padding(
@@ -178,21 +181,21 @@ class Slide {
 
 final slideList = [
   Slide(
-    imageUrl: 'assets/awardGuy.png',
+    imageUrl: 'assets/introductionSlider/slide1.svg',
     title: 'Learn N Fun',
     description:
-        'Learn the Design Thinking process by playing fun games and activities!',
+        'Design Thinking is a creative approach to problem-solving and is a great way to address any problem, regardless of content.',
   ),
   Slide(
-    imageUrl: 'assets/awardGuy.png',
+    imageUrl: 'assets/introductionSlider/slide2.svg',
     title: 'Learn N Fun',
     description:
-        'Each game helps you understand a step of the Design Thinking Methodology.',
+        'Through fun games and activities, you will learn about the various stages of the Design Thinking Process.',
   ),
   Slide(
-    imageUrl: 'assets/awardGuy.png',
+    imageUrl: 'assets/introductionSlider/slide3.svg',
     title: 'Learn N Fun',
     description:
-        'Unlock new levels by completing the tasks and earning rewards. Complete all levels to master the course!',
+        'Complete tasks to earn rewards and pave your path towards being a Design Thinker!',
   ),
 ];
