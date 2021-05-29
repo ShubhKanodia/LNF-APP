@@ -18,6 +18,33 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
   double age = 20;
   String profileSelected;
 
+  Future<Map<String,Widget>> profilePictures() async{
+    Map<String,Widget> avatars = {};
+    ListResult result = await FirebaseStorage.instance.ref("avatars").listAll();
+    for(var ref in result.items){
+      String downloadURL = await ref.getDownloadURL();
+      avatars[ref.fullPath] =  Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(1000),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0x1f000000),
+                  offset: Offset(2,4),
+                  blurRadius: 4,
+                  spreadRadius: 4
+              )] ,
+              color: const Color(0xffffffff)
+          ),
+        child: Image.network(downloadURL),
+      );
+    }
+    print(avatars);
+    return avatars;
+
+  }
+
+  Future<Map<String,Widget>> profilePicturesFuture;
+
   void initState(){
     super.initState();
 
@@ -27,22 +54,10 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
         age = value.data()["age"];
       });
     });
+    profilePicturesFuture = profilePictures();
   }
 
-  Future<Map<String,Widget>> profilePictures(height) async{
-    Map<String,Widget> avatars = {};
-    ListResult result =
-    await FirebaseStorage.instance.ref("avatars").listAll();
-    result.items.forEach((Reference ref) async {
-      String downloadURL = await ref.getDownloadURL();
-      avatars[downloadURL] = Container(
-        child: CircleAvatar(
-            radius: height * 0.1,
-            backgroundImage: NetworkImage(downloadURL),
-      ));
-    });
-    return avatars;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,17 +93,15 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                       fontStyle: FontStyle.normal,
                                       fontSize: height * 0.03))),
                           FutureBuilder(
-                            future: profilePictures(height),
+                            future: profilePicturesFuture,
                             builder: (context, AsyncSnapshot<Map<String,Widget>> snapshot) {
                               if(snapshot.hasData && snapshot.data!=null) {
                                 return CarouselSlider(
-                                    items: snapshot.data.values,
+                                    items: snapshot.data.values.toList(),
                                     options: CarouselOptions(
-                                      viewportFraction: 0.28,
-                                      aspectRatio: 3,
-                                      initialPage: 0,
+                                      viewportFraction: 0.35,
+                                      aspectRatio: 16/15,
                                       enableInfiniteScroll: true,
-                                      reverse: false,
                                       pageSnapping: true,
                                       enlargeCenterPage: true,
                                       onPageChanged: (index, reason) {
@@ -96,7 +109,7 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                       },
                                       scrollDirection: Axis.horizontal,
                                     ));
-                              }else return Container();
+                              }else return CircularProgressIndicator();
                             }
                           ),
                           SizedBox(height: height * 0.09),
