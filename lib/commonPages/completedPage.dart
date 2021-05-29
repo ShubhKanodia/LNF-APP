@@ -195,7 +195,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
               ),
             ]),
             button(context, text: "Continue", onTap: () {
-              if (currentProgress.taskUnlocked==5 ){
+              if (currentProgress.taskUnlocked==6 ){
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
