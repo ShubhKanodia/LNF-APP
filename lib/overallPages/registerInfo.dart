@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/Persona.dart';
@@ -15,31 +17,30 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
   TextEditingController name = new TextEditingController();
   double age = 20;
   String profileSelected;
-  List<String> profilePictureURL = [
-    "https://i.pravatar.cc/300",
-    "https://i.pravatar.cc/300"
-  ];
 
   void initState(){
     super.initState();
-    userDocReference.get().then((value){
+
+    userDocReference.get().then((DocumentSnapshot<Map<String,dynamic>> value){
       setState(() {
         name.text = value.data()["name"];
         age = value.data()["age"];
-
       });
     });
   }
 
-  List<Widget> profilePictures(height) {
-    List<Widget> avatars = [];
-    for (int i = 0; i < profilePictureURL.length; i++) {
-      avatars.add(Container(
-          child: CircleAvatar(
-        radius: height * 0.1,
-        backgroundImage: NetworkImage(profilePictureURL[i]),
-      )));
-    }
+  Future<Map<String,Widget>> profilePictures(height) async{
+    Map<String,Widget> avatars = {};
+    ListResult result =
+    await FirebaseStorage.instance.ref("avatars").listAll();
+    result.items.forEach((Reference ref) async {
+      String downloadURL = await ref.getDownloadURL();
+      avatars[downloadURL] = Container(
+        child: CircleAvatar(
+            radius: height * 0.1,
+            backgroundImage: NetworkImage(downloadURL),
+      ));
+    });
     return avatars;
   }
 
@@ -76,21 +77,28 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                       fontWeight: FontWeight.w400,
                                       fontStyle: FontStyle.normal,
                                       fontSize: height * 0.03))),
-                          CarouselSlider(
-                              items: profilePictures(height),
-                              options: CarouselOptions(
-                                viewportFraction: 0.28,
-                                aspectRatio: 3,
-                                initialPage: 0,
-                                enableInfiniteScroll: true,
-                                reverse: false,
-                                pageSnapping: true,
-                                enlargeCenterPage: true,
-                                onPageChanged: (index, reason) {
-                                  profileSelected = profilePictureURL[index];
-                                },
-                                scrollDirection: Axis.horizontal,
-                              )),
+                          FutureBuilder(
+                            future: profilePictures(height),
+                            builder: (context, AsyncSnapshot<Map<String,Widget>> snapshot) {
+                              if(snapshot.hasData && snapshot.data!=null) {
+                                return CarouselSlider(
+                                    items: snapshot.data.values,
+                                    options: CarouselOptions(
+                                      viewportFraction: 0.28,
+                                      aspectRatio: 3,
+                                      initialPage: 0,
+                                      enableInfiniteScroll: true,
+                                      reverse: false,
+                                      pageSnapping: true,
+                                      enlargeCenterPage: true,
+                                      onPageChanged: (index, reason) {
+                                        profileSelected = snapshot.data.keys.elementAt(index);
+                                      },
+                                      scrollDirection: Axis.horizontal,
+                                    ));
+                              }else return Container();
+                            }
+                          ),
                           SizedBox(height: height * 0.09),
                           Text("Name",
                               style: GoogleFonts.quicksand(
