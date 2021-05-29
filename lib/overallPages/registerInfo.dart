@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/Persona.dart';
@@ -24,8 +25,12 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
     for(var ref in result.items){
       String downloadURL = await ref.getDownloadURL();
       avatars[ref.fullPath] =  Container(
+        width:MediaQuery.of(context).size.width*0.35 ,
+          height: MediaQuery.of(context).size.height*0.35,
+          padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.02),
+          margin: EdgeInsets.only(top: 10,bottom: 20),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(1000),
+            shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
                   color: const Color(0x1f000000),
@@ -35,7 +40,15 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
               )] ,
               color: const Color(0xffffffff)
           ),
-        child: Image.network(downloadURL),
+        child:  Container(
+            width: 25,
+            height: 25,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.scaleDown,
+                image: NetworkImage(downloadURL),
+              ),
+            )),
       );
     }
     print(avatars);
@@ -96,20 +109,32 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                             future: profilePicturesFuture,
                             builder: (context, AsyncSnapshot<Map<String,Widget>> snapshot) {
                               if(snapshot.hasData && snapshot.data!=null) {
-                                return CarouselSlider(
-                                    items: snapshot.data.values.toList(),
-                                    options: CarouselOptions(
-                                      viewportFraction: 0.35,
-                                      aspectRatio: 16/15,
-                                      enableInfiniteScroll: true,
-                                      pageSnapping: true,
-                                      enlargeCenterPage: true,
-                                      onPageChanged: (index, reason) {
-                                        profileSelected = snapshot.data.keys.elementAt(index);
-                                      },
-                                      scrollDirection: Axis.horizontal,
-                                    ));
-                              }else return CircularProgressIndicator();
+                                return Container(
+                                  height: height*0.15,
+                                  width: width,
+
+                                  child: CarouselSlider(
+                                      items: snapshot.data.values.toList(),
+                                      options: CarouselOptions(
+                                        viewportFraction: 0.2,
+                                        enableInfiniteScroll: true,
+                                        pageSnapping: true,
+                                        enlargeCenterPage: true,
+                                        onPageChanged: (index, reason) {
+                                          profileSelected = snapshot.data.keys.elementAt(index);
+                                        },
+                                        scrollDirection: Axis.horizontal,
+                                      )),
+                                );
+                              }else return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      child: CircularProgressIndicator(),
+                                  margin:EdgeInsets.only(top: height*0.05)
+                                  ),
+                                ],
+                              );
                             }
                           ),
                           SizedBox(height: height * 0.09),
