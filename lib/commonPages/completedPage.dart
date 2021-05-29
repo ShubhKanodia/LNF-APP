@@ -165,7 +165,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                       padding: EdgeInsets.only(
                           left: width * 0.05, right: width * 0.05, top: height*0.2),
                       child: widget.isTask
-                          ? SvgPicture.asset("assets/bigMedal.svg")
+                          ? Image.asset("assets/taskdone.png")
                           : Image.asset("assets/awardGuy.png")),
                 ),
               ),
