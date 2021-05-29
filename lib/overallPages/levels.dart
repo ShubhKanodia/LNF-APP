@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/revise.dart';
+import 'package:learnnfun/quiz/revise.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/library.dart';

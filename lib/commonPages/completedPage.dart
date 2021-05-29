@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/revise.dart';
+import 'package:learnnfun/quiz/revise.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';

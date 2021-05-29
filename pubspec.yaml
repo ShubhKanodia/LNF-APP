@@ -44,6 +44,7 @@ dependencies:
   confetti: ^0.5.5
   davinci: ^2.0.5
   firebase_storage: ^8.1.0
+  flame: ^0.29.4
 
 dev_dependencies:
   flutter_test:

@@ -4,21 +4,12 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learnnfun/Persona.dart';
-import 'package:learnnfun/commonPages/levelUnlocked.dart';
-import 'package:learnnfun/commonPages/quiz.dart';
-import 'package:learnnfun/commonPages/quizIntro.dart';
-import 'package:learnnfun/commonPages/revise.dart';
-import 'package:learnnfun/commonPages/themeintro.dart';
-import 'package:learnnfun/overallPages/introductionSlider.dart';
-import 'package:learnnfun/overallPages/levels.dart';
+import 'package:learnnfun/quiz/catchthenut.dart';
+import 'package:learnnfun/quiz/quizIntro.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
-import 'package:learnnfun/tasks/2_define_bb.dart';
-import 'package:learnnfun/tasks/5_test.dart';
 import 'package:overlay_support/overlay_support.dart';
-import 'overallPages/levelEvaluation.dart';
 
 import 'auth.dart';
-import 'commonPages/completedPage.dart';
 import 'overallPages/login.dart';
 
 void main() {
@@ -86,7 +77,7 @@ class MyApp extends StatelessWidget {
                         accentColor: const Color(0xffffa62b),
                       ),
                       home:
-                      ThemeIntro())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
+                      CatchTheNut())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
 
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
