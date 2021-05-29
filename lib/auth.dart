@@ -9,7 +9,7 @@ import 'package:overlay_support/overlay_support.dart';
 //import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 
-DocumentReference userDocReference;
+DocumentReference<Map<String, dynamic>> userDocReference;
 
 class PasswordCheckError implements Exception {
   PasswordCheckError();
