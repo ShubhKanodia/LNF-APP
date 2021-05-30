@@ -7,7 +7,8 @@ class CatchTheNut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CatchTheNutGame().widget;
+    // return CatchTheNutGame().widget;
+    return Container();
   }
 }
 
