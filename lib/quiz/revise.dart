@@ -1,7 +1,9 @@
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/quiz/quiz.dart';
 import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
@@ -193,7 +195,7 @@ class _Revise extends State<Revise> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Quiz(),
+                        builder: (context) => CourseCompletion(),
                         settings: RouteSettings(name: 'Tasks')),
                   );
                 })
@@ -205,3 +207,4 @@ class _Revise extends State<Revise> {
     );
   }
 }
+*/

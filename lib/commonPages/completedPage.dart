@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/quiz/revise.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
@@ -196,10 +197,11 @@ class _TaskCompletedState extends State<TaskCompleted> {
             ]),
             button(context, text: "Continue", onTap: () {
               if (currentProgress.taskUnlocked==6 ){
+                currentQuizProgress.reset();
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Revise(),
+                      builder: (context) => CatchTheNut(start:false),
                       settings: RouteSettings(name: 'Tasks')),
                       (Route<dynamic> route) => false,
                 );

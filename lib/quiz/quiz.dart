@@ -1,3 +1,4 @@
+/*
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,8 @@ import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
 import '../auth.dart';
 
+*/
+/*
 class Quiz extends StatefulWidget {
   @override
   _Quiz createState() => _Quiz();
@@ -28,10 +31,16 @@ class _Quiz extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    /*List mftQuestions = mtfList[index].keys.toList();
+    *//*
+
+*/
+/*List mftQuestions = mtfList[index].keys.toList();
     mftQuestions.shuffle();
     List mftAnswers = mtfList[index].values.toList();
-    mftAnswers.shuffle();*/
+    mftAnswers.shuffle();*//*
+*/
+/*
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -90,7 +99,10 @@ class _Quiz extends State<Quiz> {
                   checkQuestion: checkQuestion,
                   index: index,
                 ),
-                /*mcq
+                *//*
+
+*/
+/*mcq
                     ? MSQ(
                         buttonPressed: buttonPressed,
                         checkQuestion: checkQuestion,
@@ -101,7 +113,10 @@ class _Quiz extends State<Quiz> {
                         mtfAnswers: mftAnswers,
                         mtfQuestions: mftQuestions,
                   checkMatched: checkMatched,
-                      ),*/
+                      ),*//*
+*/
+/*
+
                 Visibility(
                   maintainAnimation: true,
                   maintainSize: true,
@@ -346,6 +361,9 @@ class _MSQState extends State<MSQ> {
   }
 }
 
+*//*
+
+*/
 /*
 class MTF extends StatefulWidget {
   final List mtfQuestions;
@@ -534,5 +552,6 @@ class _MTFState extends State<MTF> {
     );
   }
 }
+*//*
 */
 

@@ -58,6 +58,26 @@ class _TestState extends State<Test> {
                     setState(() {
                         _angle = 3.14;
                     });
+                    Future.delayed(Duration(seconds:1), () {
+                      {
+                        userDocReference.update({
+                          "trophies": 0,
+                          "rewards": FieldValue.increment(1),
+                          "taskUnlocked":6
+                        });
+                        currentProgress.taskUnlocked = 6;
+                        currentProgress.rewards+=1;
+                        currentProgress.trophies=0;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder:
+                                    (context) =>
+                                    InformationCard(cardNumber: 3),
+                                settings: RouteSettings(
+                                    name: 'Actual game')));
+                      }
+                    });
                   } ,
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.07,right: width * 0.07),

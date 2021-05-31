@@ -44,7 +44,8 @@ dependencies:
   confetti: ^0.5.5
   davinci: ^2.0.5
   firebase_storage: ^8.1.0
-  flame: ^0.29.4
+
+
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,7 @@ flutter:
       - assets/ideation/
       - assets/test/
       - assets/introductionSlider/
+      - assets/quiz/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

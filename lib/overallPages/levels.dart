@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/quiz/revise.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
 import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/library.dart';
 import 'package:learnnfun/commonPages/menupage.dart';
 import 'package:learnnfun/commonPages/themeintro.dart';
+import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
 import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
@@ -297,10 +297,11 @@ class Tasks extends StatelessWidget {
           right: width * 0.2,
           child: circularOrangeButton(context,
               enabled: currentProgress.taskUnlocked >= 6, number: false,light: currentProgress.taskUnlocked == 6, text: "Quiz", onTap: () {
+                currentQuizProgress.reset();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Revise(),
+                      builder: (context) => CatchTheNut(start:false),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),
