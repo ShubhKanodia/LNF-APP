@@ -17,10 +17,26 @@ class ThemeIntro extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
+              padding: EdgeInsets.only(
+                  left: width * 0.02, right: width * 0.02, top: height * 0.01),
+              child: Column(
+                children: [
+                  Padding(padding: EdgeInsets.only(bottom: height * 0.05),
+                  child:
+                  Text(
+                    "Gift a Friend",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.quicksand(
+                        color: Color(0xff489fb5),
+                        fontSize: height * 0.045,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  ),
+                  Padding(
               padding: EdgeInsets.only(top: 20),
               child: Container(
-                height: height * 0.08,
-                width: width * 0.45,
+                height: height * 0.3,
+                width: width * 0.6,
                 child: FittedBox(
                   fit: BoxFit.cover,
                   child: Padding(
@@ -31,34 +47,27 @@ class ThemeIntro extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: width * 0.02, right: width * 0.02, top: height * 0.04),
-              child: Column(
-                children: [
-                  Text(
-                    "Gift a Friend",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.quicksand(
-                        color: Color(0xff489fb5),
-                        fontSize: height * 0.04,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
+                  Padding(padding: EdgeInsets.only(left: width * 0.13, right: width * 0.13 , top: height * 0.1, bottom: height * 0.02),
+                  child: Text(
                     "Use Design Thinking to design a custom gift for a friend!",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.quicksand(
-                      color: Color(0xff489fb5),
-                      fontSize: height * 0.02,
+                        color: Color(0xff489fb5),
+                        fontSize: height * 0.025,
+                        fontWeight: FontWeight.bold
                     ),
                   ),
-                  Text(
+                  )
+                  ,
+                  Padding(padding: EdgeInsets.only(left: width * 0.08, right: width * 0.08 , top: height * 0.01, bottom: height * 0.05),
+                  child: Text(
                     "Through this experience, you will learn how to better understand and fulfill unmet needs of people you’re creating for in the real world.",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.quicksand(
                       color: Color(0xff489fb5),
-                      fontSize: height * 0.02,
+                      fontSize: height * 0.025,
                     ),
+                  ),
                   ),
                 ],
               ),
