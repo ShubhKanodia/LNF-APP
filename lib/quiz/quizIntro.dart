@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/completedPage.dart';
 import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/widgets.dart';
 

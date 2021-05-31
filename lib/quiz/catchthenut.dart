@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,8 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/Persona.dart';
 import 'package:learnnfun/overallPages/levelEvaluation.dart';
 import 'package:learnnfun/quiz/quizIntro.dart';
-
-import 'dart:ui';
 
 import '../widgets.dart';
 

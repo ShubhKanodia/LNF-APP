@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learnnfun/Persona.dart';
 import 'package:learnnfun/overallPages/levels.dart';
-import 'package:learnnfun/quiz/catchthenut.dart';
-import 'package:learnnfun/quiz/quizIntro.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 

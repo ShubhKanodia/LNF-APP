@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/overallPages/login.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
 import 'package:learnnfun/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../auth.dart';
 
