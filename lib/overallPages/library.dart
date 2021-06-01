@@ -11,6 +11,15 @@ class Library extends StatefulWidget {
 }
 
 class _Library extends State<Library> {
+
+  bool showSaved=false;
+
+  setStateCallback(Function fn){
+    setState(() {
+      fn();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -23,10 +32,18 @@ class _Library extends State<Library> {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     StdBackButton(),
-                    Image.asset("assets/tagSelect.png",
-                        height: height*0.04,),
+                    IconButton(
+                      icon:Icon(showSaved?Icons.bookmark:Icons.bookmark_outline),
+                      color: Colors.yellow, onPressed: () {
+                        setState(() {
+                          showSaved = !showSaved;
+
+                        });
+                    },
+                    ),
                   ],
                 ),
                 Text(
@@ -50,81 +67,15 @@ class _Library extends State<Library> {
                     shrinkWrap: true,
                     itemCount: topicList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Topic topic =topicList[index];
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                width: width*0.85,
-                                height: height*0.4,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Image.asset("assets/designThinking.png"),
-                                        ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(7.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                                Text(topic.title,
-                                                        style: GoogleFonts.quicksand(
-                                                        color: Color(0xff16697a),
-                                                        fontSize: height * 0.035,
-                                                        fontWeight: FontWeight.bold)),
-                                                 Text("Article by "+topic.by,
-                                                    style: GoogleFonts.quicksand(
-                                                        color: Color(0xff16697a),
-                                                        fontSize: height * 0.015, )),
-                                               Row(
-                                                 children: [
-                                                   Text("Read article",
-                                                        style: GoogleFonts.quicksand(
-                                                            color: Color(0xffffa62b),
-                                                            fontSize: height * 0.02,
-                                                            fontWeight: FontWeight.bold)),
-                                                     Align(
-                                                       alignment: Alignment.centerRight,
-                                                       child: Padding(
-                                                         padding: const EdgeInsets.all(7.0),
-                                                         child: Image.asset("assets/tagUnselect.png",
-                                                         height: height*0.025,),
-                                                       ),
-                                                     ),
-                                                 ],
-                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      //alignment: Alignment.centerRight,
-                                    ],
-                                  ),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(40)
-                                    ),
-                                    boxShadow: [BoxShadow(
-                                        color: const Color(0x33000000),
-                                        offset: Offset(0,4),
-                                        blurRadius: 4,
-                                        spreadRadius: 0
-                                    )] ,
-                                    color: const Color(0xffffffff)
-                                )
-                            ),
-                          ),
-                        ],
-                      );
+                      Topic topic = topicList[index];
+                      if(showSaved){
+                        if(topic.saved){
+                          return Article(topic: topic, setStateCallback: setStateCallback,);
+                        }else return Container();
+                      }else{
+                        return Article( topic: topic, setStateCallback: setStateCallback);
+                      }
+
                     },
                   ),
                 )
@@ -135,14 +86,114 @@ class _Library extends State<Library> {
   }
 }
 
+class Article extends StatelessWidget {
+  const Article({
+    Key key,
+    @required this.topic,
+    @required this.setStateCallback,
+  }) : super(key: key);
+
+  final Topic topic;
+  final Function setStateCallback;
+
+  @override
+  Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: WhiteScreen(
+                height: height*0.5,
+                width: width*0.9,
+                children: [
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Image.asset(
+                        "assets/designThinking.png"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Text(topic.title,
+                              style: GoogleFonts.quicksand(
+                                  color: Color(0xff16697a),
+                                  fontSize: height * 0.035,
+                                  fontWeight:
+                                  FontWeight.bold)),
+                          Text("Article by " + topic.by,
+                              style: GoogleFonts.quicksand(
+                                color: Color(0xff16697a),
+                                fontSize: height * 0.015,
+                              )),
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment
+                                .spaceBetween,
+                            children: [
+                              Text("Read article",
+                                  style:
+                                  GoogleFonts.quicksand(
+                                      color: Color(
+                                          0xffffa62b),
+                                      fontSize:
+                                      height * 0.02,
+                                      fontWeight:
+                                      FontWeight
+                                          .bold)),
+                              Align(
+                                alignment:
+                                Alignment.centerRight,
+                                child: Padding(
+                                  padding:
+                                  const EdgeInsets.all(
+                                      7.0),
+                                  child: IconButton(
+                                    icon:Icon(topic.saved
+                                        ? Icons.bookmark
+                                        : Icons
+                                        .bookmark_outline),
+                                    color: Colors.yellow,
+                                    iconSize: height * 0.04, onPressed: () {
+                                      setStateCallback((){
+                                        topic.saved=!topic.saved;
+                                      });
+                                  },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  //alignment: Alignment.centerRight,
+                ],
+              ),
+        ),
+      ],
+    );
+  }
+}
+
 class Topic {
   final String title;
   final String by;
+  bool saved = false;
 
-  Topic(
-      {@required this.title,
-        @required this.by,
-       });
+  Topic({@required this.title, @required this.by, this.saved});
 }
 
 final topicList = [
@@ -152,7 +203,7 @@ final topicList = [
   ),
   Topic(
     title: "Design Thinking the BASICS",
-      by: "_______",
+    by: "_______",
   ),
   Topic(
     title: "Jessica",
