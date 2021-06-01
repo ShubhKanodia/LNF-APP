@@ -137,7 +137,7 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                 ),
               ),
             ),
-            button(context, text: "Continue", onTap: (){}),
+            StandardButton( text: "Continue", onTap: (){}),
           ],
         ),
       ),

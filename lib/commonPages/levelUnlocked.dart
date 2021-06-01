@@ -89,7 +89,7 @@ class _LevelUnlockedState extends State<LevelUnlocked> {
             ),
             Padding(
               padding: EdgeInsets.only(top: height * 0.05),
-              child: button(context, text: "Play now!", onTap: () {}),
+              child: StandardButton( text: "Play now!", onTap: () {}),
             )
           ],
         )),

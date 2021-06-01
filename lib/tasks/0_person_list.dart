@@ -266,7 +266,7 @@ class _PersonListState extends State<PersonList> {
                           ])
                     ],
                   ),
-                  button(context, text: "Select Receiver", onTap: () {
+                  StandardButton( text: "Select Receiver", onTap: () {
                     userDocReference.update({
                       "taskUnlocked":1,
                       "personIndex" : index

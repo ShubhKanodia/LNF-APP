@@ -72,7 +72,7 @@ class ThemeIntro extends StatelessWidget {
                 ],
               ),
             ),
-            button(context, text: "Continue", onTap: () {
+            StandardButton( text: "Continue", onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(

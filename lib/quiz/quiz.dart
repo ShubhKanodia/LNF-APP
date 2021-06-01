@@ -154,7 +154,7 @@ class _Quiz extends State<Quiz> {
                     ),
                   ),
                 ),
-                button(context,
+                StandardButton(
                     text: buttonPressed == null
                         ? "Check"
                         : checked == true

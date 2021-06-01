@@ -108,7 +108,7 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
                 ),
                 Visibility(
                     visible: buttonVisible,
-                    child: button(context, text: "Get Started", onTap: () {
+                    child: StandardButton( text: "Get Started", onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => RegistrationInfo()));
                     }))

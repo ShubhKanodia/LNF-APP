@@ -159,7 +159,7 @@ class _TaskIntroState extends State<TaskIntro> {
                         fontSize: height * 0.025),
                     textAlign: TextAlign.center,
                   ),
-                  button(context, text: "Continue", onTap: () {
+                  StandardButton( text: "Continue", onTap: () {
                       Navigator.push(
                     context,
                     MaterialPageRoute(

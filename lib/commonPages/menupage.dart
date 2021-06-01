@@ -32,7 +32,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.08),
-                child: button(context, text: 'Profile', onTap: (){
+                child: StandardButton( text: 'Profile', onTap: (){
     Navigator.push(
     context,
     MaterialPageRoute(
@@ -41,19 +41,19 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: button(context, text: 'Setting', onTap: null),
+                child: StandardButton( text: 'Setting', onTap: null),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: button(context, text: 'Sound', onTap: null),
+                child: StandardButton( text: 'Sound', onTap: null),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: button(context, text: 'Help', onTap: null),
+                child: StandardButton( text: 'Help', onTap: null),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: button(context, text: 'Log Out', onTap: (){
+                child: StandardButton( text: 'Log Out', onTap: (){
                   Auth().signOut();
   Navigator.pushAndRemoveUntil(
   context,

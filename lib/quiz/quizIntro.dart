@@ -133,7 +133,7 @@ class QuizIntro extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ]),
-                  button(context, text: "Let's Play!", onTap: () {
+                  StandardButton( text: "Let's Play!", onTap: () {
                     Navigator.pushReplacement(context, MaterialPageRoute(
                         builder: (context) => CatchTheNut(start: true),
                         settings: RouteSettings(name: 'Tasks')),);

@@ -191,7 +191,7 @@ class _Revise extends State<Revise> {
                     ],
                   ),
                 ]),
-                button(context, text: "Begin", onTap: (){
+                StandardButton( text: "Begin", onTap: (){
                   Navigator.push(
                     context,
                     MaterialPageRoute(

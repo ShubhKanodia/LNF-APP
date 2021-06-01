@@ -195,7 +195,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
                 ],
               ),
             ]),
-            button(context, text: "Continue", onTap: () {
+            StandardButton( text: "Continue", onTap: () {
               if (currentProgress.taskUnlocked==6 ){
                 currentQuizProgress.reset();
                 Navigator.pushAndRemoveUntil(

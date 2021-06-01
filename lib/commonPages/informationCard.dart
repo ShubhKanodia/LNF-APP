@@ -110,7 +110,7 @@ class _InformationCardState extends State<InformationCard> {
                           fontSize: height * 0.025),
                       textAlign: TextAlign.center,
                     ),*/
-                    button(context,
+                    StandardButton(
                         text: "Continue",
                         onTap: () => Navigator.push(
                             context,

@@ -322,7 +322,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                     );
                                                   },
                                                 ),
-                                              ):button(context, text: "Continue", onTap: (){
+                                              ):StandardButton( text: "Continue", onTap: (){
                                                 userDocReference.update({
                                                   "trophies":0,
                                                   "rewards":1,

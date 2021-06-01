@@ -137,7 +137,7 @@ class _CourseCompletion extends State<CourseCompletion> {
                           ),
                         );
                       }),
-                    button(context, text: "share", onTap: () async {await DavinciCapture.click(certificate, fileName: "Design Thinking Certificate ");}),
+                    StandardButton( text: "share", onTap: () async {await DavinciCapture.click(certificate, fileName: "Design Thinking Certificate ");}),
                     TextButton(
                       onPressed: (){
                         Navigator.pushAndRemoveUntil(

@@ -85,7 +85,7 @@ class _PrototypeState extends State<Prototype> {
             ]),
             Container(height: height * 0.03),
             expand?
-            button(context, text: "Continue", onTap: (){
+            StandardButton( text: "Continue", onTap: (){
               userDocReference.update({
                 "trophies": 0,
                 "rewards": FieldValue.increment(1),
