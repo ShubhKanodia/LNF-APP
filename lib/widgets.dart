@@ -97,13 +97,13 @@ Widget whiteScreen(context,
 }
 
 ///Use this for the default back button. Using this as the first element of your column will make it standard everywhere
-Widget backButton(context) {
+Widget backButton(context, {onTap}) {
   return Container(
     alignment: Alignment.topLeft,
     child: IconButton(
         iconSize: 50,
         icon: Icon(Icons.chevron_left),
-        onPressed: () => Navigator.pop(context)),
+        onPressed: onTap==null?() => Navigator.pop(context):onTap),
   );
 }
 
