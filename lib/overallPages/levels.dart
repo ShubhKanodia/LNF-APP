@@ -1,14 +1,15 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/commonPages/menupage.dart';
 import 'package:learnnfun/commonPages/taskIntro.dart';
+import 'package:learnnfun/commonPages/themeintro.dart';
 import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/overallPages/library.dart';
-import 'package:learnnfun/commonPages/menupage.dart';
-import 'package:learnnfun/commonPages/themeintro.dart';
 import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
-import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
 
 class Levels extends StatelessWidget {
@@ -26,7 +27,7 @@ class Levels extends StatelessWidget {
         Positioned(
           top: height * 0.08,
           left: width * 0.04,
-          child: squareBlueButton(context,
+          child: SquareBlueButton(
               insideImageUrl: "assets/hamburger.svg", onTap: () {
             Navigator.push(
                 context,
@@ -38,7 +39,7 @@ class Levels extends StatelessWidget {
         Positioned(
           bottom: height * 0.1,
           left: width * 0.04,
-          child: squareBlueButton(context, insideImageUrl: "assets/library.svg",
+          child: SquareBlueButton( insideImageUrl: "assets/library.svg",
               onTap: () {
             Navigator.push(
                 context,
@@ -50,7 +51,7 @@ class Levels extends StatelessWidget {
         Positioned(
           top: height * 0.08,
           right: width * 0.04,
-          child: squareBlueButton(context, insideImageUrl: "assets/library.svg",
+          child: SquareBlueButton( insideImageUrl: "assets/library.svg",
               onTap: () {
             Navigator.push(
                 context,
@@ -62,19 +63,19 @@ class Levels extends StatelessWidget {
         Positioned(
           bottom: height * 0.1,
           right: width * 0.04,
-          child: squareBlueButton(context,
+          child: SquareBlueButton(
               insideImageUrl: "assets/hamburger.svg", onTap: null),
         ),
         Positioned(
           bottom: height * 0.2,
           left: width * 0.15,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: true, number: false, text: "Start", onTap: null),
         ),
         Positioned(
           bottom: height * 0.33,
           right: width * 0.25,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: true, number: true, light: true, text: "1", onTap: () {
                 if(currentProgress.taskUnlocked>2)
                 {
@@ -97,19 +98,19 @@ class Levels extends StatelessWidget {
         Positioned(
           bottom: height * 0.45,
           left: width * 0.25,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: false, number: true, text: "2", onTap: null),
         ),
         Positioned(
           bottom: height * 0.57,
           right: width * 0.40,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: false, number: true, text: "3", onTap: null),
         ),
         Positioned(
           bottom: height * 0.65,
           left: width * 0.03,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: false, number: false, text: "Finish", onTap: null),
         ),
       ],
@@ -132,7 +133,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           top: height * 0.1,
           left: width * 0.04,
-          child: squareBlueButton(context,
+          child: SquareBlueButton(
               insideImageUrl: "assets/hamburger.svg", onTap:() {
                 Navigator.push(
                     context,
@@ -203,7 +204,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.12,
           left: width * 0.15,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: true, number: false, light:currentProgress.taskUnlocked == 0 , text: "Start", onTap: () {
             Navigator.push(
               context,
@@ -216,7 +217,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.24,
           right: width * 0.25,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 1,
               number: true,
               light: currentProgress.taskUnlocked == 1,
@@ -232,7 +233,7 @@ class Tasks extends StatelessWidget {
         Positioned(
             bottom: height * 0.37,
             left: width * 0.25,
-            child: circularOrangeButton(context,
+            child: CircularOrangeButton(
                 enabled: currentProgress.taskUnlocked >= 2,
                 number: true,
                 light: currentProgress.taskUnlocked == 2,
@@ -247,7 +248,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.49,
           right: width * 0.40,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 3,
               number: true,
               light: currentProgress.taskUnlocked == 3,
@@ -263,7 +264,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.61,
           left: width * 0.1,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 4,
               number: true,
               light: currentProgress.taskUnlocked == 4,
@@ -279,7 +280,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.62,
           right: width * 0.1,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 5,
               number: true,
               light: currentProgress.taskUnlocked == 5,
@@ -295,7 +296,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.745,
           right: width * 0.2,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 6, number: false,light: currentProgress.taskUnlocked == 6, text: "Quiz", onTap: () {
                 currentQuizProgress.reset();
                 Navigator.push(
@@ -309,7 +310,7 @@ class Tasks extends StatelessWidget {
         Positioned(
           bottom: height * 0.745,
           left: width * 0.2,
-          child: circularOrangeButton(context,
+          child: CircularOrangeButton(
               enabled: currentProgress.taskUnlocked >= 7, number: false, text: "Finish", onTap: () {
             Navigator.push(
               context,
@@ -323,3 +324,158 @@ class Tasks extends StatelessWidget {
     ));
   }
 }
+
+class SquareBlueButton extends StatelessWidget {
+  const SquareBlueButton({
+    Key key,
+    @required this.insideImageUrl, this.onTap
+  }) : super(key: key);
+
+
+  final String insideImageUrl;
+  final Function onTap;
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+      height:width * 0.15,
+      width:width * 0.15,
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff489fb5),
+              blurRadius: 1.0, // soften the shadow
+              spreadRadius: 1.0, //extend the shadow
+              offset: Offset(
+                0.0, // Move to right 10  horizontally
+                2.0, // Move to bottom 10 Vertically
+              ),
+            )
+          ],
+          color: Color(0xff489fb5),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      child: ElevatedButton(
+          child: Container(
+              width: width * 0.1, child: SvgPicture.asset(insideImageUrl)),
+          style: ButtonStyle(
+            shadowColor: MaterialStateProperty.all<Color>(Color(0xff489fb5)),
+            elevation: MaterialStateProperty.resolveWith<double>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.pressed)) return 0;
+                return 8; // Use the component's default.
+              },
+            ),
+            minimumSize:
+            MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                )),
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                if (states.contains(MaterialState.pressed))
+                  return Color(0xfa489fb5);
+                return Color(0xff489fb5); // Use the component's default.
+              },
+            ),
+          ),
+          onPressed: onTap),
+    );
+  }
+}
+
+
+class CircularOrangeButton extends StatelessWidget {
+  CircularOrangeButton({
+    Key key,
+    @required this.text,
+    @required this.enabled,
+    @required this.number,
+    this.light = false,
+    @required this.onTap
+  }) : super(key: key);
+
+  final String text;
+  final bool enabled;
+  final  bool number;
+  final bool light;
+  final Function onTap;
+
+  final ConfettiController confettiController = ConfettiController(duration : Duration(seconds:1));
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    if(light) confettiController.play();
+    return ConfettiWidget(
+        confettiController: confettiController,
+        blastDirectionality: BlastDirectionality
+            .explosive, // don't specify a direction, blast randomly
+        shouldLoop:
+        false, // start again as soon as the animation is finished
+        colors: const [
+          Colors.green,
+          Colors.blue,
+          Colors.pink,
+          Colors.orange,
+          Colors.purple
+        ],
+        child:  Container(
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: light ? Color(0xfffad207) : Color(0x66cb7703),
+                  blurRadius: 1.0, // soften the shadow
+                  spreadRadius: 0.0, //extend the shadow
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    2.0, // Move to bottom 10 Vertically
+                  ),
+                )
+              ],
+              color: light ? Color(0xfffaf063) : Color(0xfffbc67e),
+              borderRadius: BorderRadius.all(Radius.circular(100))),
+          child: ElevatedButton(
+              child: Text(
+                text.toString(),
+                style: GoogleFonts.quicksand(
+                    color: light ? Color(0xff16697a) : Color(0xffffffff),
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                    fontSize: number ? height * 0.04 : height * 0.02),
+              ),
+              style: ButtonStyle(
+                shadowColor: MaterialStateProperty.all<Color>(
+                    light ? Color(0xfffad207) : Color(0x66cb7703)),
+                elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed)) return 0;
+                    return 8; // Use the component's default.
+                  },
+                ),
+                minimumSize:
+                MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    )),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed))
+                      return enabled ? Color(0xfafbc67e) : Color(0xfffbc67e);
+                    return enabled
+                        ? light
+                        ? Color(0xfafaf063)
+                        : Color(0xffffa62b)
+                        : Color(0xfffbc67e); // Use the component's default.
+                  },
+                ),
+              ),
+              onPressed: enabled?onTap:null),
+        ));
+  }
+}
+
