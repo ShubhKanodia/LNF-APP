@@ -46,7 +46,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                 children: [
                   Row(
                     children: [
-                      backButton(context),
+                      StdBackButton(),
                       Padding(
                         padding: EdgeInsets.only(left:width*0.13),
                         child: Text("Empathise",

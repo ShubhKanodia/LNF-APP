@@ -55,10 +55,10 @@ class _InformationCardState extends State<InformationCard> {
         body: SafeArea(
             child: Center(
           child: Column(children: [
-            backButton(context),
+            StdBackButton(),
             Padding(
               padding: EdgeInsets.only(top: height * 0.03),
-              child: whiteScreen(context,
+              child: WhiteScreen(
                   height: height * 0.65,
                   padding: 14,
                   children: [

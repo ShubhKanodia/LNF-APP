@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
-///Gives the standard button used all throughout the application. USE THIS ONLY
-///need to pass a variable called context and a text in double quotes in the form text:"<Button Content>"
-///Also need to pass what should happen on click of the button to onTap in the form onTap:(){<code goes here>}
-
 class StandardButton extends StatelessWidget {
+  ///Gives the standard button used all throughout the application. USE THIS ONLY
+  ///need to pass a variable called context and a text in double quotes in the form text:"<Button Content>"
+  ///Also need to pass what should happen on click of the button to onTap in the form onTap:(){<code goes here>}
   const StandardButton({
     Key key,
     @required this.text,
@@ -75,48 +72,68 @@ class StandardButton extends StatelessWidget {
   }
 }
 
-///Gives a white screen with some slight elevation as is used across the entire application.
-///You need to pass a variable called context(don't worry aboout it)
-///You need to pass a List of widgets (Similar to what you pass into column) [Widget1,Widget2]
-///You can also pass a padding variable if you feel you want some padding on all sides
 
-Widget whiteScreen(context,
-    {@required double height,
-      double width,
-    double padding = 0,
-      double elevation = 4,
-    @required List<Widget> children}) {
-  return Container(
-      width: width==null?MediaQuery.of(context).size.width * 0.80:width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(height * 0.1),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x338b8b8b),
-            blurRadius: elevation,
-            offset: Offset(0, elevation),
-          ),
-        ],
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(padding),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: children),
-      ));
+class WhiteScreen extends StatelessWidget {
+  ///Gives a white screen with some slight elevation as is used across the entire application.
+  ///You need to pass a List of widgets (Similar to what you pass into column) [Widget1,Widget2]
+  ///You can also pass a padding variable if you feel you want some padding on all sides
+  const WhiteScreen({
+    Key key,
+    @required this.height,
+    this.width,
+    this.padding = 0,
+    this.elevation = 4,
+    this.children,
+  }) : super(key: key);
+
+  final double width;
+  final double height;
+  final double padding;
+  final double elevation ;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: width==null?MediaQuery.of(context).size.width * 0.80:width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(height * 0.1),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x338b8b8b),
+              blurRadius: elevation,
+              offset: Offset(0, elevation),
+            ),
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(padding),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: children),
+        ));
+  }
 }
 
-///Use this for the default back button. Using this as the first element of your column will make it standard everywhere
-Widget backButton(context, {onTap}) {
-  return Container(
-    alignment: Alignment.topLeft,
-    child: IconButton(
-        iconSize: 50,
-        icon: Icon(Icons.chevron_left),
-        onPressed: onTap==null?() => Navigator.pop(context):onTap),
-  );
+class StdBackButton extends StatelessWidget {
+  ///Use this for the default back button. Using this as the first element of your column will make it standard everywhere
+  const StdBackButton({
+    Key key, this.onTap,
+  }) : super(key: key);
+
+  final Function onTap;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topLeft,
+      child: IconButton(
+          iconSize: 50,
+          icon: Icon(Icons.chevron_left),
+          onPressed: onTap==null?() => Navigator.pop(context):onTap),
+    );
+  }
 }
 
 Widget squareBlueButton(context,

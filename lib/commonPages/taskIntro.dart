@@ -81,7 +81,7 @@ class _TaskIntroState extends State<TaskIntro> {
         body: SafeArea(
             child: Column(children: [
           Row(children: [
-            backButton(context),
+            StdBackButton(),
             Padding(
               padding: EdgeInsets.only(left: width * 0.25),
               child: Text(
@@ -117,7 +117,7 @@ class _TaskIntroState extends State<TaskIntro> {
               )),
           Padding(
             padding: EdgeInsets.only(top: height * 0.03),
-            child: whiteScreen(context,
+            child: WhiteScreen(
                 height: height * 0.65,
                 padding: 14,
                 children: [

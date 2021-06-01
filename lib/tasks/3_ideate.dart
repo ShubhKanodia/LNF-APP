@@ -187,7 +187,7 @@ class _Ideate2State extends State<Ideate2> {
     body: Center(
       child: Column(
         children: [
-          backButton(context),
+          StdBackButton(),
         Text("Ideate",
           style: GoogleFonts.quicksand(
               color: const Color(0xff489fb5),

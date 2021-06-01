@@ -33,7 +33,7 @@ class QuizIntro extends StatelessWidget {
 /*                Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      backButton(context),
+                      StdBackButton(),
                       Container(
                         alignment: Alignment.topRight,
                         width: width * 0.5,
@@ -106,7 +106,7 @@ class QuizIntro extends StatelessWidget {
                       ),
                     ],
                   )*/
-                  whiteScreen(context, height: height * 0.45, children: [
+                  WhiteScreen( height: height * 0.45, children: [
                     Text(name,
                         style: GoogleFonts.quicksand(
                             color: const Color(0xffffa62b),

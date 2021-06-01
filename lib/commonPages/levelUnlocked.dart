@@ -41,9 +41,8 @@ class _LevelUnlockedState extends State<LevelUnlocked> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            backButton(context),
-            whiteScreen(
-              context,
+            StdBackButton(),
+            WhiteScreen(
               height: height * 0.7,
               children: [
                 Container(

@@ -135,7 +135,7 @@ class SlideItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        whiteScreen(context, height: height * 0.5, children: [
+        WhiteScreen( height: height * 0.5, children: [
           SvgPicture.asset(slideList[index].imageUrl,
               width: width / 3, height: height / 3.5, fit: BoxFit.fitHeight)
         ]),

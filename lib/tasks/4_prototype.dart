@@ -40,10 +40,10 @@ class _PrototypeState extends State<Prototype> {
         body: SafeArea(
           child: Center(
               child: Column(children: [
-            expand?backButton(context, onTap: (){
+            expand?StdBackButton(onTap: (){
               setState(() {
               expand=false;
-            });}):backButton(context),
+            });}):StdBackButton(),
             Text("Prototype",
                 style: GoogleFonts.quicksand(
                     color: const Color(0xff489fb5),
@@ -65,7 +65,7 @@ class _PrototypeState extends State<Prototype> {
                       fontSize: height * 0.02)),
             ),
             Container(height: height * 0.03),
-            whiteScreen(context, height: expand?height*0.6:height * 0.3, children: [
+            WhiteScreen( height: expand?height*0.6:height * 0.3, children: [
               centralImageUrl != null
                   ? Image.network(centralImageUrl, fit: BoxFit.contain,height: expand?height*0.6:height * 0.3, loadingBuilder: (BuildContext context, Widget child,
                   ImageChunkEvent loadingProgress) {

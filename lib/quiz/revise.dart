@@ -154,7 +154,7 @@ class _Revise extends State<Revise> {
                     ),
                   ],
                 ),
-                whiteScreen(context, height: height * 0.5, children: [
+                WhiteScreen( height: height * 0.5, children: [
                   Container(
                     height: height * 0.2,
                     width: width * 0.7,

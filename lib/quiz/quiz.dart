@@ -51,7 +51,7 @@ class _Quiz extends State<Quiz> {
               children: [
                 Row(
                   children: [
-                    backButton(context),
+                    StdBackButton(),
                     Expanded(
                         flex: 1,
                         child: Padding(
@@ -338,7 +338,7 @@ class _MSQState extends State<MSQ> {
                     ),
                     borderRadius: BorderRadius.circular(height * 0.01))
                 : null,
-            child: whiteScreen(context,
+            child: WhiteScreen(
                 height: height * 0.15,
                 width: width * 0.4,
                 children: [
@@ -462,7 +462,7 @@ class _MTFState extends State<MTF> {
                                   borderRadius:
                                       BorderRadius.circular(height * 0.01))
                               : null,
-                          child: whiteScreen(context,
+                          child: WhiteScreen(
                               height: height * 0.08,
                               width: width * 0.4,
                               children: [
@@ -519,7 +519,7 @@ class _MTFState extends State<MTF> {
                                     borderRadius:
                                         BorderRadius.circular(height * 0.01))
                                 : null,
-                            child: whiteScreen(context,
+                            child: WhiteScreen(
                                 height: height * 0.08,
                                 width: width * 0.4,
                                 children: [

@@ -29,7 +29,7 @@ class _TestState extends State<Test> {
         body: SafeArea(
           child: Center(
               child: Column(children: [
-            backButton(context),
+            StdBackButton(),
             Text("Test",
                 style: GoogleFonts.quicksand(
                     color: const Color(0xff489fb5),
@@ -51,7 +51,7 @@ class _TestState extends State<Test> {
                       fontSize: height * 0.02)),
             ),
             Container(height: height * 0.05),
-            whiteScreen(context, height: height * 0.55, children: [
+            WhiteScreen( height: height * 0.55, children: [
               GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onVerticalDragDown: (DragDownDetails details){

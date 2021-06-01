@@ -22,7 +22,7 @@ class _MenuPageState extends State<MenuPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              backButton(context),
+              StdBackButton(),
               Text('Options',
                 style: GoogleFonts.quicksand(
                   fontWeight: FontWeight.bold,

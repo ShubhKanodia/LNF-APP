@@ -27,7 +27,7 @@ class _PersonListState extends State<PersonList> {
           child: Center(
             child: Column(
               children: [
-                backButton(context),
+                StdBackButton(),
                 Text(
                   "Select a Gift Receiver",
                   style: GoogleFonts.quicksand(
@@ -137,7 +137,7 @@ class _PersonListState extends State<PersonList> {
             ),
             elevation: 0.0,
             backgroundColor: Colors.transparent,
-            child: whiteScreen(context,
+            child: WhiteScreen(
                 height: MediaQuery.of(context).size.height * 0.7,
                 children: [
                   Align(

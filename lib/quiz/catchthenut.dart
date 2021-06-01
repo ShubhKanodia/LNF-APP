@@ -116,7 +116,7 @@ class _CatchTheNutState extends State<CatchTheNut> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    backButton(context),
+                    StdBackButton(),
                     Container(
                       alignment: Alignment.topRight,
                       width: width * 0.5,
