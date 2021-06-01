@@ -9,6 +9,7 @@ import 'package:learnnfun/Persona.dart';
 import 'package:learnnfun/overallPages/levelEvaluation.dart';
 import 'package:learnnfun/quiz/quizIntro.dart';
 
+import '../auth.dart';
 import '../widgets.dart';
 
 class CatchTheNut extends StatefulWidget {
@@ -53,6 +54,8 @@ class _CatchTheNutState extends State<CatchTheNut> {
             }
           });
         }
+
+        ///Control to finish
         if (!nut1.visible && !nut2.visible && !nut3.visible) {
           timer.cancel();
           if(currentQuizProgress.currentQuestionNumber+1 < catchTheNutMap.length) {
@@ -61,6 +64,10 @@ class _CatchTheNutState extends State<CatchTheNut> {
                 builder: (context) => CatchTheNut(start: true),
                 settings: RouteSettings(name: 'Tasks')),);
           } else{
+              userDocReference.update({
+                "trophies": 0,
+                "taskUnlocked":7
+              });
             Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context) => LevelEvaluation(),
                 settings: RouteSettings(name: 'Tasks')),);

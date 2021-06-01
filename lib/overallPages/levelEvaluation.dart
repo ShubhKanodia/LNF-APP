@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
+import '../Persona.dart';
 
 class LevelEvaluation extends StatefulWidget {
   const LevelEvaluation({Key key}) : super(key: key);
@@ -12,21 +15,43 @@ class LevelEvaluation extends StatefulWidget {
 }
 
 class _LevelEvaluationState extends State<LevelEvaluation> {
+
+  final List<String> reviewDisplay=["Try again","Can do better","Well done"];
+  final List<Color> reviewColor = [Color(0xffdb3333),Color(0xfffcc643),Color(0xff90ca5e)];
+  Map<int,double> taskPercent= {};
+
+  void initState(){
+    for (int i=1; i<5;i++){
+        taskPercent[i] = (currentPersona.taskMax[i]-l1Score.task[i])/currentPersona.taskMax[i];
+    }
+    double total=0;
+    taskPercent.forEach((key, value) {
+      total+=value;
+    });
+    total+=currentQuizProgress.score/totalQuizPossibleScore; //Adding Quiz score
+    overallPercent = total/(taskPercent.length+1); //+1 for the quiz
+    super.initState();
+  }
+
+  int calcTaskReview(double val){
+    if(val<0.33) return 0;
+    else if(val<0.66) return 1;
+    else return 2;
+  }
+
+  double overallPercent;
+
   @override
-  final List<String> EvaluationStrings=["can do better","well done","try again","Great"];
-  final List<int> NoOfTasks=<int>[1,2,3,4];
-  var prcnt=0.5;
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top:10),
-              child: StdBackButton(),
-            ),
+            StdBackButton(),
             Text("Level Evaluation",
             style: GoogleFonts.quicksand(
                 color: const Color(0xffffa62b),
@@ -34,28 +59,13 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                 fontStyle: FontStyle.normal,
                 fontSize: height * 0.05
             ),),
-            Padding(
-              padding: const EdgeInsets.only(top:10,bottom:12),
-              child: Container(
-                  width: height*0.38,
-                  height: height*0.68,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(height * 0.08),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x338b8b8b),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                    color: Colors.white,
-                  ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top:30,left:35,bottom: 15),
+            WhiteScreen(
+                height: height*0.7,
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left:width*0.1,),
                       child: Text(
                         "ACCURACY",
                         style:GoogleFonts.quicksand(
@@ -66,78 +76,126 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                         ),
                       ),
                     ),
-                    new LinearPercentIndicator(
-                      width: height*0.35,
-                      lineHeight:20,
-                      percent: prcnt,
-                      padding: EdgeInsets.only(left: 35),
-                      backgroundColor: Colors.grey,
-                      progressColor: Colors.blue,
-                    ),
-                    Container(
-                      alignment: Alignment.topRight,
-                      padding: EdgeInsets.only(right: 10,bottom: 20,top:15),
-                      child: Text((prcnt*100).toString()+"%",
-                      style: GoogleFonts.quicksand(
-                        color: Color(0xff16697a),
-                        fontWeight: FontWeight.w500,
-                          fontStyle:  FontStyle.normal,
-                          fontSize: 15,
-                      ),),
-                    ),
-                    ListView.builder(
-                        //padding: EdgeInsets.all(10),
-                        itemCount: NoOfTasks.length,
-                        itemBuilder: (BuildContext context, int index){
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 35,top: 15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Task ${NoOfTasks[index]}",
-                                style: GoogleFonts.quicksand(
-                                  color: Color(0xff489fb5),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 25
-                                ),),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 0,top: 10,bottom: 15),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 20.0,
-                                        width: 20.0,
-                                        decoration: new BoxDecoration(
-                                          color: Colors.black,
-                                          shape: BoxShape.circle,
-                                        )
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 30),
-                                        child: Text("${EvaluationStrings[index]}",
-                                          style:GoogleFonts.quicksand(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 20,
-                                            color: Color(0xff16697a),
-                                          ),
-                                        ),
+                  ),
+                  new LinearPercentIndicator(
+                    width: height*0.35,
+                    lineHeight:20,
+                    percent: overallPercent,
+                    padding: EdgeInsets.only(left: 35),
+                    backgroundColor: Colors.grey,
+                    progressColor: Color(0xff489fb5),
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    padding: EdgeInsets.only(right: width*0.1),
+                    child: Text((overallPercent*100).toString()+"%",
+                    style: GoogleFonts.quicksand(
+                      color: Color(0xff16697a),
+                      fontWeight: FontWeight.w500,
+                        fontStyle:  FontStyle.normal,
+                        fontSize: 15,
+                    ),),
+                  ),
+                  ListView.builder(
+                      //padding: EdgeInsets.all(10),
+                      itemCount: taskPercent.length,
+                      itemBuilder: (BuildContext context, int index){
+                        int task = taskPercent.keys.elementAt(index);
+                        return Padding(
+                          padding: EdgeInsets.only(left: width*0.1),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Task $task",
+                              style: GoogleFonts.quicksand(
+                                color: Color(0xff489fb5),
+                                fontWeight: FontWeight.w700,
+                                fontSize: height*0.03
+                              ),),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 0,top: 10,bottom: 15),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: height*0.02,
+                                      width: height*0.02,
+                                      decoration: new BoxDecoration(
+                                        color: reviewColor[calcTaskReview(taskPercent[task])],
+                                        shape: BoxShape.circle,
                                       )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        },
-                      shrinkWrap: true,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text("${reviewDisplay[calcTaskReview(taskPercent[task])]}",
+                                        style:GoogleFonts.quicksand(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle: FontStyle.normal,
+                                          fontSize: height*0.02,
+                                          color: Color(0xff16697a),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    shrinkWrap: true,
+                  ),
+        Padding(
+          padding: EdgeInsets.only(left: width*0.1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Quiz",
+                style: GoogleFonts.quicksand(
+                    color: Color(0xff489fb5),
+                    fontWeight: FontWeight.w700,
+                    fontSize: height*0.03
+                ),),
+              Padding(
+                padding: const EdgeInsets.only(left: 0,top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                        height: height*0.02,
+                        width: height*0.02,
+                        decoration: new BoxDecoration(
+                          color: reviewColor[calcTaskReview(currentQuizProgress.score/totalQuizPossibleScore)],
+                          shape: BoxShape.circle,
+                        )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: Text("${reviewDisplay[calcTaskReview(currentQuizProgress.score/totalQuizPossibleScore)]}",
+                        style:GoogleFonts.quicksand(
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height*0.02,
+                          color: Color(0xff16697a),
+                        ),
+                      ),
                     )
                   ],
                 ),
+              )
+            ],
+          ),
+        )
+                ],
               ),
-            ),
-            StandardButton( text: "Continue", onTap: (){}),
+            StandardButton( text: "Continue", onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CourseCompletion(),
+                    settings: RouteSettings(name: 'Actual game')),
+              );
+            }),
           ],
         ),
       ),

@@ -259,7 +259,7 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                         "profile": profileSelected,
                                         "age": age
                                       });
-                                    currentProgress.trophies = 0;
+
                                     currentProgress.rewards = 0;
                                     currentProgress.taskUnlocked = 0;
                                     Navigator.pushAndRemoveUntil(

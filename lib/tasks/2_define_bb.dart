@@ -20,6 +20,36 @@ class _BasketballState extends State<Basketball> {
 
   int points = 0;
 
+  void checkHoop() {
+    if (currentPersona
+            .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
+        currentPersona
+            .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
+            .keys
+            .last]) points++;
+    if (hoopsLeft == 1) {
+      userDocReference.update({
+        "trophies": 0,
+        "rewards": FieldValue.increment(points),
+        "taskUnlocked": 3,
+        "L1T2": points
+      });
+      l1Score.task[2] = points;
+      currentProgress.taskUnlocked = 3;
+      currentProgress.rewards += points;
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => InformationCard(cardNumber: 2),
+              settings: RouteSettings(name: 'Actual game')));
+    } else {
+      setState(() {
+        hoopsLeft--;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -59,116 +89,63 @@ class _BasketballState extends State<Basketball> {
             children: [
               // Open Sans | 10px All
 
-                Column(
-                  children: [
-                    Text(
-                        currentPersona
-                            .likeChoices[
-                                currentPersona.likeChoices.length - hoopsLeft]
-                            .keys
-                            .first,
-                        style: GoogleFonts.quicksand(
-                            color: const Color(0xff489fb5),
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontSize: height * 0.03),
-                        textAlign: TextAlign.center),
-                    DragTarget<bool>(
-                        onWillAccept: (data) => true,
-                        onAccept: (data) {
-                          if (currentPersona.likeChoices[
-                          currentPersona.likeChoices.length - hoopsLeft][
-                          currentPersona
-                              .likeChoices[
-                          currentPersona.likeChoices.length - hoopsLeft]
-                              .keys
-                              .first]) points++;
-                          if (hoopsLeft == 1) {
-                            userDocReference.update({
-                              "trophies": 0,
-                              "rewards": FieldValue.increment(points),
-                              "taskUnlocked": 3
-                            });
-                            currentProgress.taskUnlocked = 3;
-                            currentProgress.rewards += points;
-                            currentProgress.trophies = 0;
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        InformationCard(cardNumber: 1),
-                                    settings: RouteSettings(name: 'Actual game')));
-                          } else {
-                            setState(() {
-                              hoopsLeft--;
-                            });
-                          }
-                        },
-                        builder: (
-                            BuildContext context,
-                            List<dynamic> accepted,
-                            List<dynamic> rejected,
-                            ) {
-                          return Hoop(height: height, width: width);
-                        }),
-                  ],
-                ),
-               Column(
-                 children: [
-                   Text(
-                        currentPersona
-                            .likeChoices[
-                                currentPersona.likeChoices.length - hoopsLeft]
-                            .keys
-                            .last,
-                        style: GoogleFonts.quicksand(
-                            color: Color(0xff489fb5),
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.normal,
-                            fontSize: height * 0.03),
-                        textAlign: TextAlign.center),
-                   DragTarget<bool>(
-                     onWillAccept: (data) => true,
-                     onAccept: (data) {
-                       if (currentPersona.likeChoices[
-                       currentPersona.likeChoices.length - hoopsLeft][
-                       currentPersona
-                           .likeChoices[
-                       currentPersona.likeChoices.length - hoopsLeft]
-                           .keys
-                           .last]) points++;
-                       if (hoopsLeft == 1) {
-                         userDocReference.update({
-                           "trophies": 0,
-                           "rewards": FieldValue.increment(points),
-                           "taskUnlocked": 3
-                         });
-
-                         currentProgress.taskUnlocked = 3;
-                         currentProgress.rewards += points;
-                         currentProgress.trophies = 0;
-                         Navigator.push(
-                             context,
-                             MaterialPageRoute(
-                                 builder: (context) =>
-                                     InformationCard(cardNumber: 2),
-                                 settings: RouteSettings(name: 'Actual game')));
-                       } else {
-                         setState(() {
-                           hoopsLeft--;
-                         });
-                       }
-                     },
-                     builder: (
-                         BuildContext context,
-                         List<dynamic> accepted,
-                         List<dynamic> rejected,
-                         ) {
-                       return Hoop(height: height, width: width);
-                     },
-                   )
-                 ],
-               ),
+              Column(
+                children: [
+                  Text(
+                      currentPersona
+                          .likeChoices[
+                              currentPersona.likeChoices.length - hoopsLeft]
+                          .keys
+                          .first,
+                      style: GoogleFonts.quicksand(
+                          color: const Color(0xff489fb5),
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height * 0.03),
+                      textAlign: TextAlign.center),
+                  DragTarget<bool>(
+                      onWillAccept: (data) => true,
+                      onAccept: (data) {
+                        checkHoop();
+                      },
+                      builder: (
+                        BuildContext context,
+                        List<dynamic> accepted,
+                        List<dynamic> rejected,
+                      ) {
+                        return Hoop(height: height, width: width);
+                      }),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                      currentPersona
+                          .likeChoices[
+                              currentPersona.likeChoices.length - hoopsLeft]
+                          .keys
+                          .last,
+                      style: GoogleFonts.quicksand(
+                          color: Color(0xff489fb5),
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height * 0.03),
+                      textAlign: TextAlign.center),
+                  DragTarget<bool>(
+                    onWillAccept: (data) => true,
+                    onAccept: (data) {
+                      checkHoop();
+                    },
+                    builder: (
+                      BuildContext context,
+                      List<dynamic> accepted,
+                      List<dynamic> rejected,
+                    ) {
+                      return Hoop(height: height, width: width);
+                    },
+                  )
+                ],
+              ),
             ],
           ),
           Padding(
@@ -233,7 +210,7 @@ class Hoop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: height * 0.2,
-        width:width*0.4,
+        width: width * 0.4,
         child: SvgPicture.asset("assets/basketball/hoop.svg"));
   }
 }

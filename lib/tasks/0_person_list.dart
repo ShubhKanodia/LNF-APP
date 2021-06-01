@@ -54,7 +54,7 @@ class _PersonListState extends State<PersonList> {
                         onTap: () => showDialog(
                           context: context,
                           builder: (BuildContext context) =>
-                              personPopup(context, person, index),
+                              _PersonPopup(person:person, index:index)
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
@@ -127,7 +127,17 @@ class _PersonListState extends State<PersonList> {
         ));
   }
 
-  Widget personPopup(context, Person person, int index) {
+}
+
+class _PersonPopup extends StatelessWidget {
+  const _PersonPopup({
+    Key key, @required this.person, this.index
+  }) : super(key: key);
+
+  final Person person;
+  final int index;
+  @override
+  Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return BackdropFilter(
         filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),

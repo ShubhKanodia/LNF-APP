@@ -125,13 +125,7 @@ class _CourseCompletion extends State<CourseCompletion> {
                                       fontStyle: FontStyle.normal,
                                       fontSize: height * 0.02),
                                 ),
-                                Container(
-                                  height: height * 0.03,
-                                  width: width * 0.03,
-                                  child: Image.asset("assets/grasp.png"),
-
-                                  ///TODO: Image not appearing
-                                ),
+                                Image.asset("assets/grasp.png"),
                               ],
                             ),
                           ),

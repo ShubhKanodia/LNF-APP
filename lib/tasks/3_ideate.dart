@@ -40,14 +40,15 @@ class _IdeateState extends State<Ideate> {
       if (time == 0) {
         timer.cancel();
         userDocReference.update({
-          "trophies":0,
+
           "rewards":FieldValue.increment(1),
-          "taskUnlocked":4
+          "taskUnlocked":4,
+          "L1T3":l1Score.task[3],
         });
 
         currentProgress.taskUnlocked = 4;
         currentProgress.rewards+=1;
-        currentProgress.trophies=0;
+
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -121,6 +122,9 @@ List storedIdeas = [];
     options: BubbleOptions(
         onTap: () {
           if(timer==null || !timer.isActive) startTimer();
+          l1Score.task[3]=0;
+          if(currentPersona.ideas[text] == true) l1Score.task[3]++;
+          if(currentPersona.ideas[text] == false) l1Score.task[3]--;
           setState(() {
             currentPersona.ideas.remove(text);
           });
@@ -154,14 +158,14 @@ class _Ideate2State extends State<Ideate2> {
           if (time == 0 && mounted) {
             timer.cancel();
             userDocReference.update({
-              "trophies":0,
+
               "rewards":FieldValue.increment(1),
               "taskUnlocked":4
             });
 
             currentProgress.taskUnlocked = 4;
             currentProgress.rewards+=1;
-            currentProgress.trophies=0;
+
             Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -26,6 +26,8 @@ class _PrototypeState extends State<Prototype> {
   String centralImageUrl;
   bool expand=false;
 
+  Reference selectedItem;
+
   void initState() {
     details = getDetailsFromStorage("prototypes");
     super.initState();
@@ -86,22 +88,29 @@ class _PrototypeState extends State<Prototype> {
             Container(height: height * 0.03),
             expand?
             StandardButton( text: "Continue", onTap: (){
-              userDocReference.update({
-                "trophies": 0,
-                "rewards": FieldValue.increment(1),
-                "taskUnlocked": 5
+              selectedItem.getMetadata().then((value) {
+                if(value.customMetadata!=null && value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()]!=null)
+                  l1Score.task[4] = int.tryParse(value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()])==null?0:int.tryParse(value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()]);
+                else
+                  l1Score.task[4] = 0;
+                userDocReference.update({
+                  "trophies": 0,
+                  "rewards": FieldValue.increment(1),
+                  "taskUnlocked": 5,
+                  "L1T4":l1Score.task[4]
+                });
+                currentProgress.taskUnlocked = 5;
+                currentProgress.rewards += 1;
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            InformationCard(
+                                cardNumber: 3),
+                        settings: RouteSettings(
+                            name: 'Actual game')));
               });
-              currentProgress.taskUnlocked = 5;
-              currentProgress.rewards += 1;
-              currentProgress.trophies = 0;
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          InformationCard(
-                              cardNumber: 3),
-                      settings: RouteSettings(
-                          name: 'Actual game')));
             }):Expanded(
               child: Container(
                   width: width,
@@ -310,9 +319,11 @@ class _PrototypeState extends State<Prototype> {
   }
 
   void setCentralImage(Reference item) {
+    selectedItem = item;
     item.getDownloadURL().then((value) {
       setState(() {
         centralImageUrl = value;
+
       });
     });
   }

@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learnnfun/Persona.dart';
+import 'package:learnnfun/overallPages/levelEvaluation.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
+import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
@@ -44,6 +46,13 @@ class MyApp extends StatelessWidget {
 
           if (auth.getCurrentUser() != null) {
             userDocReference.get().then((value) {
+              if(value.data()["personIndex"] != null) currentPersona = allPersonasLevel1[value.data()["personIndex"]];
+              l1Score.task = {};
+              if(value.data()["L1T1"]!=null) l1Score.task[1] = value.data()["L1T1"];
+              if(value.data()["L1T2"]!=null) l1Score.task[2] = value.data()["L1T2"];
+              if(value.data()["L1T3"]!=null) l1Score.task[3] = value.data()["L1T3"];
+              if(value.data()["L1T4"]!=null) l1Score.task[4] = value.data()["L1T4"];
+              if(value.data()["L1Quiz"]!=null) l1Score.quiz = value.data()["L1Quiz"];
               if (value.data()["taskUnlocked"] != null &&
                   value.data()["rewards"] != null &&
                   value.data()["trophies"] != null ) {
@@ -51,7 +60,6 @@ class MyApp extends StatelessWidget {
                 currentProgress.rewards = value.data()["rewards"];
                 currentProgress.trophies = value.data()["trophies"];
               }
-              if(value.data()["personIndex"] != null) currentPersona = allPersonasLevel1[value.data()["personIndex"]];
             });
             if (auth.getCurrentUser().displayName == null ||
                 auth.getCurrentUser().displayName == "null") {

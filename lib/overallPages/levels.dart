@@ -11,6 +11,7 @@ import 'package:learnnfun/overallPages/library.dart';
 import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
 import '../Persona.dart';
+import 'levelEvaluation.dart';
 
 class Levels extends StatelessWidget {
   @override
@@ -315,7 +316,7 @@ class Tasks extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CourseCompletion(),
+                  builder: (context) => LevelEvaluation(),
                   settings: RouteSettings(name: 'Actual game')),
             );
           }),

@@ -323,14 +323,15 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                   },
                                                 ),
                                               ):StandardButton( text: "Continue", onTap: (){
+                                                l1Score.task[1] = currentPersona.taskMax[1]-questionSelected.length;
                                                 userDocReference.update({
-                                                  "trophies":0,
                                                   "rewards":1,
-                                                  "taskUnlocked":1
+                                                  "taskUnlocked":1,
+                                                  "L1T1":l1Score.task[1]
                                                 });
                                                 currentProgress.taskUnlocked = 2;
                                                 currentProgress.rewards=1;
-                                                currentProgress.trophies=0;
+
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(

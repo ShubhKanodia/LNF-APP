@@ -67,7 +67,7 @@ class _TestState extends State<Test> {
                         });
                         currentProgress.taskUnlocked = 6;
                         currentProgress.rewards+=1;
-                        currentProgress.trophies=0;
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(
