@@ -37,7 +37,7 @@ class _Library extends State<Library> {
                     StdBackButton(),
                     IconButton(
                       icon:Icon(showSaved?Icons.bookmark:Icons.bookmark_outline),
-                      color: Colors.yellow, onPressed: () {
+                      color: Color(0xffffa62b), onPressed: () {
                         setState(() {
                           showSaved = !showSaved;
 
@@ -61,22 +61,45 @@ class _Library extends State<Library> {
                       fontSize: height * 0.025,
                       fontWeight: FontWeight.bold,
                     )),
-                Expanded(
-                  child: ListView.builder(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: topicList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Topic topic = topicList[index];
-                      if(showSaved){
-                        if(topic.saved){
-                          return Article(topic: topic, setStateCallback: setStateCallback,);
-                        }else return Container();
-                      }else{
-                        return Article( topic: topic, setStateCallback: setStateCallback);
-                      }
+                DefaultTabController(
+                  length: 2,
+                  child:
+                    TabBar(
+                        indicatorColor: Color(0xff489fb5),
+                        tabs: [
+                    Tab(child: Text("Article ",
+                        style: GoogleFonts.quicksand(
+                          color: Color(0xff489fb5),
+                          fontSize: height * 0.035,
+                        )),),
+                    Tab(child: Text("Videos",
+                        style: GoogleFonts.quicksand(
+                          color: Color(0xff489fb5),
+                          fontSize: height * 0.035,
+                        )),),
+                  ]),
 
-                    },
+                   child: TabBarView(
+                    children: [
+                      Expanded(
+                    child: ListView.builder(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: topicList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Topic topic = topicList[index];
+                        if(showSaved){
+                          if(topic.saved){
+                            return Article(topic: topic, setStateCallback: setStateCallback,);
+                          }else return Container();
+                        }else{
+                          return Article( topic: topic, setStateCallback: setStateCallback);
+                        }
+
+                      },
+                    ),
+                  ),
+                    Icon(Icons.video_collection_outlined, size:350),])
                   ),
                 )
               ],
@@ -164,7 +187,7 @@ class Article extends StatelessWidget {
                                         ? Icons.bookmark
                                         : Icons
                                         .bookmark_outline),
-                                    color: Colors.yellow,
+                                    color: Color(0xffffa62b),
                                     iconSize: height * 0.04, onPressed: () {
                                       setStateCallback((){
                                         topic.saved=!topic.saved;
