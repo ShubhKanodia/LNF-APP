@@ -12,6 +12,7 @@ import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
+import 'commonPages/completedPage.dart';
 import 'overallPages/library.dart';
 import 'overallPages/login.dart';
 

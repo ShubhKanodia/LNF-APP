@@ -94,7 +94,6 @@ class _PrototypeState extends State<Prototype> {
                 else
                   l1Score.task[4] = 0;
                 userDocReference.update({
-                  "trophies": 0,
                   "rewards": FieldValue.increment(1),
                   "taskUnlocked": 5,
                   "L1T4":l1Score.task[4]

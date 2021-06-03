@@ -28,7 +28,7 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
     taskPercent.forEach((key, value) {
       total+=value;
     });
-    total+=currentQuizProgress.score/totalQuizPossibleScore; //Adding Quiz score
+    total+=l1Score.quiz/totalQuizPossibleScore; //Adding Quiz score
     overallPercent = total/(taskPercent.length+1); //+1 for the quiz
     super.initState();
   }

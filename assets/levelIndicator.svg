@@ -1,0 +1,10 @@
+<svg width="190" height="190" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+ <g>
+  <title>Layer 1</title>
+  <circle cx="60.046" cy="53" r="12.5" stroke="#fff" stroke-width="7" id="svg_3"/>
+  <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7" d="m73.046,53l42,0s25.3,7.87 24,20c-1.2,11.2 -24,16 -24,16l-68,0s-18.95,7.545 -20,18c-1.161,11.553 20,22 20,22l26,0m26,0l28,0" id="svg_4"/>
+  <circle cx="139.046" cy="129" r="12.5" stroke="#fff" stroke-width="7" id="svg_5"/>
+  <circle cx="86.046" cy="129" r="6" fill="#fff" id="svg_6"/>
+ </g>
+</svg>

@@ -44,119 +44,8 @@ class _TaskCompletedState extends State<TaskCompleted> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.1,
-                      top: height * 0.02,
-                      right: width * 0.1,
-                      bottom: height * 0.03),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: width * 0.3,
-                        height: height * 0.075,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(250),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x1e000000),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                            color: Colors.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(currentProgress.trophies.toString(),
-                                  style: GoogleFonts.quicksand(
-                                    color: Color(0xff16697a),
-                                    fontSize: height * 0.045,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.end),
-                        ),
-                      ),
-                      Container(
-                          height: height * 0.075,
-                          width: width * 0.15,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff0e4f5c),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                            color: Color(0xff489fb5),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: width * 0.03, right: width * 0.03),
-                            child: Image.asset("assets/trophy.png"),
-                          )),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.1,
-                      top: height * 0.02,
-                      right: width * 0.1,
-                      bottom: height * 0.03),
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        width: width * 0.3,
-                        height: height * 0.075,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(250),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x1e000000),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                            color: Colors.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Text(currentProgress.rewards.toString(),
-                                  style: GoogleFonts.quicksand(
-                                    color: Color(0xff16697a),
-                                    fontSize: height * 0.045,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.end),
-                        ),
-                      ),
-                      Container(
-                          height: height * 0.075,
-                          width: width * 0.15,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff0e4f5c),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
-                              ),
-                            ],
-                            color: Color(0xff489fb5),
-                          ),
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: width * 0.03, right: width * 0.03),
-                              child: SvgPicture.asset("assets/medal.svg"))),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            WhiteScreen( height: height * 0.5, children: [
+            TrophyAndRewards(),
+            WhiteScreen( height: height * 0.6, children: [
               Container(
                 height: height * 0.2,
                 width: width * 0.6,
@@ -231,3 +120,4 @@ class _TaskCompletedState extends State<TaskCompleted> {
     );
   }
 }
+

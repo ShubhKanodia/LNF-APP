@@ -20,16 +20,23 @@ class _BasketballState extends State<Basketball> {
 
   int points = 0;
 
-  void checkHoop() {
-    if (currentPersona
+  void checkHoop(bool left) {
+    ///Left is whether the left hoop is activated.
+    /// If the left hoop is activated, need to check if first is correct, otherwise last
+    if (left && currentPersona
             .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
         currentPersona
             .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
             .keys
-            .last]) points++;
+            .first] ||
+            !left && currentPersona
+                .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
+            currentPersona
+                .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
+                .keys
+                .last ]) points++;
     if (hoopsLeft == 1) {
       userDocReference.update({
-        "trophies": 0,
         "rewards": FieldValue.increment(points),
         "taskUnlocked": 3,
         "L1T2": points
@@ -106,7 +113,7 @@ class _BasketballState extends State<Basketball> {
                   DragTarget<bool>(
                       onWillAccept: (data) => true,
                       onAccept: (data) {
-                        checkHoop();
+                        checkHoop(true);
                       },
                       builder: (
                         BuildContext context,
@@ -134,7 +141,7 @@ class _BasketballState extends State<Basketball> {
                   DragTarget<bool>(
                     onWillAccept: (data) => true,
                     onAccept: (data) {
-                      checkHoop();
+                      checkHoop(false);
                     },
                     builder: (
                       BuildContext context,

@@ -37,7 +37,7 @@ class _IdeateState extends State<Ideate> {
   void startTimer(){
     timer = Timer.periodic(Duration(seconds: 1),
     (Timer timer) {
-      if (time == 0) {
+      if (time == 0 || currentPersona.ideas.length==0) {
         timer.cancel();
         userDocReference.update({
 

@@ -12,9 +12,9 @@ class Library extends StatefulWidget {
 
 class _Library extends State<Library> {
 
-  bool showSaved=false;
+  bool showSaved = false;
 
-  setStateCallback(Function fn){
+  setStateCallback(Function fn) {
     setState(() {
       fn();
     });
@@ -22,90 +22,110 @@ class _Library extends State<Library> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
 
     return Scaffold(
-        backgroundColor: Color(0xfff4f4f4),
-        body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    StdBackButton(),
-                    IconButton(
-                      icon:Icon(showSaved?Icons.bookmark:Icons.bookmark_outline),
-                      color: Color(0xffffa62b), onPressed: () {
-                        setState(() {
-                          showSaved = !showSaved;
+      backgroundColor: Color(0xfff4f4f4),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              StdBackButton(),
+              IconButton(
+                icon: Icon(showSaved ? Icons.bookmark : Icons.bookmark_outline),
+                color: Color(0xffffa62b), onPressed: () {
+                setState(() {
+                  showSaved = !showSaved;
+                });
+              },
+              ),
+            ],
+          ),
+          Text(
+            "Library",
+            style: GoogleFonts.quicksand(
+                textStyle: TextStyle(
+                    color: const Color(0xffffa62b),
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.06)),
+          ),
+          Text("learn more!",
+              style: GoogleFonts.quicksand(
+                color: Color(0xff489fb5),
+                fontSize: height * 0.025,
+                fontWeight: FontWeight.bold,
+              )),
+          DefaultTabController(
+              length: 2,
+              child:
+              Column(
 
-                        });
-                    },
-                    ),
-                  ],
-                ),
-                Text(
-                  "Library",
-                  style: GoogleFonts.quicksand(
-                      textStyle: TextStyle(
-                          color: const Color(0xffffa62b),
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.normal,
-                          fontSize: height * 0.06)),
-                ),
-                Text("learn more!",
-                    style: GoogleFonts.quicksand(
-                      color: Color(0xff489fb5),
-                      fontSize: height * 0.025,
-                      fontWeight: FontWeight.bold,
-                    )),
-                DefaultTabController(
-                  length: 2,
-                  child:
-                    TabBar(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    height:height*0.05,
+                    child: TabBar(
                         indicatorColor: Color(0xff489fb5),
                         tabs: [
-                    Tab(child: Text("Article ",
-                        style: GoogleFonts.quicksand(
-                          color: Color(0xff489fb5),
-                          fontSize: height * 0.035,
-                        )),),
-                    Tab(child: Text("Videos",
-                        style: GoogleFonts.quicksand(
-                          color: Color(0xff489fb5),
-                          fontSize: height * 0.035,
-                        )),),
-                  ]),
+                          Tab(child: Text("Article ",
+                              style: GoogleFonts.quicksand(
+                                color: Color(0xff489fb5),
+                                fontSize: height * 0.035,
+                              )),),
+                          Tab(child: Text("Videos",
+                              style: GoogleFonts.quicksand(
+                                color: Color(0xff489fb5),
+                                fontSize: height * 0.035,
+                              )),),
+                        ]),
+                  ),
 
-                   child: TabBarView(
+            Container(
+              height:height*0.8,
+                child: TabBarView(
                     children: [
-                      Expanded(
-                    child: ListView.builder(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: topicList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Topic topic = topicList[index];
-                        if(showSaved){
-                          if(topic.saved){
-                            return Article(topic: topic, setStateCallback: setStateCallback,);
-                          }else return Container();
-                        }else{
-                          return Article( topic: topic, setStateCallback: setStateCallback);
-                        }
-
-                      },
-                    ),
-                  ),
-                    Icon(Icons.video_collection_outlined, size:350),])
-                  ),
-                )
-              ],
-            ),
+                      ListView.builder(
+                        physics: AlwaysScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: topicList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Topic topic = topicList[index];
+                          if (showSaved) {
+                            if (topic.saved) {
+                              return Article(topic: topic,
+                                setStateCallback: setStateCallback,);
+                            } else
+                              return Container();
+                          } else {
+                            return Article(topic: topic,
+                                setStateCallback: setStateCallback);
+                          }
+                        },
+                      ),
+                      Icon(Icons.video_collection_outlined, size: 350),
+                    ]
+                ),
+              )
+                ],
+              ),
           ),
-        ));
+
+            ]
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -118,12 +138,17 @@ class Article extends StatelessWidget {
 
   final Topic topic;
   final Function setStateCallback;
-
   @override
   Widget build(BuildContext context) {
-
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    print(topic.title);
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -131,80 +156,80 @@ class Article extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: WhiteScreen(
-                height: height*0.5,
-                width: width*0.9,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Image.asset(
-                        "assets/designThinking.png"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(7.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
+            height: height * 0.5,
+            width: width * 0.9,
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                    "assets/designThinking.png"),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(7.0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    mainAxisAlignment:
+                    MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment:
+                    CrossAxisAlignment.start,
+                    children: [
+                      Text(topic.title,
+                          style: GoogleFonts.quicksand(
+                              color: Color(0xff16697a),
+                              fontSize: height * 0.035,
+                              fontWeight:
+                              FontWeight.bold)),
+                      Text("Article by " + topic.by,
+                          style: GoogleFonts.quicksand(
+                            color: Color(0xff16697a),
+                            fontSize: height * 0.015,
+                          )),
+                      Row(
                         mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        MainAxisAlignment
+                            .spaceBetween,
                         children: [
-                          Text(topic.title,
-                              style: GoogleFonts.quicksand(
-                                  color: Color(0xff16697a),
-                                  fontSize: height * 0.035,
+                          Text("Read article",
+                              style:
+                              GoogleFonts.quicksand(
+                                  color: Color(
+                                      0xffffa62b),
+                                  fontSize:
+                                  height * 0.02,
                                   fontWeight:
-                                  FontWeight.bold)),
-                          Text("Article by " + topic.by,
-                              style: GoogleFonts.quicksand(
-                                color: Color(0xff16697a),
-                                fontSize: height * 0.015,
-                              )),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment
-                                .spaceBetween,
-                            children: [
-                              Text("Read article",
-                                  style:
-                                  GoogleFonts.quicksand(
-                                      color: Color(
-                                          0xffffa62b),
-                                      fontSize:
-                                      height * 0.02,
-                                      fontWeight:
-                                      FontWeight
-                                          .bold)),
-                              Align(
-                                alignment:
-                                Alignment.centerRight,
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.all(
-                                      7.0),
-                                  child: IconButton(
-                                    icon:Icon(topic.saved
-                                        ? Icons.bookmark
-                                        : Icons
-                                        .bookmark_outline),
-                                    color: Color(0xffffa62b),
-                                    iconSize: height * 0.04, onPressed: () {
-                                      setStateCallback((){
-                                        topic.saved=!topic.saved;
-                                      });
-                                  },
-                                  ),
-                                ),
+                                  FontWeight
+                                      .bold)),
+                          Align(
+                            alignment:
+                            Alignment.centerRight,
+                            child: Padding(
+                              padding:
+                              const EdgeInsets.all(
+                                  7.0),
+                              child: IconButton(
+                                icon: Icon(topic.saved
+                                    ? Icons.bookmark
+                                    : Icons
+                                    .bookmark_outline),
+                                color: Color(0xffffa62b),
+                                iconSize: height * 0.04, onPressed: () {
+                                setStateCallback(() {
+                                  topic.saved = !topic.saved;
+                                });
+                              },
                               ),
-                            ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                  //alignment: Alignment.centerRight,
-                ],
+                ),
               ),
+              //alignment: Alignment.centerRight,
+            ],
+          ),
         ),
       ],
     );
@@ -223,17 +248,21 @@ final topicList = [
   Topic(
     title: "What is Design Thinking and why is it important?",
     by: "Rim Razzouk, Valerie Shute",
+    saved:false,
   ),
   Topic(
     title: "Design Thinking the BASICS",
     by: "_______",
+    saved:false,
   ),
   Topic(
     title: "Jessica",
     by: "_______",
+    saved:false,
   ),
   Topic(
     title: "Jessica",
     by: "_______",
+    saved:false,
   ),
 ];

@@ -61,7 +61,6 @@ class _TestState extends State<Test> {
                     Future.delayed(Duration(seconds:1), () {
                       {
                         userDocReference.update({
-                          "trophies": 0,
                           "rewards": FieldValue.increment(1),
                           "taskUnlocked":6
                         });

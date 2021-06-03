@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/Persona.dart';
 import 'package:learnnfun/tasks/1_chat_empathize.dart';
 import 'package:learnnfun/tasks/2_define_bb.dart';
 import 'package:learnnfun/tasks/3_ideate.dart';
@@ -32,9 +33,9 @@ class _TaskIntroState extends State<TaskIntro> {
       "Level 1",
       "Task 2",
       "Welcome to task 2. Now that you’ve learnt a bit about your giftee, let’s define their needs and wants to prioritise them.",
-      "Shoot the basketball into the hoop that is labelled with the item that the giftee likes better.",
-      "Let’s compare all the categories to prioritise one and then think of ideas for gifts!",
-      "There are 8 categries.\n  You have 5 seconds for each round.\n  Tap continue when you are ready to play!",
+      "Each hoop represents a different gift. Shoot the ball into the hoop you think your receiver would like more!",
+      "There are ${currentPersona.likeChoices.length} categries.\n",
+      "Tap continue when you are ready to play!",
       Basketball()
     ],
     [
@@ -43,25 +44,25 @@ class _TaskIntroState extends State<TaskIntro> {
       "Let’s dive into task 3. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
       "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
       "Do not worry about the feasability or cost of the gift.",
-      "You have 20 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+      "You have 5 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
       Ideate()
     ],
     [
       "Level 1",
       "Task 4",
-      "Let’s dive into task 4. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to try prototypinh",
-      "Just click next for now",
-      "Do not worry about the feasability or cost of the gift.",
-      "Tap continue when you are ready to play!",
+      "Now that you have a good understanding of your receiver’s needs, let’s create a virtual prototype of your idea!",
+      "Based on your learnings so far, select appropriate choices to build your prototype.",
+      "You will be able to personalise your gift to best match your receiver.",
+      "Let’s begin creating!",
       Prototype()
     ],
     [
       "Level 1",
       "Task 5",
-      "Let’s dive into task 5. It’s time to test your prototype. Let’s play a game to list down some ideas.",
-      "Slide the lever across the screen",
-      "This is the final stage and will be explained in more depth",
-      "Tap continue when you are ready to play!",
+      "You’ve reached the final stage. \nLet’s test your idea!",
+      "Pull the lever to deliver the gift and test your solution!",
+      "You will receive feedback on how well suited your ideas were.",
+      "",
       Test()
     ],
   ];

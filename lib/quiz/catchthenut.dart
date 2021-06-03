@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,7 +29,7 @@ class _CatchTheNutState extends State<CatchTheNut> {
   bool correct;
   double height;
   int currentOptionCount = 2; //Needs to be one less than the number of nuts defined
-  final double speed = 1.2; //Keep value below 2
+  final double speed = 1.6; //Keep value below 2
   final int timeLagInSeconds = 3;
 
   void initState() {
@@ -58,20 +59,30 @@ class _CatchTheNutState extends State<CatchTheNut> {
         ///Control to finish
         if (!nut1.visible && !nut2.visible && !nut3.visible) {
           timer.cancel();
-          if(currentQuizProgress.currentQuestionNumber+1 < catchTheNutMap.length) {
-            currentQuizProgress.currentQuestionNumber += 1;
-            Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) => CatchTheNut(start: true),
-                settings: RouteSettings(name: 'Tasks')),);
-          } else{
+          Future.delayed(Duration(seconds: correct==null?timeLagInSeconds:0), ()
+          {
+            if (currentQuizProgress.currentQuestionNumber + 1 <
+                catchTheNutMap.length) {
+              currentQuizProgress.currentQuestionNumber += 1;
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => CatchTheNut(start: true),
+                  settings: RouteSettings(name: 'Tasks')),);
+            } else {
               userDocReference.update({
-                "trophies": 0,
-                "taskUnlocked":7
+                "trophies": 1,
+                "taskUnlocked": 7,
+                "rewards": FieldValue.increment(currentQuizProgress.score),
+                "L1Quiz" : currentQuizProgress.score
               });
-            Navigator.pushReplacement(context, MaterialPageRoute(
-                builder: (context) => LevelEvaluation(),
-                settings: RouteSettings(name: 'Tasks')),);
-          }
+              currentProgress.taskUnlocked = 7;
+              currentProgress.rewards += currentQuizProgress.score;
+              currentProgress.trophies = 1;
+              l1Score.quiz = currentQuizProgress.score;
+              Navigator.pushReplacement(context, MaterialPageRoute(
+                  builder: (context) => LevelEvaluation(),
+                  settings: RouteSettings(name: 'Tasks')),);
+            }
+          });
         }
       });
 
@@ -95,6 +106,8 @@ class _CatchTheNutState extends State<CatchTheNut> {
   void nutHit(NutDetails nut) {
     if(nut.correct){
       currentQuizProgress.score++;
+    }else{
+      currentQuizProgress.score--;
     }
     print("Nut hit");
     correct = nut.correct;
@@ -110,174 +123,176 @@ class _CatchTheNutState extends State<CatchTheNut> {
     height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Container(
-            decoration: new BoxDecoration(
-              image: new DecorationImage(
-                image: new AssetImage("assets/quiz/Background.png"),
-                fit: BoxFit.cover,
+        body: SafeArea(
+          child: Container(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new AssetImage("assets/quiz/Background.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            child: Container(
-                child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    StdBackButton(),
-                    Container(
-                      alignment: Alignment.topRight,
-                      width: width * 0.5,
-                      height: height * 0.1,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Positioned(
-                              top: height * 0.04,
-                              right: -width * 0.06,
+              child: Container(
+                  child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      StdBackButton(),
+                      Container(
+                        alignment: Alignment.topRight,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Positioned(
+                                top: height * 0.04,
+                                right: -width * 0.06,
+                                child: Container(
+                                    height: height * 0.05,
+                                    width: width * 0.5,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(30)),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: const Color(0x6616697a),
+                                              offset: Offset(-4, 8),
+                                              blurRadius: 10,
+                                              spreadRadius: 0)
+                                        ],
+                                        color: const Color(0xffffffff)),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: width * 0.05,
+                                          top: height * 0.025),
+                                      child: Text(
+                                        "Catch the nuts",
+                                        style: GoogleFonts.quicksand(
+                                            color: const Color(0xff000000),
+                                            fontWeight: FontWeight.w700,
+                                            fontStyle: FontStyle.normal,
+                                            fontSize: height * 0.015),
+                                      ),
+                                    ))),
+                            Positioned(
+                              top: height * 0.01,
+                              right: -width * 0.03,
                               child: Container(
                                   height: height * 0.05,
                                   width: width * 0.5,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(30)),
+                                          BorderRadius.all(Radius.circular(25)),
                                       boxShadow: [
                                         BoxShadow(
-                                            color: const Color(0x6616697a),
-                                            offset: Offset(-4, 8),
-                                            blurRadius: 10,
+                                            color: const Color(0xb216697a),
+                                            offset: Offset(-4, 4),
+                                            blurRadius: 8,
                                             spreadRadius: 0)
                                       ],
-                                      color: const Color(0xffffffff)),
+                                      color: const Color(0xff16697a)),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: width * 0.05,
-                                        top: height * 0.025),
+                                        left: width * 0.05, top: height * 0.005),
                                     child: Text(
-                                      "Catch the nuts",
+                                      "Have Fun",
                                       style: GoogleFonts.quicksand(
-                                          color: const Color(0xff000000),
+                                          color: const Color(0xffffffff),
                                           fontWeight: FontWeight.w700,
                                           fontStyle: FontStyle.normal,
-                                          fontSize: height * 0.015),
+                                          fontSize: height * 0.03),
                                     ),
-                                  ))),
-                          Positioned(
-                            top: height * 0.01,
-                            right: -width * 0.03,
-                            child: Container(
-                                height: height * 0.05,
-                                width: width * 0.5,
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(25)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: const Color(0xb216697a),
-                                          offset: Offset(-4, 4),
-                                          blurRadius: 8,
-                                          spreadRadius: 0)
-                                    ],
-                                    color: const Color(0xff16697a)),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: width * 0.05, top: height * 0.005),
-                                  child: Text(
-                                    "Revision",
-                                    style: GoogleFonts.quicksand(
-                                        color: const Color(0xffffffff),
-                                        fontWeight: FontWeight.w700,
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: height * 0.03),
-                                  ),
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.31, vertical: height * 0.04),
-                  child: Text(
-                      catchTheNutMap.entries.elementAt(currentQuizProgress.currentQuestionNumber).key,
-                      style: GoogleFonts.quicksand(
-                          color: const Color(0xff1a1b41),
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.normal,
-                          fontSize: height * 0.023),
-                      textAlign: TextAlign.center),
-                ),
-                Expanded(
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Positioned(
-                        left: width * 0.6,
-                        top: nut1.top,
-                        child: Visibility(
-                          visible: nut1.visible,
-                          child: Transform.rotate(
-                              angle: nut1.angle,
-                              child: _Nut(
-                                  height: height, nut: nut1, nutHit: nutHit)),
-                        ),
-                      ),
-                      Positioned(
-                        left: width * 0.4,
-                        top: nut2.top,
-                        child: Visibility(
-                          visible: nut2.visible,
-                          child: Transform.rotate(
-                              angle: nut2.angle,
-                              child: _Nut(
-                                  height: height, nut: nut2, nutHit: nutHit)),
-                        ),
-                      ),
-                      Positioned(
-                        left: width * 0.1,
-                        top: nut3.top,
-                        child: Visibility(
-                          visible: nut3.visible,
-                          child: Transform.rotate(
-                              angle: nut3.angle,
-                              child: _Nut(
-                                  height: height, nut: nut3, nutHit: nutHit)),
-                        ),
-                      ),
-                      Positioned(
-                        right:-10,
-                        top:0,
-                        child: QuizProgressBar(width: width, height: height)),
-                      // Ellipse 42
-                      Positioned(
-                        bottom: 0,
-                        child: Draggable(
-                            axis: Axis.horizontal,
-                            data: true,
-                            childWhenDragging: Container(),
-                            feedback: SvgPicture.asset(
-                              "assets/quiz/squirrel.svg",
-                              height: height * 0.2,
+                                  )),
                             ),
-                            child: SvgPicture.asset(
-                              "assets/quiz/squirrel.svg",
-                              height: height * 0.2,
-                            )),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        child: Visibility(
-                          visible: correct != null,
-                          child: _AnswerBar(
-                              width: width, height: height, correct: correct),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ))));
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.31, vertical: height * 0.04),
+                    child: Text(
+                        catchTheNutMap.entries.elementAt(currentQuizProgress.currentQuestionNumber).key,
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff1a1b41),
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.023),
+                        textAlign: TextAlign.center),
+                  ),
+                  Expanded(
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Positioned(
+                          left: width * 0.6,
+                          top: nut1.top,
+                          child: Visibility(
+                            visible: nut1.visible,
+                            child: Transform.rotate(
+                                angle: nut1.angle,
+                                child: _Nut(
+                                    height: height, nut: nut1, nutHit: nutHit)),
+                          ),
+                        ),
+                        Positioned(
+                          left: width * 0.4,
+                          top: nut2.top,
+                          child: Visibility(
+                            visible: nut2.visible,
+                            child: Transform.rotate(
+                                angle: nut2.angle,
+                                child: _Nut(
+                                    height: height, nut: nut2, nutHit: nutHit)),
+                          ),
+                        ),
+                        Positioned(
+                          left: width * 0.1,
+                          top: nut3.top,
+                          child: Visibility(
+                            visible: nut3.visible,
+                            child: Transform.rotate(
+                                angle: nut3.angle,
+                                child: _Nut(
+                                    height: height, nut: nut3, nutHit: nutHit)),
+                          ),
+                        ),
+                        Positioned(
+                          right:-10,
+                          top:0,
+                          child: QuizProgressBar(width: width, height: height)),
+                        // Ellipse 42
+                        Positioned(
+                          bottom: 0,
+                          child: Draggable(
+                              axis: Axis.horizontal,
+                              data: true,
+                              childWhenDragging: Container(),
+                              feedback: SvgPicture.asset(
+                                "assets/quiz/squirrel.svg",
+                                height: height * 0.2,
+                              ),
+                              child: SvgPicture.asset(
+                                "assets/quiz/squirrel.svg",
+                                height: height * 0.2,
+                              )),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          child: Visibility(
+                            visible: correct != null,
+                            child: _AnswerBar(
+                                width: width, height: height, correct: correct),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ))),
+        ));
   }
 }
 

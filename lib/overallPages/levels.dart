@@ -1,4 +1,5 @@
 import 'package:confetti/confetti.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,9 +12,12 @@ import 'package:learnnfun/overallPages/library.dart';
 import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:learnnfun/tasks/0_person_list.dart';
 import '../Persona.dart';
+import '../auth.dart';
+import 'Leaderboard.dart';
 import 'levelEvaluation.dart';
 
 class Levels extends StatelessWidget {
+  BaseAuth auth = Auth();
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -39,13 +43,13 @@ class Levels extends StatelessWidget {
         ),
         Positioned(
           bottom: height * 0.1,
-          left: width * 0.04,
-          child: SquareBlueButton( insideImageUrl: "assets/library.svg",
+          right: width * 0.04,
+          child: SquareBlueButton( insideImageUrl: "assets/leaderboard.svg",
               onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Library(),
+                    builder: (context) => LeaderBoard(),
                     settings: RouteSettings(name: 'Actual game')));
           }),
         ),
@@ -60,12 +64,6 @@ class Levels extends StatelessWidget {
                     builder: (context) => Library(),
                     settings: RouteSettings(name: 'Actual game')));
           }),
-        ),
-        Positioned(
-          bottom: height * 0.1,
-          right: width * 0.04,
-          child: SquareBlueButton(
-              insideImageUrl: "assets/hamburger.svg", onTap: null),
         ),
         Positioned(
           bottom: height * 0.2,
@@ -135,12 +133,15 @@ class Tasks extends StatelessWidget {
           top: height * 0.1,
           left: width * 0.04,
           child: SquareBlueButton(
-              insideImageUrl: "assets/hamburger.svg", onTap:() {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MenuPage(),
-                        settings: RouteSettings(name: 'Actual game')));
+              insideImageUrl: "assets/levelIndicator.svg", onTap:() {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Levels(),
+                  settings: RouteSettings(
+                      name: 'Levels')),
+                  (Route<dynamic> route) => false,
+            );
               }),
         ),
         Positioned(
@@ -329,7 +330,7 @@ class Tasks extends StatelessWidget {
 class SquareBlueButton extends StatelessWidget {
   const SquareBlueButton({
     Key key,
-    @required this.insideImageUrl, this.onTap
+    @required this.insideImageUrl,  this.onTap
   }) : super(key: key);
 
 

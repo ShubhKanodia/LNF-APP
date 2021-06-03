@@ -395,7 +395,7 @@ class QuizProgress{
 
 class Evaluation{
   Map<int,int> task = {};
-  int quiz;
+  int quiz =0;
 
   Evaluation({this.task, this.quiz});
 }
@@ -406,6 +406,7 @@ QuizProgress currentQuizProgress = QuizProgress();
 
 
 final totalQuizPossibleScore = 2;
+///When you update catchTheNutMap, you also need to increase the above to the max possible score
 final catchTheNutMap =
   {"What are the steps of Design Thinking Process?":{"Define":true,"Prototype":true,"Draw":false}};
 

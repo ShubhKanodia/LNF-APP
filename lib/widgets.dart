@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'Persona.dart';
 
 class StandardButton extends StatelessWidget {
   ///Gives the standard button used all throughout the application. USE THIS ONLY
@@ -71,23 +74,144 @@ class StandardButton extends StatelessWidget {
 }
 
 
+class TrophyAndRewards extends StatelessWidget {
+  const TrophyAndRewards({
+    Key key,
+    this.mainAxisAlignment = MainAxisAlignment.spaceAround
+  }) : super(key: key);
+
+  final MainAxisAlignment mainAxisAlignment;
+
+  @override
+  Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: mainAxisAlignment,
+      children: [
+        Stack(
+          children: <Widget>[
+            Container(
+              width: width * 0.3,
+              height: height * 0.075,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(250),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x1e000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                  color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(currentProgress.trophies.toString(),
+                    style: GoogleFonts.quicksand(
+                      color: Color(0xff16697a),
+                      fontSize: height * 0.045,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.end),
+              ),
+            ),
+            RewardLogo(isTrophy: true),
+          ],
+        ),
+        Stack(
+          children: <Widget>[
+            Container(
+              width: width * 0.3,
+              height: height * 0.075,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(250),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x1e000000),
+                      blurRadius: 4,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                  color: Colors.white),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(currentProgress.rewards.toString(),
+                    style: GoogleFonts.quicksand(
+                      color: Color(0xff16697a),
+                      fontSize: height * 0.045,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.end),
+              ),
+            ),
+            RewardLogo(isTrophy: false)
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class RewardLogo extends StatelessWidget {
+  ///IF isTropy is false, picture will be of badge
+  const RewardLogo({
+    Key key,
+    @required this.isTrophy,
+  }) : super(key: key);
+
+  final bool isTrophy;
+
+  @override
+  Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+        height: height * 0.075,
+        width: width * 0.15,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xff0e4f5c),
+              blurRadius: 4,
+              offset: Offset(0, 4),
+            ),
+          ],
+          color: Color(0xff489fb5),
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(
+              left: width * 0.03, right: width * 0.03),
+          child: isTrophy?Image.asset("assets/trophy.png"):SvgPicture.asset("assets/medal.svg"),
+        ));
+  }
+}
+
 class WhiteScreen extends StatelessWidget {
+
   ///Gives a white screen with some slight elevation as is used across the entire application.
   ///You need to pass a List of widgets (Similar to what you pass into column) [Widget1,Widget2]
   ///You can also pass a padding variable if you feel you want some padding on all sides
   const WhiteScreen({
     Key key,
-    @required this.height,
+    this.height,
     this.width,
     this.padding = 0,
-    this.elevation = 4,
+    this.elevation = 8,
+    this.mainAxisSize = MainAxisSize.max,
+    this.mainAxisAlignment = MainAxisAlignment.spaceEvenly,
     this.children,
+
   }) : super(key: key);
 
   final double width;
   final double height;
   final double padding;
   final double elevation ;
+  final MainAxisSize mainAxisSize;
+  final MainAxisAlignment mainAxisAlignment;
   final List<Widget> children;
 
   @override
@@ -96,7 +220,7 @@ class WhiteScreen extends StatelessWidget {
         width: width==null?MediaQuery.of(context).size.width * 0.80:width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(height * 0.1),
+          borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
               color: Color(0x338b8b8b),
@@ -109,7 +233,8 @@ class WhiteScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(padding),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: mainAxisAlignment,
+              mainAxisSize: mainAxisSize,
               children: children),
         ));
   }
