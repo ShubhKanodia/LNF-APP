@@ -120,7 +120,7 @@ List<Person> allPersonasLevel1 = [
         {"Muffins": false, "Chocolate chips": true},
       ],
       ideas:  {"Knife":false, "Food Processor":true, "Sweater":true, "Pen":false, "Heels":false, "Book":true, "Baking mould":true, "Crystals":false,"Dishwasher":true},
-      taskMax:{1:4,2:2,3:5,4:10}
+      taskMax:{1:3,2:2,3:5,4:10}
   ),
   Person(
       firstName:"Rohit",
@@ -397,13 +397,12 @@ Evaluation l1Score = Evaluation();
 QuizProgress currentQuizProgress = QuizProgress();
 
 
-final totalQuizPossibleScore = 2;
+final totalQuizPossibleScore = 11;
 ///When you update catchTheNutMap, you also need to increase the above to the max possible score
 final catchTheNutMap =
   {"What are the steps of Design Thinking Process?":{"Define":true,"Prototype":true,"Draw":false, "Empathise":true, "Try":false, "Ideate":true,"Test":true,"Produce":false},
   "What are the elements of Innovation?":{"Originality":false,"Viability":true,"Feasibility":true,"Technicality":false,"Profitability":false,"Desirability":true},
-  "Which ones resonate with the Empathy Stage?":{"Interviews":true,"Understand user":true,"Solution Mock-up":false, "User Shadowing":true},
-  "Which are correct?":{"PepsiCo has turned Design Thinking into its strategy":true,"GE Healthcare has built a MR scanner for children using Design Thinking":true,"AirBnB avoided bankruptcy and turned profitable using Design Thinking":true,"Google has a 3 step process to bring about new innovations":true}};
+  "Which ones resonate with the Empathy Stage?":{"Interviews":true,"Understand user":true,"Solution Mock-up":false, "User Shadowing":true}};
 
 
 
