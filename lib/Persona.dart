@@ -80,96 +80,46 @@ List<Person> allPersonasLevel1 = [
       description: "Student who enjoys playing with her dogs and loves the planet",
       profession: "BBA Final Year",
       futurePlans: "Good College in India or Abroad",
-      likes:"Animals,Fashion,Shoes,Badam Milk",
-      interests: "Earth,Stock Market,Baking and Cooking",
+      likes:"Comfortable Fashion, Baking",
+      interests: "Novels, Baking, Cooking",
       routine:"Taking care of her dogs, Rottweiler ( Jimmy ) and Golden Retriever ( Pluto ),Cycling/Driving,Exercising,Cooking,Watching Tv,Study",
-      dislikes: "Doing Dishes,Caffienated Drinks,Nuts,Surprises,Chopping Vegetables,Dresses",
-      hobbies:"Cooking,Reading,Playing with dogs,Fiction Novels,Non Fiction",
+      dislikes: "Chopping Vegetables,Dresses",
+      hobbies:"Cooking,Reading,Novels",
       location:"Bangalore",
       chat: [
         Question(
-          quesText: "What sport do you like to play the most?",
+          quesText: "What do you do all day?",
           ansText:
-          "I like to play basketball",
+          "I cook, exercise, study and watch at least one movie on a daily basis.",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "Oh! Do you enjoy cooking?",
+                ansText: " I enjoy baking a lot but cooking can be very tiring. ",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Not very often. I don’t have a lot of equipment needed to bake. I really should go buy some.", quesText: "How often do you bake?" ),
+                  Question(ansText: "There’s a lot of preparation needed. I hate chopping vegetables. I should really consider getting a food processor.", quesText: "What about cooking makes it tiring?" )
                 ]
-            ),
-            Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-                ]
-            ),
+            )
           ],
         ),
         Question(
           quesText: "What do you like to do in your free time?",
           ansText:
-          "I enjoy playing Basketball a lot",
+          "I enjoy baking and reading!",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-                ]
-            ),
-            Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-                ]
-            ),
-          ],
-        ),
-        Question(
-          quesText: "Do you like to play sports?",
-          ansText:
-          "Yes I do. I enjoy playing Basketball the most",
-          qFollowUp: [
-            Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-                ]
-            ),
-            Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
-                ]
-            ),
+                quesText: "What kind of novels do you read?",
+                ansText: " I’m a hopeless romantic. I can’t wait for Savi Sharma’s next novel!")
           ],
         ),
       ],
-      gifts: [Gift(name:"Clothes", willLike: true),Gift(name:"Gift Hamper with Chocolate", willLike: true),Gift(name:"Surprise", willLike: false), Gift(name:"Sprite", willLike: false),Gift(name:"Dress", willLike: false),Gift(name:"Sweat Pants", willLike: true)],
+      gifts: [Gift(name:"Clothes", willLike: true), Gift(name:"Sprite", willLike: false),Gift(name:"Dress", willLike: false),Gift(name:"Sweat Pants", willLike: true)],
       imageUrl: "assets/gifting/JessicaPearson.svg",
       likeChoices: [
-        {"Lebron James": true, "Someone": false},
-        {"Basketball": true, "Football": false},
+        {"Sweatpants": true, "Pencil Skirt": false},
+        {"Muffins": false, "Chocolate chips": true},
       ],
-      ideas:  {"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true},
+      ideas:  {"Knife":false, "Food Processor":true, "Sweater":true, "Pen":false, "Heels":false, "Book":true, "Baking mould":true, "Crystals":false,"Dishwasher":true},
       taskMax:{1:4,2:2,3:5,4:10}
   ),
   Person(
@@ -179,11 +129,11 @@ List<Person> allPersonasLevel1 = [
       description: "Student who loves games and anime",
       profession: "CSE Second Year",
       futurePlans: "Join a game development company",
-      likes:"Gaming (COD, CS Go), PS4, Fashion(over-sized shirts/pjs), Japanese anime",
-      interests: "Astronomy, Tech Development, Bikes, Volleyball",
+      likes:"Gaming, Astronomy, anime",
+      interests: "Tech Development, Bikes, Volleyball",
       routine:"Wakes up in the afternoon, documentary, study, anime, volleyball, video games ",
-      dislikes: "Bollywood, Sour things, Capitalism, Sleeping early, Romance, Indian clothes",
-      hobbies:"Gaming, anime, volleyball, dog parks, Singing, Star gazing",
+      dislikes: "Old shoes, Xbox",
+      hobbies:"Gaming, anime, volleyball",
       location:"Pune",
       chat: [
         Question(
@@ -192,21 +142,28 @@ List<Person> allPersonasLevel1 = [
           "I love virtual gaming!",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
-                qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                quesText: "What would create your best experience for it?",
+                ansText: "I think a PS4 would be the best way to experience gaming."
+            ),
+            Question(
+              quesText: "What kind of games do you play?",
+              ansText: "I play both volleyball and I enjoy gaming on my PC too!",
+              qFollowUp: [
+                  Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: "What do you think is missing from the picture?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "How do you enjoy it?",
+                ansText: "I play games on my PC, but I wish I could have a better experience.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                    quesText: "What do you think is missing from the picture?",
+                    ansText: "My PC doesn’t have good graphics like a PlayStation does!",
+                    qFollowUp: [
+                        Question(
+                        quesText: " What would create your best experience for it?",
+                        ansText: "Anything with better graphics than my present PC would make me happy, man!")
+                    ])
                 ]
             ),
           ],
@@ -217,21 +174,28 @@ List<Person> allPersonasLevel1 = [
           "I enjoy gaming a lot.",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "What would create your best experience for it?",
+                ansText: "I think a PS4 would be the best way to experience gaming."
+            ),
+            Question(
+                quesText: "What kind of games do you play?",
+                ansText: "I play both volleyball and I enjoy gaming on my PC too!",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: "What do you think is missing from the picture?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "How do you enjoy it?",
+                ansText: "I play games on my PC, but I wish I could have a better experience.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                      quesText: "What do you think is missing from the picture?",
+                      ansText: "My PC doesn’t have good graphics like a PlayStation does!",
+                      qFollowUp: [
+                        Question(
+                            quesText: " What would create your best experience for it?",
+                            ansText: "Anything with better graphics than my present PC would make me happy, man!")
+                      ])
                 ]
             ),
           ],
@@ -242,34 +206,41 @@ List<Person> allPersonasLevel1 = [
           "Yes, I enjoy gaming!",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "What would create your best experience for it?",
+                ansText: "I think a PS4 would be the best way to experience gaming."
+            ),
+            Question(
+                quesText: "What kind of games do you play?",
+                ansText: "I play both volleyball and I enjoy gaming on my PC too!",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: "What do you think is missing from the picture?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "How do you enjoy it?",
+                ansText: "I play games on my PC, but I wish I could have a better experience.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                      quesText: "What do you think is missing from the picture?",
+                      ansText: "My PC doesn’t have good graphics like a PlayStation does!",
+                      qFollowUp: [
+                        Question(
+                            quesText: " What would create your best experience for it?",
+                            ansText: "Anything with better graphics than my present PC would make me happy, man!")
+                      ])
                 ]
             ),
           ],
         ),
       ],
-      gifts: [Gift(name:"PS4", willLike: true),Gift(name:"Volleyball Shoes", willLike: true),Gift(name:"Kurta", willLike: false), Gift(name:"Romeo and Juliet Book", willLike: false),Gift(name:"Sour Candy", willLike: false),Gift(name:"Japanese anime Merch", willLike: true),Gift(name:"Telescope", willLike: true),Gift(name:"Laptop with good graphics", willLike: true)],
-      imageUrl: "assets/gifting/JessicaPearson.svg",
+      gifts: [Gift(name:"PS4", willLike: true),Gift(name:"Volleyball Shoes", willLike: true),Gift(name:"Kurta", willLike: false), Gift(name:"Romeo and Juliet Book", willLike: false),Gift(name:"Sour Candy", willLike: false),Gift(name:"anime Merch", willLike: true),Gift(name:"Telescope", willLike: true),Gift(name:"Laptop with good graphics", willLike: true)],
+      imageUrl: "assets/gifting/HarveySpectre.svg",
       likeChoices: [
-        {"Lebron James": true, "Someone": false},
-        {"Basketball": true, "Football": false},
+        {"Xbox": false, "PS4": true},
+        {"Basketball": false, "Volleyball": true},
       ],
-      ideas:  {"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true},
-  taskMax:{1:4,2:2,3:5,4:10}
+      ideas:  {"Xbox":false, "PS4":true, "Volleyball Shoes":true, "Books":false, "Telescope":true, "Binder":false, "Laptop":true, "Kurta":false},
+  taskMax:{1:4,2:2,3:4,4:10}
       ),
   Person(
       firstName:"Riya",
@@ -278,97 +249,118 @@ List<Person> allPersonasLevel1 = [
       description: "Student who enjoys playing with her dogs and loves the planet",
       profession: "12th Grade",
       futurePlans: "Influencer (Architect if it doesn't work out)",
-      likes:"Clothes, Make up, Small businesses, Mexican food, Fashion, Architecture, Stationary, Bollywood, Netflix, Karthik Aryan ",
-      interests: "Fashion Blogging, Youtubing, Crystal manifestation and Astrology, Thrifting, Social Media Influencers, Handmade Items",
+      likes:"Skin care, Stationary, Bollywood",
+      interests: "Fashion,Influencers",
       routine:"Early morning bath, skin care,redo nail polish alternate days, attend classes and make notes, youtube, running, bullet journaling",
-      dislikes: "Cooking, Being told Influencer isn't a career option, Green, Advertisements on youtube, Gifted clothes, not having her own netflix account, Lipstick, being short",
-      hobbies:"Making videos, Singing, Dancing, Reading love stories by Indian authors, Stalking celebrities(Karthik Aryan),Bingewatching Rom-coms",
+      dislikes: "Cooking,Gifted clothes",
+      hobbies:"Vlogging,Romance Novels",
       location:"Bangalore",
       chat: [
         Question(
-          quesText: "What sport do you like to play the most?",
+          quesText: "What is your ambition?",
           ansText:
-          "I like to play basketball",
+          "I’m planning on becoming an architect.",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "Do you have everything ready to become to pursue your dream?",
+                ansText: "I just need to buy a few stationary and art supplies."
+            ),
+            Question(
+                quesText: "Do you think anything can give you more perspective about your dream?",
+                ansText: "Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Actually, I don’t even have a netflix subscription!", quesText: "Do you have everything ready to go down that road?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "Do you have anything particular in mind?",
+                ansText: " I’m confused between becoming a social media influencer and an architect.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                      quesText: "Does anything particularly drive you towards it?",
+                      ansText: "I think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!",
+                      qFollowUp: [
+                        Question(
+                            quesText: " Do you have everything ready to pursue your dream? ",
+                            ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous! ")
+                      ])
                 ]
             ),
           ],
         ),
         Question(
-          quesText: "What do you like to do in your free time?",
+          quesText: "What course are you planning to pursue?",
           ansText:
-          "I enjoy playing Basketball a lot",
+          "I’m going to pursue architecture.",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "Do you have everything ready to become to pursue your dream?",
+                ansText: "I just need to buy a few stationary and art supplies."
+            ),
+            Question(
+                quesText: "Do you think anything can give you more perspective about your dream?",
+                ansText: "Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Actually, I don’t even have a netflix subscription!", quesText: "Do you have everything ready to go down that road?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "Do you have anything particular in mind?",
+                ansText: " I’m confused between becoming a social media influencer and an architect.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                      quesText: "Does anything particularly drive you towards it?",
+                      ansText: "I think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!",
+                      qFollowUp: [
+                        Question(
+                            quesText: " Do you have everything ready to pursue your dream? ",
+                            ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous! ")
+                      ])
                 ]
             ),
           ],
         ),
         Question(
-          quesText: "Do you like to play sports?",
+          quesText: "What do you think the future holds for you?",
           ansText:
-          "Yes I do. I enjoy playing Basketball the most",
+          "I’m very creative, so I’m planning to pursue something in that field.",
           qFollowUp: [
             Question(
-                quesText: "Which position do you play",
-                ansText: 'Center',
+                quesText: "Do you have everything ready to become to pursue your dream?",
+                ansText: "I just need to buy a few stationary and art supplies."
+            ),
+            Question(
+                quesText: "Do you think anything can give you more perspective about your dream?",
+                ansText: "Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(ansText: "Actually, I don’t even have a netflix subscription!", quesText: "Do you have everything ready to go down that road?" )
                 ]
             ),
             Question(
-              quesText: "Which player do you like?",
-              ansText: 'Lebron James',
-            ),
-            Question(
-                quesText: "How often do you watch it ",
-                ansText: 'Regularly',
+                quesText: "Do you have anything particular in mind?",
+                ansText: " I’m confused between becoming a social media influencer and an architect.",
                 qFollowUp: [
-                  Question(ansText: "Lebron James", quesText: "Do you have a favourite player?" )
+                  Question(
+                      quesText: "Does anything particularly drive you towards it?",
+                      ansText: "I think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!",
+                      qFollowUp: [
+                        Question(
+                            quesText: " Do you have everything ready to pursue your dream? ",
+                            ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous! ")
+                      ])
                 ]
             ),
           ],
         ),
       ],
       gifts: [Gift(name:"Stationary Hamper", willLike: true),Gift(name:"Skin care products", willLike: true),Gift(name:"Netflix/Youtube Premium Subscription", willLike: true), Gift(name:"Lipstick", willLike: false),Gift(name:"Dress", willLike: false),Gift(name:"Silicone cupcake moulds", willLike: false),Gift(name:"Romance Novels by Ravinder Singh", willLike: true),Gift(name:"Heels", willLike: true),Gift(name:"Nail Paint and Nail Art", willLike: true),Gift(name:"Crystals", willLike: true)],
-      imageUrl: "assets/gifting/JessicaPearson.svg",
+      imageUrl: "assets/gifting/rachelZane.svg",
       likeChoices: [
-        {"Lebron James": true, "Someone": false},
-        {"Basketball": true, "Football": false},
+        {"Book": false, "Baking moulds": true},
+        {"Lotion": true, "Dress": false},
       ],
-      ideas:  {"CD PLayer":false, "Basketball":false, "Football":true, "Shoes":false, "Red Bull":false, "Charger":true, "Speaker":true, "Wallet":true, "Gym Membership":true},
-      taskMax:{1:4,2:2,3:5,4:10}
+      ideas:  {"Stationary":true, "Basketball":false, "Book":true, "Skirt":false, "Lotion":true, "Charger":false, "Netflix":true, "Xbox":false},
+      taskMax:{1:4,2:2,3:4,4:10}
   ),
 ];
 
@@ -408,7 +400,10 @@ QuizProgress currentQuizProgress = QuizProgress();
 final totalQuizPossibleScore = 2;
 ///When you update catchTheNutMap, you also need to increase the above to the max possible score
 final catchTheNutMap =
-  {"What are the steps of Design Thinking Process?":{"Define":true,"Prototype":true,"Draw":false}};
+  {"What are the steps of Design Thinking Process?":{"Define":true,"Prototype":true,"Draw":false, "Empathise":true, "Try":false, "Ideate":true,"Test":true,"Produce":false},
+  "What are the elements of Innovation?":{"Originality":false,"Viability":true,"Feasibility":true,"Technicality":false,"Profitability":false,"Desirability":true},
+  "Which ones resonate with the Empathy Stage?":{"Interviews":true,"Understand user":true,"Solution Mock-up":false, "User Shadowing":true},
+  "Which are correct?":{"PepsiCo has turned Design Thinking into its strategy":true,"GE Healthcare has built a MR scanner for children using Design Thinking":true,"AirBnB avoided bankruptcy and turned profitable using Design Thinking":true,"Google has a 3 step process to bring about new innovations":true}};
 
 
 
