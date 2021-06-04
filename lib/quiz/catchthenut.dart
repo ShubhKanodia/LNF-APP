@@ -353,7 +353,7 @@ class QuizProgressBar extends StatelessWidget {
                   backgroundColor: Color(0xfff8eddf),
                   valueColor: AlwaysStoppedAnimation<Color>(
                       Color(0xffffa62b)),
-                  value: currentQuizProgress.score /3,
+                  value: currentQuizProgress.score /totalQuizPossibleScore,
                 ),
               ),
             ),
