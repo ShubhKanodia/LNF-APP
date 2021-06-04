@@ -22,22 +22,22 @@ class _InformationCardState extends State<InformationCard> {
     [
       "In this task you learnt the second step of design thinking",
       "Define",
-      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+      "Defining a problem statement is the most important part in solving a problem. After empathising with people, we need to identify potential pain points. Post this, we narrow down to the pressing need of the hour and define what our problem statement will be.",
     ],
     [
       "In this task you learnt the third step of design thinking",
       "Ideate",
-      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+      "Ideation is the third stage of design thinking. Thinking from multiple perspectives is a very key part of solving a problem. To ideate, one should have an open mind and should recollect the empathy stage. This way, we remember what the pain points are and come up with solutions to solve them in specific.",
     ],
     [
       "In this task you learnt the fourth step of design thinking",
       "Prototype",
-      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+      "Prototyping is an essential part of design thinking. We need to know what features to include or avoid based on the empathy stage. Prototyping ensures that we don’t waste a lot of resources on unnecessary objects or features.",
     ],
     [
       "In this task you learnt the fifth step of design thinking",
       "Testing",
-      "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+      "Testing is the final stage of design thinking. It is very crucial to know if the solution we have at hand actually solves the problem we are facing. The best judge of this would be the people who face the problem first hand.",
     ],
   ];
 
