@@ -46,11 +46,11 @@ class MyApp extends StatelessWidget {
           FlutterError.onError =
               FirebaseCrashlytics.instance.recordFlutterError;
           BaseAuth auth = new Auth();
-
+          l1Score.task = {};
           if (auth.getCurrentUser() != null) {
             userDocReference.get().then((value) {
               if(value.data()["personIndex"] != null) currentPersona = allPersonasLevel1[value.data()["personIndex"]];
-              l1Score.task = {};
+
               if(value.data()["L1T1"]!=null) l1Score.task[1] = value.data()["L1T1"];
               if(value.data()["L1T2"]!=null) l1Score.task[2] = value.data()["L1T2"];
               if(value.data()["L1T3"]!=null) l1Score.task[3] = value.data()["L1T3"];
@@ -93,6 +93,7 @@ class MyApp extends StatelessWidget {
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
             }
           } else {
+
             return OverlaySupport(
                 child: MaterialApp(
                     debugShowCheckedModeBanner: false,
