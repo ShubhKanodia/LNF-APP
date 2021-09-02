@@ -20,7 +20,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
         .collection("users")
         .orderBy("trophies", descending: true)
         .orderBy("rewards", descending: true)
-        .limit(8)
+        .limit(6)
         .get();
     super.initState();
   }
