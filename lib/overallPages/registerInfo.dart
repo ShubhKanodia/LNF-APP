@@ -18,6 +18,8 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
   TextEditingController name = new TextEditingController();
   double age = 20;
   String profileSelected;
+  bool _isEditingText = false;
+  TextEditingController _editingController;
 
   Future<Map<String,Widget>> profilePictures() async{
     Map<String,Widget> avatars = {};
@@ -152,12 +154,40 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                             ),
                           ),
                           SizedBox(height: height * 0.09),
-                          Text("Age : ${age.toInt()}",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff1a1b41),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02)),
+                          if(_isEditingText)
+                            Row(
+                              children: [
+                                Text("Age : ",
+                                    style: GoogleFonts.quicksand(
+                                        color: const Color(0xff1a1b41),
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: height * 0.02)),
+                                Container(
+                                  width: 50,
+                                  height:10,
+                                  child: TextField(
+                                    onSubmitted: (newValue){
+                                      age = double.parse(newValue);
+                                      _isEditingText=false;
+                                    }
+                              ),
+                                ),]
+                            ),
+                          if(!_isEditingText)
+                            InkWell(
+                              onTap:(){
+                                setState((){
+                                  _isEditingText=true;
+                                  });
+                               },
+                                child: Text("Age : ${age.toInt()}",
+                                    style: GoogleFonts.quicksand(
+                                        color: const Color(0xff1a1b41),
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: height * 0.02)),
+                              ),
                           Text("Select your age from the slider below:",
                               style: GoogleFonts.quicksand(
                                   color: Color(0xff16697a),
