@@ -349,10 +349,80 @@ List<List<dynamic>> taskIntroData = [
     "",
     Test()
   ],
+  [
+    "Level 2",
+    "Task 1",
+    "Welcome to your first task. It is important to understand the person that you are designing a gift for. Let’s chat with them to get to know them!",
+    " Tap on the question which you think is the right way of asking the person about their interests.",
+    "When you looked at the giftee card, you already learnt a lot about them. You’ll be great at this!",
+    "There are 5 questions.Tap continue when you are ready to play!",
+    EmpathizeOneOne()
+  ],
+  [
+    "Level 2",
+    "Task 2",
+    "Welcome to task 2. Now that you’ve learnt a bit about your giftee, let’s define their needs and wants to prioritise them.",
+    "Each hoop represents a different gift. Shoot the ball into the hoop you think your receiver would like more!",
+    "There are ${currentPersonaL2.likeChoices.length} categories.\n",
+    "Tap continue when you are ready to play!",
+    Basketball()
+  ],
+  [
+    "Level 2",
+    "Task 3",
+    "Let’s dive into task 3. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
+    "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
+    "Do not worry about the feasability or cost of the gift.",
+    "You have 5 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
+    Ideate()
+  ],
+  [
+    "Level 2",
+    "Task 4",
+    "Now that you have a good understanding of your receiver’s needs, let’s create a virtual prototype of your idea!",
+    "Based on your learnings so far, select appropriate choices to build your prototype.",
+    "You will be able to personalise your gift to best match your receiver.",
+    "Let’s begin creating!",
+    Prototype()
+  ],
+  [
+    "Level 2",
+    "Task 5",
+    "You’ve reached the final stage. \nLet’s test your idea!",
+    "Pull the lever to deliver the gift and test your solution!",
+    "You will receive feedback on how well suited your ideas were.",
+    "",
+    Test()
+  ],
 ];
 
 ///Used in informationCard.dart
 List<List<dynamic>> infoCardData = [
+  [
+    "In this task you learnt the first step of design thinking",
+    "Empathise",
+    "To empathise means to understand and share the feelings of another person. In the design thinking process, one can empathise by creating a survey and asking the right type of questions. We must let the user talk about a problem freely, without asking too many leading questions.",
+  ],
+  [
+    "In this task you learnt the second step of design thinking",
+    "Define",
+    "Defining a problem statement is the most important part in solving a problem. After empathising with people, we need to identify potential pain points. Post this, we narrow down to the pressing need of the hour and define what our problem statement will be.",
+  ],
+  [
+    "In this task you learnt the third step of design thinking",
+    "Ideate",
+    "Ideation is the third stage of design thinking. Thinking from multiple perspectives is a very key part of solving a problem. To ideate, one should have an open mind and should recollect the empathy stage. This way, we remember what the pain points are and come up with solutions to solve them in specific.",
+  ],
+  [
+    "In this task you learnt the fourth step of design thinking",
+    "Prototype",
+    "Prototyping is an essential part of design thinking. We need to know what features to include or avoid based on the empathy stage. Prototyping ensures that we don’t waste a lot of resources on unnecessary objects or features.",
+  ],
+  [
+    "In this task you learnt the fifth step of design thinking",
+    "Testing",
+    "Testing is the final stage of design thinking. It is very crucial to know if the solution we have at hand actually solves the problem we are facing. The best judge of this would be the people who face the problem first hand.",
+  ],
   [
     "In this task you learnt the first step of design thinking",
     "Empathise",

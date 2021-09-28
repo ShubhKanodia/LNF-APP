@@ -4,7 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/Persona.dart';
 
 import 'package:learnnfun/auth.dart';
 import 'package:learnnfun/overallPages/levels.dart';
