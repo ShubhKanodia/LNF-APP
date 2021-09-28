@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/Persona.dart';
-import 'package:learnnfun/tasks/1_chat_empathize.dart';
-import 'package:learnnfun/tasks/2_define_bb.dart';
-import 'package:learnnfun/tasks/3_ideate.dart';
-import 'package:learnnfun/tasks/4_prototype.dart';
-import 'package:learnnfun/tasks/5_test.dart';
+
 import 'package:learnnfun/widgets.dart';
+
+import '../data.dart';
 
 class TaskIntro extends StatefulWidget {
   final int taskNumber;
@@ -18,54 +15,8 @@ class TaskIntro extends StatefulWidget {
 }
 
 class _TaskIntroState extends State<TaskIntro> {
-  List<List<dynamic>> pageContent = [
-    [
-      "Level 1",
-      "Task 1",
-      "Welcome to your first task. It is important to understand the person that you are designing a gift for. Let’s chat with them to get to know them!",
-      " Tap on the question which you think is the right way of asking the person about their interests.",
-      "When you looked at the giftee card, you already learnt a lot about them. You’ll be great at this!",
-      "There are 5 questions.Tap continue when you are ready to play!",
-      EmpathizeOneOne()
+  get pageContent => taskIntroData;
 
-    ],
-    [
-      "Level 1",
-      "Task 2",
-      "Welcome to task 2. Now that you’ve learnt a bit about your giftee, let’s define their needs and wants to prioritise them.",
-      "Each hoop represents a different gift. Shoot the ball into the hoop you think your receiver would like more!",
-      "There are ${currentPersona.likeChoices.length} categries.\n",
-      "Tap continue when you are ready to play!",
-      Basketball()
-    ],
-    [
-      "Level 1",
-      "Task 3",
-      "Let’s dive into task 3. It’s time to think of all and any ideas for potential gifts for the giftee. Let’s play a game to list down some ideas.",
-      "Pop the bubbles containing any and all ideas that seem like a gift that would suit your giftee.",
-      "Do not worry about the feasability or cost of the gift.",
-      "You have 5 seconds to pop as many bubbles as you can.\nTap continue when you are ready to play!",
-      Ideate()
-    ],
-    [
-      "Level 1",
-      "Task 4",
-      "Now that you have a good understanding of your receiver’s needs, let’s create a virtual prototype of your idea!",
-      "Based on your learnings so far, select appropriate choices to build your prototype.",
-      "You will be able to personalise your gift to best match your receiver.",
-      "Let’s begin creating!",
-      Prototype()
-    ],
-    [
-      "Level 1",
-      "Task 5",
-      "You’ve reached the final stage. \nLet’s test your idea!",
-      "Pull the lever to deliver the gift and test your solution!",
-      "You will receive feedback on how well suited your ideas were.",
-      "",
-      Test()
-    ],
-  ];
 
   @override
   Widget build(BuildContext context) {

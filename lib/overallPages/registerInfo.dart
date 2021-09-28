@@ -19,7 +19,6 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
   double age = 20;
   String profileSelected;
   bool _isEditingText = false;
-  TextEditingController _editingController;
 
   Future<Map<String,Widget>> profilePictures() async{
     Map<String,Widget> avatars = {};
@@ -53,7 +52,6 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
             )),
       );
     }
-    print(avatars);
     return avatars;
 
   }
@@ -64,10 +62,12 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
     super.initState();
 
     userDocReference.get().then((DocumentSnapshot<Map<String,dynamic>> value){
-      setState(() {
-        name.text = value.data()["name"];
-        age = value.data()["age"];
-      });
+      if(value.data()!=null) {
+        setState(() {
+          name.text = value.data()["name"];
+          age = value.data()["age"];
+        });
+      }
     });
     profilePicturesFuture = profilePictures();
   }
@@ -268,11 +268,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                   ),
                                   onPressed: () async {
                                     if (name.text != null)
-                                      Auth().getCurrentUser().updateProfile(
-                                          displayName: name.text);
+                                      Auth().getCurrentUser().updateDisplayName(name.text);
                                     if (profileSelected != null)
-                                      Auth().getCurrentUser().updateProfile(
-                                          photoURL: profileSelected);
+                                      Auth().getCurrentUser().updatePhotoURL(profileSelected);
                                     if ((await userDocReference
                                             .get())
                                         .exists)

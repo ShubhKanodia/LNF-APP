@@ -9,6 +9,7 @@ import 'package:learnnfun/widgets.dart';
 
 import '../auth.dart';
 import '../Persona.dart';
+import '../data.dart';
 
 class PersonList extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class PersonList extends StatefulWidget {
 }
 
 class _PersonListState extends State<PersonList> {
+  get personaList => currentProgress.playingLevel2?level2Persona:level1Persona;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -47,9 +49,9 @@ class _PersonListState extends State<PersonList> {
                   child: ListView.builder(
                     physics: AlwaysScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: allPersonasLevel1.length,
+                    itemCount: personaList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      Person person = allPersonasLevel1[index];
+                      Person person = personaList[index];
                       return GestureDetector(
                         onTap: () => showDialog(
                           context: context,
@@ -277,21 +279,40 @@ class _PersonPopup extends StatelessWidget {
                     ],
                   ),
                   StandardButton( text: "Select Receiver", onTap: () {
-                    userDocReference.update({
-                      "taskUnlocked":1,
-                      "personIndex" : index
-                    });
-                    currentPersona = person;
-                    currentProgress.taskUnlocked = 1;
-                    currentProgress.rewards=1;
-                    currentProgress.trophies=1;
-                    Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Tasks(),
-                        settings: RouteSettings(name: 'Tasks')),
-                        (Route<dynamic> route) => false,
-                  );
+                    if(currentProgress.playingLevel2){
+                      userDocReference.update({
+                        "taskUnlocked":9,
+                        "l2personIndex" : index
+                      });
+                      currentPersonaL2 = person;
+                      currentProgress.taskUnlocked = 9;
+                      currentProgress.rewards+=1;
+                      currentProgress.trophies+=1;
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TasksLevel2(),
+                            settings: RouteSettings(name: 'Tasks')),
+                            (Route<dynamic> route) => false,
+                      );
+                    }else{
+                      userDocReference.update({
+                        "taskUnlocked":1,
+                        "l1personIndex" : index
+                      });
+                      currentPersonaL1 = person;
+                      currentProgress.taskUnlocked = 1;
+                      currentProgress.rewards=1;
+                      currentProgress.trophies=1;
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Tasks(),
+                            settings: RouteSettings(name: 'Tasks')),
+                            (Route<dynamic> route) => false,
+                      );
+                    }
+
                   })
                 ])));
   }

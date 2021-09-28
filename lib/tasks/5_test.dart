@@ -17,8 +17,6 @@ class Test extends StatefulWidget {
 class _TestState extends State<Test> {
   double _angle = 0.0;
 
-  double _oldAngle = 0.0;
-  double _angleDelta = 0.0;
 
   @override
   Widget build(BuildContext context) {

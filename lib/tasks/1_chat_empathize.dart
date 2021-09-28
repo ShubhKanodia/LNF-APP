@@ -20,6 +20,8 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
   List<Question> questionSelected = [];
   final ScrollController _scrollController = ScrollController();
   bool _needsScroll = false;
+  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
+  get score => currentProgress.playingLevel2?l2Score:l1Score;
 
   _scrollToEnd() async {
     _scrollController.animateTo(
@@ -323,14 +325,25 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                   },
                                                 ),
                                               ):StandardButton( text: "Continue", onTap: (){
-                                                l1Score.task[1] = currentPersona.taskMax[1]-questionSelected.length;
-                                                userDocReference.update({
-                                                  "rewards":1,
-                                                  "taskUnlocked":1,
-                                                  "L1T1":l1Score.task[1]
-                                                });
-                                                currentProgress.taskUnlocked = 2;
-                                                currentProgress.rewards=1;
+                                                score.task[1] = currentPersona.taskMax[1]-questionSelected.length;
+    if(currentProgress.playingLevel2){
+      userDocReference.update({
+        "rewards":1,
+        "taskUnlocked":10,
+        "L2T1":score.task[1]
+      });
+      currentProgress.taskUnlocked = 10;
+      currentProgress.rewards+=1;
+    }else{
+      userDocReference.update({
+        "rewards":1,
+        "taskUnlocked":2,
+        "L1T1":score.task[1]
+      });
+      currentProgress.taskUnlocked = 2;
+      currentProgress.rewards=1;
+    }
+
 
                                                 Navigator.push(
                                                     context,
@@ -361,5 +374,5 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
 
 
 
-///Add a list of Questions in qFollowUp to be able to continue the chat. if there is no qFollowp, it will end there.
+///Add a list of Questions in qFollowUp to be able to continue the chat. if there is no qFollowup, it will end there.
 

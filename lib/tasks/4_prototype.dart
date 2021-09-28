@@ -8,6 +8,7 @@ import 'package:overlay_support/overlay_support.dart';
 
 import '../auth.dart';
 import '../Persona.dart';
+import '../data.dart';
 
 class Prototype extends StatefulWidget {
   const Prototype({Key key}) : super(key: key);
@@ -27,6 +28,8 @@ class _PrototypeState extends State<Prototype> {
   bool expand=false;
 
   Reference selectedItem;
+  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
+  get score => currentProgress.playingLevel2?l2Score:l1Score;
 
   void initState() {
     details = getDetailsFromStorage("prototypes");
@@ -89,18 +92,31 @@ class _PrototypeState extends State<Prototype> {
             expand?
             StandardButton( text: "Continue", onTap: (){
               selectedItem.getMetadata().then((value) {
-                if(value.customMetadata!=null && value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()]!=null)
-                  l1Score.task[4] = int.tryParse(value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()])==null?0:int.tryParse(value.customMetadata[allPersonasLevel1.indexOf(currentPersona).toString()]);
+                if(value.customMetadata!=null && value.customMetadata[level1Persona.indexOf(currentPersona).toString()]!=null)
+                  score.task[4] = int.tryParse(value.customMetadata[level1Persona.indexOf(currentPersona).toString()])==null?0:int.tryParse(value.customMetadata[level1Persona.indexOf(currentPersona).toString()]);
                 else
-                  l1Score.task[4] = 0;
-                userDocReference.update({
-                  "rewards": FieldValue.increment(1),
-                  "taskUnlocked": 5,
-                  "L1T4":l1Score.task[4]
-                });
-                currentProgress.taskUnlocked = 5;
-                currentProgress.rewards += 1;
+                  score.task[4] = 0;
+                if(currentProgress.playingLevel2){
+                  userDocReference.update({
 
+                    "rewards":FieldValue.increment(1),
+                    "taskUnlocked":12,
+                    "L2T4":l2Score.task[3],
+                  });
+
+                  currentProgress.taskUnlocked = 12;
+                  currentProgress.rewards+=1;
+                }else{
+                  userDocReference.update({
+
+                    "rewards":FieldValue.increment(1),
+                    "taskUnlocked":4,
+                    "L1T4":l1Score.task[3],
+                  });
+
+                  currentProgress.taskUnlocked = 4;
+                  currentProgress.rewards+=1;
+                }
                 Navigator.push(
                     context,
                     MaterialPageRoute(

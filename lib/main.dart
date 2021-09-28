@@ -4,16 +4,12 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learnnfun/Persona.dart';
-import 'package:learnnfun/overallPages/Leaderboard.dart';
-import 'package:learnnfun/overallPages/levelEvaluation.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/overallPages/registerInfo.dart';
-import 'package:learnnfun/quiz/catchthenut.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
-import 'commonPages/completedPage.dart';
-import 'overallPages/library.dart';
+import 'data.dart';
 import 'overallPages/login.dart';
 
 void main() {
@@ -47,15 +43,22 @@ class MyApp extends StatelessWidget {
               FirebaseCrashlytics.instance.recordFlutterError;
           BaseAuth auth = new Auth();
           l1Score.task = {};
+          l2Score.task = {};
           if (auth.getCurrentUser() != null) {
             userDocReference.get().then((value) {
-              if(value.data()["personIndex"] != null) currentPersona = allPersonasLevel1[value.data()["personIndex"]];
+              if(value.data()["l1personIndex"] != null) currentPersonaL1 = level1Persona[value.data()["l1personIndex"]];
+              if(value.data()["l2personIndex"] != null) currentPersonaL2 = level2Persona[value.data()["l2personIndex"]];
 
               if(value.data()["L1T1"]!=null) l1Score.task[1] = value.data()["L1T1"];
               if(value.data()["L1T2"]!=null) l1Score.task[2] = value.data()["L1T2"];
               if(value.data()["L1T3"]!=null) l1Score.task[3] = value.data()["L1T3"];
               if(value.data()["L1T4"]!=null) l1Score.task[4] = value.data()["L1T4"];
               if(value.data()["L1Quiz"]!=null) l1Score.quiz = value.data()["L1Quiz"];
+              if(value.data()["L2T1"]!=null) l2Score.task[1] = value.data()["L2T1"];
+              if(value.data()["L2T2"]!=null) l2Score.task[2] = value.data()["L2T2"];
+              if(value.data()["L2T3"]!=null) l2Score.task[3] = value.data()["L2T3"];
+              if(value.data()["L2T4"]!=null) l2Score.task[4] = value.data()["L2T4"];
+              if(value.data()["L2Quiz"]!=null) l2Score.quiz = value.data()["L2Quiz"];
               if (value.data()["taskUnlocked"] != null &&
                   value.data()["rewards"] != null &&
                   value.data()["trophies"] != null ) {
@@ -72,8 +75,7 @@ class MyApp extends StatelessWidget {
                       title: 'Learn N Fun',
                       theme: ThemeData(
                         fontFamily: 'Quicksand',
-                        primaryColor: const Color(0xff16697a),
-                        accentColor: const Color(0xffffa62b),
+                        primaryColor: const Color(0xff16697a), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffffa62b)),
                       ),
                       home: RegistrationInfo()));
             } else {
@@ -83,8 +85,7 @@ class MyApp extends StatelessWidget {
                       title: 'Learn N Fun',
                       theme: ThemeData(
                         fontFamily: 'Quicksand',
-                        primaryColor: const Color(0xff16697a),
-                        accentColor: const Color(0xffffa62b),
+                        primaryColor: const Color(0xff16697a), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffffa62b)),
                       ),
                       home:
                       Levels())); //TODO: Change this to whatever you want while testing, but change to Levels() before pushing
@@ -100,8 +101,7 @@ class MyApp extends StatelessWidget {
                     title: 'Learn N Fun',
                     theme: ThemeData(
                       fontFamily: 'Quicksand',
-                      primaryColor: const Color(0xff16697a),
-                      accentColor: const Color(0xffffa62b),
+                      primaryColor: const Color(0xff16697a), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffffa62b)),
                     ),
                     home: Login()));
           }

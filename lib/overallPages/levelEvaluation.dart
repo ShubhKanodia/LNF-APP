@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/overallPages/courseCompletion.dart';
 import 'package:learnnfun/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../Persona.dart';
+import '../data.dart';
+import 'levels.dart';
 
 class LevelEvaluation extends StatefulWidget {
   const LevelEvaluation({Key key}) : super(key: key);
@@ -15,6 +16,8 @@ class LevelEvaluation extends StatefulWidget {
 }
 
 class _LevelEvaluationState extends State<LevelEvaluation> {
+  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
+  get score => currentProgress.playingLevel2?l2Score:l1Score;
 
   final List<String> reviewDisplay=["Try again","Can do better","Well done"];
   final List<Color> reviewColor = [Color(0xffdb3333),Color(0xfffcc643),Color(0xff90ca5e)];
@@ -22,13 +25,13 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
 
   void initState(){
     for (int i=1; i<5;i++){
-        taskPercent[i] = (currentPersona.taskMax[i]-l1Score.task[i])/currentPersona.taskMax[i];
+        taskPercent[i] = (currentPersona.taskMax[i]-score.task[i])/currentPersona.taskMax[i];
     }
     double total=0;
     taskPercent.forEach((key, value) {
       total+=value;
     });
-    total+=l1Score.quiz/totalQuizPossibleScore; //Adding Quiz score
+    total+=score.quiz/totalQuizPossibleScore; //Adding Quiz score
     overallPercent = total/(taskPercent.length+1); //+1 for the quiz
     super.initState();
   }
@@ -189,11 +192,13 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                 ],
               ),
             StandardButton( text: "Continue", onTap: (){
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CourseCompletion(),
-                    settings: RouteSettings(name: 'Actual game')),
+                    builder: (context) => Levels(),
+                    settings: RouteSettings(
+                        name: 'Levels')),
+                    (Route<dynamic> route) => false,
               );
             }),
           ],

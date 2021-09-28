@@ -11,6 +11,7 @@ import 'package:learnnfun/overallPages/levelEvaluation.dart';
 import 'package:learnnfun/quiz/quizIntro.dart';
 
 import '../auth.dart';
+import '../data.dart';
 import '../widgets.dart';
 
 class CatchTheNut extends StatefulWidget {

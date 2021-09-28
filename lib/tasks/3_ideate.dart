@@ -18,7 +18,8 @@ class Ideate extends StatefulWidget {
 }
 
 class _IdeateState extends State<Ideate> {
-
+  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
+  get score => currentProgress.playingLevel2?l2Score:l1Score;
   int time=5;
   Timer timer;
   List<Color> colors = [];
@@ -39,15 +40,28 @@ class _IdeateState extends State<Ideate> {
     (Timer timer) {
       if (time == 0 || currentPersona.ideas.length==0) {
         timer.cancel();
-        userDocReference.update({
+        if(currentProgress.playingLevel2){
+          userDocReference.update({
 
-          "rewards":FieldValue.increment(1),
-          "taskUnlocked":4,
-          "L1T3":l1Score.task[3],
-        });
+            "rewards":FieldValue.increment(1),
+            "taskUnlocked":12,
+            "L2T3":l2Score.task[3],
+          });
 
-        currentProgress.taskUnlocked = 4;
-        currentProgress.rewards+=1;
+          currentProgress.taskUnlocked = 12;
+          currentProgress.rewards+=1;
+        }else{
+          userDocReference.update({
+
+            "rewards":FieldValue.increment(1),
+            "taskUnlocked":4,
+            "L1T3":l1Score.task[3],
+          });
+
+          currentProgress.taskUnlocked = 4;
+          currentProgress.rewards+=1;
+        }
+
 
         Navigator.push(
             context,
@@ -122,9 +136,9 @@ List storedIdeas = [];
     options: BubbleOptions(
         onTap: () {
           if(timer==null || !timer.isActive) startTimer();
-          l1Score.task[3]=0;
-          if(currentPersona.ideas[text] == true) l1Score.task[3]++;
-          if(currentPersona.ideas[text] == false) l1Score.task[3]--;
+          score.task[3]=0;
+          if(currentPersona.ideas[text] == true) score.task[3]++;
+          if(currentPersona.ideas[text] == false) score.task[3]--;
           setState(() {
             currentPersona.ideas.remove(text);
           });

@@ -11,12 +11,15 @@ import '../auth.dart';
 import '../Persona.dart';
 
 class Basketball extends StatefulWidget {
+
   @override
   _BasketballState createState() => _BasketballState();
 }
 
 class _BasketballState extends State<Basketball> {
-  int hoopsLeft = currentPersona.likeChoices.length;
+  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
+  get score => currentProgress.playingLevel2?l2Score:l1Score;
+  int hoopsLeft = currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1.likeChoices.length;
 
   int points = 0;
 
@@ -36,14 +39,26 @@ class _BasketballState extends State<Basketball> {
                 .keys
                 .last ]) points++;
     if (hoopsLeft == 1) {
-      userDocReference.update({
-        "rewards": FieldValue.increment(points),
-        "taskUnlocked": 3,
-        "L1T2": points
-      });
-      l1Score.task[2] = points;
-      currentProgress.taskUnlocked = 3;
-      currentProgress.rewards += points;
+
+      score.task[2] = points;
+      if(currentProgress.playingLevel2){
+        userDocReference.update({
+          "rewards": FieldValue.increment(points),
+          "taskUnlocked": 11,
+          "L2T2": points
+        });
+        currentProgress.taskUnlocked = 11;
+        currentProgress.rewards += points;
+      }else{
+        userDocReference.update({
+          "rewards": FieldValue.increment(points),
+          "taskUnlocked": 3,
+          "L1T2": points
+        });
+        currentProgress.taskUnlocked = 3;
+        currentProgress.rewards += points;
+      }
+
 
       Navigator.push(
           context,

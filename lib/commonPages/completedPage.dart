@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/quiz/catchthenut.dart';
-import 'package:learnnfun/quiz/revise.dart';
 import 'package:learnnfun/overallPages/levels.dart';
 import 'package:learnnfun/widgets.dart';
 import '../Persona.dart';
@@ -95,13 +93,21 @@ class _TaskCompletedState extends State<TaskCompleted> {
                       (Route<dynamic> route) => false,
                 );
               }
+              else if(widget.isTask && currentProgress.playingLevel2)
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => TasksLevel2(),
+                      settings: RouteSettings(name: 'Tasks Level 2')),
+                  (Route<dynamic> route) => false,
+                );
               else if(widget.isTask)
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                       builder: (context) => Tasks(),
                       settings: RouteSettings(name: 'Tasks')),
-                  (Route<dynamic> route) => false,
+                      (Route<dynamic> route) => false,
                 );
               else
                 Navigator.pushAndRemoveUntil(
