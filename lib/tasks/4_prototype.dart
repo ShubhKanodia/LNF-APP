@@ -100,11 +100,11 @@ class _PrototypeState extends State<Prototype> {
                   userDocReference.update({
 
                     "rewards":FieldValue.increment(1),
-                    "taskUnlocked":12,
+                    "taskUnlocked":13,
                     "L2T4":l2Score.task[3],
                   });
 
-                  currentProgress.taskUnlocked = 12;
+                  currentProgress.taskUnlocked = 13;
                   currentProgress.rewards+=1;
                 }else{
                   userDocReference.update({

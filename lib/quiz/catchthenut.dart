@@ -69,16 +69,29 @@ class _CatchTheNutState extends State<CatchTheNut> {
                   builder: (context) => CatchTheNut(start: true),
                   settings: RouteSettings(name: 'Tasks')),);
             } else {
-              userDocReference.update({
-                "trophies": 1,
-                "taskUnlocked": 7,
-                "rewards": FieldValue.increment(currentQuizProgress.score),
-                "L1Quiz" : currentQuizProgress.score
-              });
-              currentProgress.taskUnlocked = 7;
-              currentProgress.rewards += currentQuizProgress.score;
-              currentProgress.trophies = 1;
-              l1Score.quiz = currentQuizProgress.score;
+              if(currentProgress.playingLevel2){
+                userDocReference.update({
+                  "trophies": 2,
+                  "taskUnlocked": 15,
+                  "rewards": FieldValue.increment(currentQuizProgress.score),
+                  "L1Quiz": currentQuizProgress.score
+                });
+                currentProgress.taskUnlocked = 15;
+                currentProgress.rewards += currentQuizProgress.score;
+                currentProgress.trophies = 2;
+                l2Score.quiz = currentQuizProgress.score;
+              }else {
+                userDocReference.update({
+                  "trophies": 1,
+                  "taskUnlocked": 7,
+                  "rewards": FieldValue.increment(currentQuizProgress.score),
+                  "L1Quiz": currentQuizProgress.score
+                });
+                currentProgress.taskUnlocked = 7;
+                currentProgress.rewards += currentQuizProgress.score;
+                currentProgress.trophies = 1;
+                l1Score.quiz = currentQuizProgress.score;
+              }
               Navigator.pushReplacement(context, MaterialPageRoute(
                   builder: (context) => LevelEvaluation(),
                   settings: RouteSettings(name: 'Tasks')),);

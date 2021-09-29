@@ -192,6 +192,7 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                 ],
               ),
             StandardButton( text: "Continue", onTap: (){
+              currentProgress.trophies+=1;
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(

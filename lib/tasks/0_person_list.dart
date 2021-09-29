@@ -287,7 +287,6 @@ class _PersonPopup extends StatelessWidget {
                       currentPersonaL2 = person;
                       currentProgress.taskUnlocked = 9;
                       currentProgress.rewards+=1;
-                      currentProgress.trophies+=1;
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

@@ -19,7 +19,7 @@ class Basketball extends StatefulWidget {
 class _BasketballState extends State<Basketball> {
   get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
   get score => currentProgress.playingLevel2?l2Score:l1Score;
-  int hoopsLeft = currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1.likeChoices.length;
+  int hoopsLeft = currentProgress.playingLevel2?currentPersonaL2.likeChoices.length:currentPersonaL1.likeChoices.length;
 
   int points = 0;
 
@@ -63,7 +63,7 @@ class _BasketballState extends State<Basketball> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => InformationCard(cardNumber: 2),
+              builder: (context) => InformationCard(cardNumber: 1),
               settings: RouteSettings(name: 'Actual game')));
     } else {
       setState(() {

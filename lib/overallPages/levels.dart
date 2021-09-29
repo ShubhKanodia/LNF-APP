@@ -12,6 +12,7 @@ import 'package:learnnfun/tasks/0_person_list.dart';
 import '../Persona.dart';
 import '../auth.dart';
 import 'Leaderboard.dart';
+import 'courseCompletion.dart';
 import 'levelEvaluation.dart';
 
 class Levels extends StatelessWidget {
@@ -111,7 +112,14 @@ class Levels extends StatelessWidget {
           bottom: height * 0.65,
           left: width * 0.03,
           child: CircularOrangeButton(
-              enabled: currentProgress.taskUnlocked >= 15, number: false, text: "Finish", onTap: null),
+              enabled: currentProgress.taskUnlocked >= 15, number: false, text: "Finish", onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CourseCompletion(),
+                  settings: RouteSettings(name: 'Actual game')),
+            );
+          }),
         ),
       ],
     ));

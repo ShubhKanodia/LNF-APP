@@ -17,7 +17,6 @@ class Test extends StatefulWidget {
 class _TestState extends State<Test> {
   double _angle = 0.0;
 
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -49,35 +48,40 @@ class _TestState extends State<Test> {
                       fontSize: height * 0.02)),
             ),
             Container(height: height * 0.05),
-            WhiteScreen( height: height * 0.55, children: [
+            WhiteScreen(height: height * 0.55, children: [
               GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onVerticalDragDown: (DragDownDetails details){
+                  onVerticalDragDown: (DragDownDetails details) {
                     setState(() {
-                        _angle = 3.14;
+                      _angle = 3.14;
                     });
-                    Future.delayed(Duration(seconds:1), () {
-                      {
+                    Future.delayed(Duration(seconds: 1), () {
+                      if (currentProgress.playingLevel2) {
                         userDocReference.update({
                           "rewards": FieldValue.increment(1),
-                          "taskUnlocked":6
+                          "taskUnlocked": 14
+                        });
+                        currentProgress.taskUnlocked = 14;
+                        currentProgress.rewards += 1;
+                      } else {
+                        userDocReference.update({
+                          "rewards": FieldValue.increment(1),
+                          "taskUnlocked": 6
                         });
                         currentProgress.taskUnlocked = 6;
-                        currentProgress.rewards+=1;
-
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder:
-                                    (context) =>
-                                    InformationCard(cardNumber: 3),
-                                settings: RouteSettings(
-                                    name: 'Actual game')));
+                        currentProgress.rewards += 1;
                       }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  InformationCard(cardNumber:4),
+                              settings: RouteSettings(name: 'Actual game')));
                     });
-                  } ,
+                  },
                   child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.07,right: width * 0.07),
+                    padding: EdgeInsets.only(
+                        left: width * 0.07, right: width * 0.07),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Transform.rotate(
