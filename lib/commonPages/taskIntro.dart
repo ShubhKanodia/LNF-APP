@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learnnfun/Persona.dart';
 
 import 'package:learnnfun/widgets.dart';
 
@@ -15,7 +16,7 @@ class TaskIntro extends StatefulWidget {
 }
 
 class _TaskIntroState extends State<TaskIntro> {
-  get pageContent => taskIntroData;
+  get pageContent => currentProgress.playingLevel2?taskIntroData2:taskIntroData;
 
 
   @override

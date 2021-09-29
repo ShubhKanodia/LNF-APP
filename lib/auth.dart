@@ -15,6 +15,10 @@ class PasswordCheckError implements Exception {
   PasswordCheckError();
 }
 
+class PasswordFBError implements Exception {
+  PasswordFBError();
+}
+
 class LoginMethodUnknown implements Exception {
   List possibleLoginMethods;
   LoginMethodUnknown(this.possibleLoginMethods);
@@ -178,7 +182,9 @@ class Auth implements BaseAuth {
     } else {
       if (password == password2) {
         UserCredential result = await _firebaseAuth
-            .createUserWithEmailAndPassword(email: email, password: password);
+            .createUserWithEmailAndPassword(email: email, password: password).catchError((e){
+          throw PasswordFBError();
+        });
         User user = result.user;
         user.sendEmailVerification();
 

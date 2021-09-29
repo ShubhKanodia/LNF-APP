@@ -446,7 +446,7 @@ class TasksLevel2 extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TaskIntro(taskNumber: 5),
+                      builder: (context) => TaskIntro(taskNumber: 0),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),
@@ -462,7 +462,7 @@ class TasksLevel2 extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TaskIntro(taskNumber: 6),
+                        builder: (context) => TaskIntro(taskNumber: 1),
                         settings: RouteSettings(name: 'Actual game')),
                   );
                 })),
@@ -477,7 +477,7 @@ class TasksLevel2 extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TaskIntro(taskNumber: 7),
+                      builder: (context) => TaskIntro(taskNumber: 2),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),
@@ -493,7 +493,7 @@ class TasksLevel2 extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TaskIntro(taskNumber: 8),
+                      builder: (context) => TaskIntro(taskNumber: 3),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),
@@ -509,7 +509,7 @@ class TasksLevel2 extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TaskIntro(taskNumber: 9),
+                      builder: (context) => TaskIntro(taskNumber: 4),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),

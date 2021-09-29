@@ -217,6 +217,9 @@ class _LoginState extends State<Login> {
                                 (Route<dynamic> route) => false,
                           );
                         }
+                      } on PasswordFBError {
+                        showSimpleNotification(
+                            Text("The password isn't secure enough"));
                       } on PasswordCheckError {
                         showSimpleNotification(
                             Text("The passwords do not match"));
