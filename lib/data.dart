@@ -299,7 +299,282 @@ List<Person> level1Persona = [
 ];
 
 List<Person> level2Persona = [
-
+  Person(
+      firstName:"Rohit",
+      lastName: "Ravishankar",
+      age:20,
+      description: "Student who loves games and anime",
+      profession: "CSE Second Year",
+      futurePlans: "Join a game development company",
+      likes:"Gaming, Astronomy, anime",
+      interests: "Tech Development, Bikes, Volleyball",
+      routine:"Wakes up in the afternoon, documentary, study, anime, volleyball, video games ",
+      dislikes: "Old shoes, Xbox",
+      hobbies:"Gaming, anime, volleyball",
+      location:"Pune",
+      chat: [
+        Question(
+          quesText: "Hey, how are you feeling today?",
+          ansText:
+          " I’m feeling good, but I’m a little sleepy though! ",
+          qFollowUp: [
+            Question(
+                quesText: " Is there any particular reason for it?",
+                ansText: "Yea, I love gaming, so I just lose track of time at night when I’m in front of my PC!",
+                qFollowUp: [
+                  Question(ansText: " Yes! I even want to become a professional game developer in the future!", quesText: "Wow, do you want to take it up as a career option?",
+                      qFollowUp: [
+                      Question(ansText: "  I think a PS4 would be the best way to experience gaming and learn from it.", quesText: " What would help you in your path?")])
+                ]
+            ),
+            Question(
+                quesText: " Why do you feel that way?",
+                ansText: "I sleep quite late most nights, and my dad woke me up early!",
+                qFollowUp: [
+                  Question(ansText: " I slept late last night because I was gaming and had to wake up early for volleyball practice!", quesText: "Wow, how did that happen?",
+                      qFollowUp: [
+                        Question(ansText: " I play both volleyball and I enjoy gaming on my PC too!", quesText: "Wow, so what kind of games do you play? ",
+                            qFollowUp: [
+                              Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: " What do you think is missing from the picture?")])
+                      ])]),
+            Question(
+                quesText: " Everyone does! Is it just today, or do you feel this way all days?",
+                ansText: " I had to wake up early today, but I sleep late almost always!",
+                qFollowUp: [
+                  Question(ansText: "I sleep late because I play games until late at night!", quesText: "Why are you so proud of it?",
+                      qFollowUp: [
+                        Question(ansText: "  I absolutely love playing games on my PC, but I wish I could have a better experience. ", quesText: "Do you enjoy playing games? ",
+                            qFollowUp: [
+                              Question(ansText: "My PC doesn’t have good graphics like a PlayStation does!", quesText: " Why do you feel that way about your experience?",
+                                  qFollowUp: [
+                                    Question(ansText: "Anything with better graphics than my present PC would make me happy, man!", quesText: " What would create your best experience for it?")])])
+                      ])])
+      ]
+            ),
+        Question(
+          quesText: "Hey, are you okay?",
+          ansText:
+          "I’m fine, it’s just that I’m feeling quite drowsy!",
+            qFollowUp: [
+              Question(
+                  quesText: " Is there any particular reason for it?",
+                  ansText: "Yea, I love gaming, so I just lose track of time at night when I’m in front of my PC!",
+                  qFollowUp: [
+                    Question(ansText: " Yes! I even want to become a professional game developer in the future!", quesText: "Wow, do you want to take it up as a career option?",
+                        qFollowUp: [
+                          Question(ansText: "  I think a PS4 would be the best way to experience gaming and learn from it.", quesText: " What would help you in your path?")])
+                  ]
+              ),
+              Question(
+                  quesText: " Why do you feel that way?",
+                  ansText: "I sleep quite late most nights, and my dad woke me up early!",
+                  qFollowUp: [
+                    Question(ansText: " I slept late last night because I was gaming and had to wake up early for volleyball practice!", quesText: "Wow, how did that happen?",
+                        qFollowUp: [
+                          Question(ansText: " I play both volleyball and I enjoy gaming on my PC too!", quesText: "Wow, so what kind of games do you play? ",
+                              qFollowUp: [
+                                Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: " What do you think is missing from the picture?")])
+                        ])]),
+              Question(
+                  quesText: " Everyone does! Is it just today, or do you feel this way all days?",
+                  ansText: " I had to wake up early today, but I sleep late almost always!",
+                  qFollowUp: [
+                    Question(ansText: "I sleep late because I play games until late at night!", quesText: "Why are you so proud of it?",
+                        qFollowUp: [
+                          Question(ansText: "  I absolutely love playing games on my PC, but I wish I could have a better experience. ", quesText: "Do you enjoy playing games? ",
+                              qFollowUp: [
+                                Question(ansText: "My PC doesn’t have good graphics like a PlayStation does!", quesText: " Why do you feel that way about your experience?",
+                                    qFollowUp: [
+                                      Question(ansText: "Anything with better graphics than my present PC would make me happy, man!", quesText: " What would create your best experience for it?")])])
+                        ])])
+            ]
+        ),
+        Question(
+          quesText: "Hey, what’s up?",
+          ansText:
+          "Nothing much, I just feel like sleeping! ",
+            qFollowUp: [
+              Question(
+                  quesText: " Is there any particular reason for it?",
+                  ansText: "Yea, I love gaming, so I just lose track of time at night when I’m in front of my PC!",
+                  qFollowUp: [
+                    Question(ansText: " Yes! I even want to become a professional game developer in the future!", quesText: "Wow, do you want to take it up as a career option?",
+                        qFollowUp: [
+                          Question(ansText: "  I think a PS4 would be the best way to experience gaming and learn from it.", quesText: " What would help you in your path?")])
+                  ]
+              ),
+              Question(
+                  quesText: " Why do you feel that way?",
+                  ansText: "I sleep quite late most nights, and my dad woke me up early!",
+                  qFollowUp: [
+                    Question(ansText: " I slept late last night because I was gaming and had to wake up early for volleyball practice!", quesText: "Wow, how did that happen?",
+                        qFollowUp: [
+                          Question(ansText: " I play both volleyball and I enjoy gaming on my PC too!", quesText: "Wow, so what kind of games do you play? ",
+                              qFollowUp: [
+                                Question(ansText: "Actually, I only play virtual games now, ever since I wore out my old volleyball shoes!", quesText: " What do you think is missing from the picture?")])
+                        ])]),
+              Question(
+                  quesText: " Everyone does! Is it just today, or do you feel this way all days?",
+                  ansText: " I had to wake up early today, but I sleep late almost always!",
+                  qFollowUp: [
+                    Question(ansText: "I sleep late because I play games until late at night!", quesText: "Why are you so proud of it?",
+                        qFollowUp: [
+                          Question(ansText: "  I absolutely love playing games on my PC, but I wish I could have a better experience. ", quesText: "Do you enjoy playing games? ",
+                              qFollowUp: [
+                                Question(ansText: "My PC doesn’t have good graphics like a PlayStation does!", quesText: " Why do you feel that way about your experience?",
+                                    qFollowUp: [
+                                      Question(ansText: "Anything with better graphics than my present PC would make me happy, man!", quesText: " What would create your best experience for it?")])])
+                        ])])
+            ]
+        ),
+      ],
+      gifts: [Gift(name:"PS4", willLike: true),Gift(name:"Volleyball Shoes", willLike: true),Gift(name:"Kurta", willLike: false), Gift(name:"Romeo and Juliet Book", willLike: false),Gift(name:"Sour Candy", willLike: false),Gift(name:"anime Merch", willLike: true),Gift(name:"Telescope", willLike: true),Gift(name:"Laptop with good graphics", willLike: true)],
+      imageUrl: "assets/gifting/HarveySpectre.svg",
+      likeChoices: [
+        {"Xbox": false, "PS4": true},
+        {"Basketball": false, "Volleyball": true},
+      ],
+      ideas:  {"Xbox":false, "PS4":true, "Volleyball Shoes":true, "Books":false, "Telescope":true, "Binder":false, "Laptop":true, "Kurta":false},
+      taskMax:{1:4,2:2,3:4,4:10}
+  ),
+  Person(
+      firstName:"Riya",
+      lastName: "Sharma",
+      age:17,
+      description: "Student who enjoys playing with her dogs and loves the planet",
+      profession: "12th Grade",
+      futurePlans: "Influencer (Architect if it doesn't work out)",
+      likes:"Skin care, Stationary, Bollywood",
+      interests: "Fashion,Influencers",
+      routine:"Early morning bath, skin care,redo nail polish alternate days, attend classes and make notes, youtube, running, bullet journaling",
+      dislikes: "Cooking,Gifted clothes",
+      hobbies:"Vlogging,Romance Novels",
+      location:"Bangalore",
+      chat: [
+        Question(
+            quesText: "What do you think the future holds for you? ",
+            ansText:
+            "I’m very creative, so I’m planning to pursue something in that field. ",
+            qFollowUp: [
+              Question(
+                  quesText: " Do you have anything particular in mind?",
+                  ansText: "I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I think architecture is the stable option, so I would probably move forward in that path.", quesText: "Does anything particularly drive you towards it?",
+                        qFollowUp: [
+                          Question(ansText: "  I just need to buy a few stationary and art supplies, and I can get started! ", quesText: " Do you have everything ready to pursue your dream? ")])
+                  ]
+              ),
+              Question(
+                  quesText: "  The creative field is quite vast, have you narrowed it down?",
+                  ansText: " I do want to become a social media influencer, but I’m more inclined towards architecture.",
+                  qFollowUp: [
+                    Question(ansText: "I’m going to take a Bachelor's degree in Architecture.", quesText: "Wow, how did that happen?",
+                        qFollowUp: [
+                          Question(ansText: " Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!", quesText: "Do you think anything can give you more perspective about your dream?  ",
+                              qFollowUp: [
+                                Question(ansText: "Actually, I don’t even have a Netflix subscription!", quesText: " Do you have everything ready to go down that road? ")])
+                        ])]),
+              Question(
+                  quesText: "  Have you thought about what you want to do in the creative field?",
+                  ansText: "  I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I’ve always dreamed of being an influencer, but somehow I feel like I’m going to end up picking architecture.", quesText: "Do you think you have a closer affinity to one of them?",
+                        qFollowUp: [
+                          Question(ansText: " Well, I do think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!", quesText: "Does anything particularly drive you towards it? ",
+                              qFollowUp: [
+                                Question(ansText: "I’m very passionate about it, but it’s not a stable path, and I have a long way to go!", quesText: " What’s worrying you about the influencer option? ",
+                                    qFollowUp: [
+                                      Question(ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous!", quesText: "  Do you have everything ready to pursue your dream? ")])])
+                        ])])
+            ]
+        ),
+        Question(
+            quesText: "Do you have any plans for the future?",
+            ansText:
+            " I’m quite creative, so I want to tread that path.",
+            qFollowUp: [
+              Question(
+                  quesText: " Do you have anything particular in mind?",
+                  ansText: "I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I think architecture is the stable option, so I would probably move forward in that path.", quesText: "Does anything particularly drive you towards it?",
+                        qFollowUp: [
+                          Question(ansText: "  I just need to buy a few stationary and art supplies, and I can get started! ", quesText: " Do you have everything ready to pursue your dream? ")])
+                  ]
+              ),
+              Question(
+                  quesText: "  The creative field is quite vast, have you narrowed it down?",
+                  ansText: " I do want to become a social media influencer, but I’m more inclined towards architecture.",
+                  qFollowUp: [
+                    Question(ansText: "I’m going to take a Bachelor's degree in Architecture.", quesText: "Wow, how did that happen?",
+                        qFollowUp: [
+                          Question(ansText: " Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!", quesText: "Do you think anything can give you more perspective about your dream?  ",
+                              qFollowUp: [
+                                Question(ansText: "Actually, I don’t even have a Netflix subscription!", quesText: " Do you have everything ready to go down that road? ")])
+                        ])]),
+              Question(
+                  quesText: "  Have you thought about what you want to do in the creative field?",
+                  ansText: "  I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I’ve always dreamed of being an influencer, but somehow I feel like I’m going to end up picking architecture.", quesText: "Do you think you have a closer affinity to one of them?",
+                        qFollowUp: [
+                          Question(ansText: " Well, I do think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!", quesText: "Does anything particularly drive you towards it? ",
+                              qFollowUp: [
+                                Question(ansText: "I’m very passionate about it, but it’s not a stable path, and I have a long way to go!", quesText: " What’s worrying you about the influencer option? ",
+                                    qFollowUp: [
+                                      Question(ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous!", quesText: "  Do you have everything ready to pursue your dream? ")])])
+                        ])])
+            ]
+        ),
+        Question(
+            quesText: "What do you think the future holds for you?",
+            ansText:
+            "I feel like my future lies in the creative field. ",
+            qFollowUp: [
+              Question(
+                  quesText: " Do you have anything particular in mind?",
+                  ansText: "I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I think architecture is the stable option, so I would probably move forward in that path.", quesText: "Does anything particularly drive you towards it?",
+                        qFollowUp: [
+                          Question(ansText: "  I just need to buy a few stationary and art supplies, and I can get started! ", quesText: " Do you have everything ready to pursue your dream? ")])
+                  ]
+              ),
+              Question(
+                  quesText: "  The creative field is quite vast, have you narrowed it down?",
+                  ansText: " I do want to become a social media influencer, but I’m more inclined towards architecture.",
+                  qFollowUp: [
+                    Question(ansText: "I’m going to take a Bachelor's degree in Architecture.", quesText: "Wow, how did that happen?",
+                        qFollowUp: [
+                          Question(ansText: " Everyone is recommending me to watch ‘The World's Most Extraordinary Homes’ on Netflix!", quesText: "Do you think anything can give you more perspective about your dream?  ",
+                              qFollowUp: [
+                                Question(ansText: "Actually, I don’t even have a Netflix subscription!", quesText: " Do you have everything ready to go down that road? ")])
+                        ])]),
+              Question(
+                  quesText: "  Have you thought about what you want to do in the creative field?",
+                  ansText: "  I’m confused between becoming a social media influencer and an architect.",
+                  qFollowUp: [
+                    Question(ansText: "I’ve always dreamed of being an influencer, but somehow I feel like I’m going to end up picking architecture.", quesText: "Do you think you have a closer affinity to one of them?",
+                        qFollowUp: [
+                          Question(ansText: " Well, I do think architecture is the stable option, but I’m more worried on the influencer aspect of my dream!", quesText: "Does anything particularly drive you towards it? ",
+                              qFollowUp: [
+                                Question(ansText: "I’m very passionate about it, but it’s not a stable path, and I have a long way to go!", quesText: " What’s worrying you about the influencer option? ",
+                                    qFollowUp: [
+                                      Question(ansText: "Haha, I actually just have to start, probably have to start taking care of my skin to look glamorous!", quesText: "  Do you have everything ready to pursue your dream? ")])])
+                        ])])
+            ]
+        ),
+      ],
+      gifts: [Gift(name:"Stationary Hamper", willLike: true),Gift(name:"Skin care products", willLike: true),Gift(name:"Netflix/Youtube Premium Subscription", willLike: true), Gift(name:"Lipstick", willLike: false),Gift(name:"Dress", willLike: false),Gift(name:"Silicone cupcake moulds", willLike: false),Gift(name:"Romance Novels by Ravinder Singh", willLike: true),Gift(name:"Heels", willLike: true),Gift(name:"Nail Paint and Nail Art", willLike: true),Gift(name:"Crystals", willLike: true)],
+      imageUrl: "assets/gifting/rachelZane.svg",
+      likeChoices: [
+        {"Book": false, "Baking moulds": true},
+        {"Lotion": true, "Dress": false},
+      ],
+      ideas:  {"Stationary":true, "Basketball":false, "Book":true, "Skirt":false, "Lotion":true, "Charger":false, "Netflix":true, "Xbox":false},
+      taskMax:{1:4,2:2,3:4,4:10}
+  ),
 ];
 
 ///Used in taskintro.dart
