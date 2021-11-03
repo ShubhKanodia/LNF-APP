@@ -6,6 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
 class Library extends StatefulWidget {
+  ///Code is to decide what are the topics to show.
+  ///Currently
+  ///0 - All
+  ///1 - Design Thinking
+  ///2 - Business Model Canvas
+  final int code;
+
+  Library({Key key, @required this.code}) : super(key: key);
   @override
   _Library createState() => _Library();
 }

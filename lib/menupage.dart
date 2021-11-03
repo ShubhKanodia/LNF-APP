@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/DesignThinking/overallPages/login.dart';
-import 'package:learnnfun/DesignThinking/overallPages/registerInfo.dart';
+import 'package:learnnfun/gameSelection.dart';
+import 'package:learnnfun/login.dart';
+import 'package:learnnfun/registerInfo.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
 import 'package:learnnfun/auth.dart';
@@ -45,7 +46,12 @@ class _MenuPageState extends State<MenuPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),
-                child: StandardButton( text: 'Sound', onTap: null),
+                child: StandardButton( text: 'Change Game', onTap: (){
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => GameSelection(),
+                settings: RouteSettings(name: 'Choosing Game')));}),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*0.07),

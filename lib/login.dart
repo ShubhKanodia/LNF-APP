@@ -1,9 +1,13 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/DesignThinking/overallPages/introductionSlider.dart';
 import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/gameSelection.dart';
+import 'package:learnnfun/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'package:learnnfun/auth.dart';
@@ -202,7 +206,7 @@ class _LoginState extends State<Login> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => IntroductionSlider(),
+                                builder: (context) => RegistrationInfo(),
                                 settings:
                                     RouteSettings(name: 'Profile Creation')),
                             (Route<dynamic> route) => false,
@@ -211,7 +215,7 @@ class _LoginState extends State<Login> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Levels(),
+                                builder: (context) => GameSelection(),
                                 settings: RouteSettings(
                                     name: 'Levels')),
                                 (Route<dynamic> route) => false,
@@ -261,7 +265,7 @@ class _LoginState extends State<Login> {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => IntroductionSlider(),
+                                  builder: (context) => RegistrationInfo(),
                                   settings:
                                   RouteSettings(name: 'Profile Creation')),
                                   (Route<dynamic> route) => false,
@@ -270,7 +274,7 @@ class _LoginState extends State<Login> {
                             Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Levels(),
+                                  builder: (context) => GameSelection(),
                                   settings: RouteSettings(
                                       name: 'Levels')),
                                   (Route<dynamic> route) => false,

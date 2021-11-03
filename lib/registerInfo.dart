@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -7,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:learnnfun/auth.dart';
 import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/gameSelection.dart';
 
 class RegistrationInfo extends StatefulWidget {
   @override
@@ -289,9 +292,9 @@ class _RegistrationInfoState extends State<RegistrationInfo> {
                                     Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Levels(),
+                                          builder: (context) => GameSelection(),
                                           settings: RouteSettings(
-                                              name: 'Levels')),
+                                              name: 'Game Selection')),
                                       (Route<dynamic> route) => false,
                                     );
                                   }),

@@ -1,10 +1,13 @@
+// ignore_for_file: unused_import
+
 import 'dart:async';
 
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/DesignThinking/overallPages/registerInfo.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/registerInfo.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
 class IntroductionSlider extends StatefulWidget {
@@ -110,7 +113,7 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
                     visible: buttonVisible,
                     child: StandardButton( text: "Get Started", onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => RegistrationInfo()));
+                          MaterialPageRoute(builder: (context) => Levels()));
                     }))
               ],
             ),
