@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/commonPages/informationCard.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 import '../Persona.dart';
 import '../data.dart';
 

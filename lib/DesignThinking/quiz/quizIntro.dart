@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/quiz/catchthenut.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/quiz/catchthenut.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
 class QuizIntro extends StatelessWidget {
   const QuizIntro({

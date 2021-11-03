@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/overallPages/levels.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 import '../Persona.dart';
 import '../data.dart';
 

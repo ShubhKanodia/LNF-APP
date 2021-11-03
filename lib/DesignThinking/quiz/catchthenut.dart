@@ -6,11 +6,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/Persona.dart';
-import 'package:learnnfun/overallPages/levelEvaluation.dart';
-import 'package:learnnfun/quiz/quizIntro.dart';
+import 'package:learnnfun/DesignThinking/Persona.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levelEvaluation.dart';
+import 'package:learnnfun/DesignThinking/quiz/quizIntro.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 import '../data.dart';
 import '../widgets.dart';
 

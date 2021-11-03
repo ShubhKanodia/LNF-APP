@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/completedPage.dart';
-import 'package:learnnfun/data.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/commonPages/completedPage.dart';
+import 'package:learnnfun/DesignThinking/data.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
 class InformationCard extends StatefulWidget {
   final int cardNumber;

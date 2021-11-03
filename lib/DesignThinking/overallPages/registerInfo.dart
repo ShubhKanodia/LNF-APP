@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:learnnfun/auth.dart';
-import 'package:learnnfun/overallPages/levels.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
 
 class RegistrationInfo extends StatefulWidget {
   @override

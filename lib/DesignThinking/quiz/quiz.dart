@@ -5,11 +5,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/overallPages/courseCompletion.dart';
+import 'package:learnnfun/DesignThinking/overallPages/courseCompletion.dart';
 import 'package:learnnfun/widgets.dart';
 
 import '../Persona.dart';
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 
 */
 /*

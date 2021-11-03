@@ -3,14 +3,14 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:learnnfun/Persona.dart';
-import 'package:learnnfun/overallPages/levels.dart';
-import 'package:learnnfun/overallPages/registerInfo.dart';
+import 'package:learnnfun/DesignThinking/Persona.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/DesignThinking/overallPages/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import 'auth.dart';
-import 'data.dart';
-import 'overallPages/login.dart';
+import 'DesignThinking/data.dart';
+import 'DesignThinking/overallPages/login.dart';
 
 void main() {
   runApp(MyApp());

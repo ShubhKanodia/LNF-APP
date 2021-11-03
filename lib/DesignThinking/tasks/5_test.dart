@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/commonPages/informationCard.dart';
+import 'package:learnnfun/DesignThinking/commonPages/informationCard.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 import '../widgets.dart';
 import '../Persona.dart';
 

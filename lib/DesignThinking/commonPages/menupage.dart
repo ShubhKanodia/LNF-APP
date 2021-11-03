@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/overallPages/login.dart';
-import 'package:learnnfun/overallPages/registerInfo.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/overallPages/login.dart';
+import 'package:learnnfun/DesignThinking/overallPages/registerInfo.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 
 class MenuPage extends StatefulWidget {
   @override

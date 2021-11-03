@@ -1,10 +1,10 @@
-import 'package:learnnfun/tasks/2_define_bb.dart';
-import 'package:learnnfun/tasks/3_ideate.dart';
-import 'package:learnnfun/tasks/4_prototype.dart';
-import 'package:learnnfun/tasks/5_test.dart';
+import 'package:learnnfun/DesignThinking/tasks/2_define_bb.dart';
+import 'package:learnnfun/DesignThinking/tasks/3_ideate.dart';
+import 'package:learnnfun/DesignThinking/tasks/4_prototype.dart';
+import 'package:learnnfun/DesignThinking/tasks/5_test.dart';
 
 import 'Persona.dart';
-import 'tasks/1_chat_empathize.dart';
+import '../DesignThinking/tasks/1_chat_empathize.dart';
 
 List<Person> level1Persona = [
   Person(

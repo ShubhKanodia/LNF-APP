@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/Persona.dart';
+import 'package:learnnfun/DesignThinking/Persona.dart';
 
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
 import '../data.dart';
 

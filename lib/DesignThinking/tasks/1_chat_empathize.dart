@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/auth.dart';
-import 'package:learnnfun/commonPages/informationCard.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/commonPages/informationCard.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 
 import '../Persona.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../Persona.dart';

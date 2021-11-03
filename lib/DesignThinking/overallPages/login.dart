@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/overallPages/introductionSlider.dart';
-import 'package:learnnfun/overallPages/levels.dart';
+import 'package:learnnfun/DesignThinking/overallPages/introductionSlider.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-import '../auth.dart';
+import 'package:learnnfun/auth.dart';
 
 class Login extends StatefulWidget {
   @override

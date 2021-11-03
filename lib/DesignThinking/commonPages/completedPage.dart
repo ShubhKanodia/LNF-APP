@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:learnnfun/quiz/catchthenut.dart';
-import 'package:learnnfun/overallPages/levels.dart';
-import 'package:learnnfun/widgets.dart';
+import 'package:learnnfun/DesignThinking/quiz/catchthenut.dart';
+import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
+import 'package:learnnfun/DesignThinking/widgets.dart';
 import '../Persona.dart';
 
 class TaskCompleted extends StatefulWidget {
