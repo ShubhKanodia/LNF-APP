@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
+
+///Library class for any other resources we want to add
+///Pass the following values to control content
+///0 - All
+///1 - Design Thinking
+///2 - BMC
 class Library extends StatefulWidget {
   ///Code is to decide what are the topics to show.
   ///Currently
@@ -13,6 +19,11 @@ class Library extends StatefulWidget {
   ///2 - Business Model Canvas
   final int code;
 
+  ///Library class for any other resources we want to add\n
+  ///Pass the following values to control content\n
+  ///0 - All\n
+  ///1 - Design Thinking\n
+  ///2 - BMC\n
   Library({Key key, @required this.code}) : super(key: key);
   @override
   _Library createState() => _Library();

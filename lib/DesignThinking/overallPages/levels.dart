@@ -61,7 +61,7 @@ class Levels extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Library(),
+                    builder: (context) => Library(code:1),
                     settings: RouteSettings(name: 'Actual game')));
           }),
         ),

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/menupage.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
+import 'BusinessModelCanvas/homeScreen.dart';
 import 'DesignThinking/Persona.dart';
 import 'DesignThinking/data.dart';
 import 'DesignThinking/overallPages/introductionSlider.dart';
@@ -145,7 +146,7 @@ class GameSelection extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TasksLevel2(),
+                      builder: (context) => Farm(),
                       settings: RouteSettings(name: 'Actual game')),
                 );
               }),

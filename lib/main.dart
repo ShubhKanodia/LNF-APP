@@ -5,12 +5,14 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:learnnfun/BusinessModelCanvas/listScreen.dart';
 import 'package:learnnfun/DesignThinking/Persona.dart';
 import 'package:learnnfun/DesignThinking/overallPages/levels.dart';
 import 'package:learnnfun/gameSelection.dart';
 import 'package:learnnfun/registerInfo.dart';
 import 'package:overlay_support/overlay_support.dart';
 
+import 'BusinessModelCanvas/homeScreen.dart';
 import 'auth.dart';
 import 'DesignThinking/data.dart';
 import 'login.dart';
@@ -70,7 +72,7 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffffa62b)),
                       ),
                       home:
-                      GameSelection())); //TODO: Change this to whatever you want while testing, but change to GameSelection() before pushing
+                      ListScreen(silo: true,))); //TODO: Change this to whatever you want while testing, but change to GameSelection() before pushing
 
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));
