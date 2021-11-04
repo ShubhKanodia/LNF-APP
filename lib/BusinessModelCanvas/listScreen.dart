@@ -103,7 +103,7 @@ class ItemRow extends StatelessWidget {
                 fontStyle: FontStyle.normal,
               )
           ),
-          
+
         ],
       )
     ],);
