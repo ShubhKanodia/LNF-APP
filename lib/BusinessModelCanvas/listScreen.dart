@@ -26,7 +26,7 @@ class _ListScreenState extends State<ListScreen> {
                   style: TextStyle(
                     fontFamily: 'MohaveMedium',
                     color: Color(0xfff8ff20),
-                    fontSize: height*0.03,
+                    fontSize: height*0.02,
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                   )
@@ -43,7 +43,16 @@ class _ListScreenState extends State<ListScreen> {
                 ItemRow(sellingPrice: 20,item: "Corn",quantity: 3000, image: "assets/BMC/Corn2.svg",)
 
 
-              ],)
+              ],),
+        InkResponse(
+          child: new Container(
+            width: width*0.08,
+            height: height*0.08,
+            decoration: new BoxDecoration(
+              color: Colors.white.withOpacity(0.6),
+              shape: BoxShape.circle,
+            ),
+          ),)
             ],
           ),
         ),
@@ -103,7 +112,42 @@ class ItemRow extends StatelessWidget {
                 fontStyle: FontStyle.normal,
               )
           ),
-
+          Row(
+            children: [
+              ElevatedButton(
+                  child: Text(
+                      "Units  100",
+                      style: TextStyle(fontSize: height*0.02,
+                      color: Colors.green),
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xfff2f5d8)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                          )
+                      )
+                  ),
+                  onPressed: () => null
+              ),
+              ElevatedButton(
+                  child: Text(
+                    "2500",
+                    style: TextStyle(fontSize: height*0.02,
+                        color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          )
+                      )
+                  ),
+                  onPressed: () => null
+              ),
+            ],
+          )
         ],
       )
     ],);
