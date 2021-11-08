@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.6 24.6"><g data-name="Layer 2"><g data-name="Layer 1"><circle cx="12.3" cy="12.3" r="12.3" style="fill:#ffeb35"/><circle cx="12.3" cy="12.3" r="9.78" style="fill:#ff8715"/><text transform="translate(9.19 16)" style="font-size:12px;font-family:MyriadPro-Regular,Myriad Pro;fill:#ffeb35">B</text></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Group_1666" data-name="Group 1666" transform="translate(-62 -66)">
+    <g id="Ellipse_207" data-name="Ellipse 207" transform="translate(62 66)" fill="#e3951f" stroke="#fee32c" stroke-width="1">
+      <circle cx="8" cy="8" r="8" stroke="none"/>
+      <circle cx="8" cy="8" r="7.5" fill="none"/>
+    </g>
+    <text id="B" transform="translate(67 78)" fill="#f8ff20" font-size="11" font-family="Mohave-Bold, Mohave Bold" font-weight="700"><tspan x="0" y="0">B</tspan></text>
+  </g>
+</svg>
