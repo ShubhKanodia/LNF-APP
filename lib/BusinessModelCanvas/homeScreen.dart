@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'listScreen.dart';
+
 class Farm extends StatefulWidget {
   const Farm({Key key}) : super(key: key);
 
@@ -127,9 +129,25 @@ class _FarmState extends State<Farm> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ListScreen(silo:false),
+                            settings: RouteSettings(name: 'Actual game')));
+                  },
                   child: SvgPicture.asset("assets/BMC/BMC.svg"),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ListScreen(silo:true),
+                            settings: RouteSettings(name: 'Actual game')));
+                  },
                   child: SvgPicture.asset("assets/BMC/Silo.svg"),
                 )
               ],

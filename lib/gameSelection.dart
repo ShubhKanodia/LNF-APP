@@ -25,7 +25,7 @@ class GameSelection extends StatelessWidget {
         Container(
             height: height,
             width: width,
-            child: Image.asset("assets/levelMap.png")), ///Todo : Need to change the background and text
+            child: Image.asset("assets/GameSelection.png")), ///Todo : Need to change the background and text
         Positioned(
           top: height * 0.08,
           left: width * 0.04,
@@ -116,20 +116,19 @@ class GameSelection extends StatelessWidget {
                   currentProgress.trophies = value.data()["trophies"];
                 }
                 if (currentPersonaL1 == null) {
-                  Navigator.pushAndRemoveUntil(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => IntroductionSlider(),
                         settings: RouteSettings(name: 'Introduction Slider')),
-                    (Route<dynamic> route) => false,
+
                   );
                 } else {
-                  Navigator.pushAndRemoveUntil(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Levels(),
                         settings: RouteSettings(name: 'Levels')),
-                    (Route<dynamic> route) => false,
                   );
                 }
               }),
@@ -147,7 +146,7 @@ class GameSelection extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => Farm(),
-                      settings: RouteSettings(name: 'Actual game')),
+                      settings: RouteSettings(name: 'Business Model Canvas')),
                 );
               }),
         ),
