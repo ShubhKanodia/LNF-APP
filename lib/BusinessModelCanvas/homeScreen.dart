@@ -168,13 +168,55 @@ class FarmLand extends StatelessWidget {
 
   ///4 Levels (0-3)
   int level;
+
+
+  Future<void> buyPopup(BuildContext context) async {
+    return await showDialog(context: context,
+        builder: (context){
+          return Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.5,
+              width: MediaQuery.of(context).size.width*0.8,
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    buyItem(
+                      item: "Pumpkin",
+                      buyingPrice: 20,
+                      image: "assets/BMC/Pumpkin2.svg",),
+                    buyItem(
+                      item: "Wheat",
+                      buyingPrice: 20,
+                      image: "assets/BMC/Wheat2.svg",),
+                    buyItem(
+                      item: "Corn",
+                      buyingPrice: 20,
+                      image: "assets/BMC/Corn2.svg",),
+                  ],
+                ),
+              )
+            ),
+          );
+        });
+  }
+
   FarmLand({Key key, @required vegetableCode,  @required level}) : assert(vegetableCode >=0 && vegetableCode<4 && level>=0 && level<4),super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(3),
-        child: SvgPicture.asset("assets/BMC/F1.svg"));
+    return GestureDetector(
+      onTap: () async {
+        await buyPopup(context);
+      },
+      child: Container(
+          padding: EdgeInsets.all(3),
+          child: SvgPicture.asset("assets/BMC/F1.svg")),
+    );
   }
 }
 
@@ -190,3 +232,61 @@ class Coin extends StatelessWidget {
   }
 }
 
+class buyItem extends StatelessWidget{
+  final String item;
+  final int buyingPrice;
+  final String image;
+
+  buyItem({
+    Key key,
+    @required this.item,
+    @required this.buyingPrice,
+    @required this.image,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Row(
+      children: [
+        SvgPicture.asset("$image"),
+        Column(
+          children: [
+            Text("$item",
+                style: TextStyle(
+                  fontFamily: 'MohaveMedium',
+                  color: Color(0xff945437),
+                  fontSize: height * 0.025,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                )),
+            Text("Buying Price: $buyingPrice",
+                style: TextStyle(
+                  fontFamily: 'MohaveRegular',
+                  color: Color(0xffb36642),
+                  fontSize: height * 0.02,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                )),
+            ElevatedButton(
+                child: Text(
+                  "Buy",
+                  style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.height * 0.02, color: Colors.white),
+                ),
+                style: ButtonStyle(
+                    backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.green),
+                    shape:
+                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ))),
+                onPressed: () => null),
+          ],
+        )
+      ],
+    );
+  }
+}
