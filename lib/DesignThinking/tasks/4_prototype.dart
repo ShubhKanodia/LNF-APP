@@ -114,7 +114,7 @@ class _PrototypeState extends State<Prototype> {
                     "L1T4":l1Score.task[3],
                   });
 
-                  currentProgress.taskUnlocked = 4;
+                  currentProgress.taskUnlocked = 5;
                   currentProgress.rewards+=1;
                 }
                 Navigator.push(
@@ -189,16 +189,7 @@ class _PrototypeState extends State<Prototype> {
                                 onPressed: () {
                                   if (indexSelected != null &&
                                       nextPath != null) {
-                                    setState(() {
-                                      details =
-                                          getDetailsFromStorage(nextPath);
-                                      int lastSlashIndex =
-                                      nextPath.lastIndexOf('/');
-                                      choiceSelected = nextPath
-                                          .substring(lastSlashIndex + 1);
-                                      indexSelected = null;
-                                      step++;
-                                    });
+                                    goNextPrototype();
                                   } else {
                                     showSimpleNotification(
                                         Text(
@@ -246,6 +237,8 @@ class _PrototypeState extends State<Prototype> {
                                                 onTap: () {
                                                   setState(() {
                                                     indexSelected = index;
+
+
                                                   });
                                                   snapshot.data.prefixes.isEmpty
                                                       ? setCentralImage(snapshot
@@ -254,6 +247,8 @@ class _PrototypeState extends State<Prototype> {
                                                       .data
                                                       .prefixes[index]
                                                       .fullPath;
+                                                  if(snapshot.data.prefixes.isEmpty)
+                                                    Future.delayed(Duration(milliseconds: 500)).then((value) => goNextPrototype());
                                                 },
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
@@ -327,6 +322,19 @@ class _PrototypeState extends State<Prototype> {
             )
           ])),
         ));
+  }
+
+  void goNextPrototype() {
+    setState(() {
+      details =
+          getDetailsFromStorage(nextPath);
+      int lastSlashIndex =
+      nextPath.lastIndexOf('/');
+      choiceSelected = nextPath
+          .substring(lastSlashIndex + 1);
+      indexSelected = null;
+      step++;
+    });
   }
 
   Future<ListResult> getDetailsFromStorage(String name) async {

@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
                         primaryColor: const Color(0xff16697a), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color(0xffffa62b)),
                       ),
                       home:
-                      ListScreen(silo: false,))); //TODO: Change this to whatever you want while testing, but change to GameSelection() before pushing
+                      GameSelection())); //TODO: Change this to whatever you want while testing, but change to GameSelection() before pushing
 
 
               //TaskCompleted(rewards: 10, task: true, trophies: 10)));

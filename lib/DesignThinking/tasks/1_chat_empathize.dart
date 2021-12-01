@@ -1,4 +1,4 @@
-import 'dart:ui';
+  import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -183,7 +183,8 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                       top: height * 0.02,
                       bottom: height * 0.02,
                     ),
-                    child: Column(children: [
+                    child: Column(
+                        children: [
                       //2
                       Padding(
                         padding: EdgeInsets.only(
@@ -192,46 +193,47 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
-                              width: width * 0.75,
-                              height: height * 0.05,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(12)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: const Color(0x338b8b8b),
-                                        offset: Offset(0, 4),
-                                        blurRadius: 4,
-                                        spreadRadius: 4)
-                                  ],
-                                  color: const Color(0xffffffff)),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: width * 0.03,
-                                      right: width * 0.03,
-                                      top: height * 0.01,
-                                    ),
-                                    child: Text(
-                                      qSel.quesText,
-                                      textAlign: TextAlign.left,
-                                      style: GoogleFonts.quicksand(
-                                        color: Color(0xff1a1b41),
-                                        fontSize: height * 0.018,
+                            Expanded(
+                              flex:6,
+                              child: Container(
+                                padding: EdgeInsets.all(height*0.01),
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: const Color(0x338b8b8b),
+                                          offset: Offset(0, 4),
+                                          blurRadius: 4,
+                                          spreadRadius: 4)
+                                    ],
+                                    color: const Color(0xffffffff)),
+                                child: Padding(
+                                      padding: EdgeInsets.only(
+                                        left: width * 0.03,
+                                        right: width * 0.03,
+                                        top: height * 0.01,
+                                      ),
+                                      child: Text(
+                                        qSel.quesText,
+                                        textAlign: TextAlign.left,
+                                        style: GoogleFonts.quicksand(
+                                          color: Color(0xff1a1b41),
+                                          fontSize: height * 0.018,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
                               ),
                             ),
-                            Container(
-                              height: height * 0.07,
-                              width: width * 0.15,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0xff489fb5),
+                            Expanded(
+                              flex: 4,
+                              child: Container(
+                                height: height * 0.07,
+                                width: width * 0.15,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xff489fb5),
+                                ),
                               ),
                             ),
                           ],
