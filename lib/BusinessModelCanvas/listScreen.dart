@@ -16,6 +16,9 @@ class ListScreen extends StatefulWidget {
 class _ListScreenState extends State<ListScreen> {
   Map<String, Color> horizontalCircles;
   String itemSelected;
+  List bmcSelected;
+
+
 
   void initState() {
     if (widget.silo) {
@@ -30,14 +33,15 @@ class _ListScreenState extends State<ListScreen> {
               farmScores.length, (index) => Colors.white.withOpacity(0.2)));
     }
     itemSelected = horizontalCircles.keys.elementAt(0);
+    //List bmcSelected = List.filled(farmScores[itemSelected].length,false);
     horizontalCircles.update(
         itemSelected, (value) => Colors.white);
     super.initState();
   }
 
-  changeSelected(index){
+  changeSelected(selected ,index){
     setState(() {
-      
+      index.selected = selected;
     });
   }
 
@@ -74,7 +78,6 @@ class _ListScreenState extends State<ListScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       width: width * 0.9,
                       elevation: 2,
-                      height: height * 0.5,
                       padding: 10,
                       children: widget.silo
                           ? [
@@ -97,7 +100,11 @@ class _ListScreenState extends State<ListScreen> {
                           image: "assets/BMC/Corn2.svg",
                         )
                       ]
-                          : List.generate(farmScores[itemSelected].length, (index) => BMCRow(option: farmScores[itemSelected].keys.elementAt(index), selected: true)),
+                          : List.generate(farmScores[itemSelected].length, (index) {
+                          //print(farmScores[itemSelected]);
+                        return BMCRow(option: farmScores[itemSelected][index],
+                    changeSelected:(b)=>changeSelected(b,farmScores[itemSelected][index]));
+                }),
                     ),
                   Container(
                     height:height*0.2,
@@ -260,45 +267,36 @@ class ItemRow extends StatelessWidget {
 }
 
 class BMCRow extends StatelessWidget {
-  String option;
-  bool selected;
+  BMCElement option;
   Function changeSelected;
 
   BMCRow({
     Key key,
     @required this.option,
-    @required this.selected,
-    this.changeSelected,
+    @ required this.changeSelected,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          children: [
-            Row(
-              children: [
-                Text("$option",
-                    style: TextStyle(
-                      fontFamily: 'MohaveMedium',
-                      color: Color(0xff945437),
-                      fontSize: height * 0.025,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                    )),
-                Checkbox(
-                    checkColor: Colors.white,
-                    fillColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.green),
-                    value: selected,
-                    onChanged: changeSelected),
-              ],
-            )
-          ],
-        )
+        Text("${option.name}",
+            style: TextStyle(
+              fontFamily: 'MohaveMedium',
+              color: Color(0xff945437),
+              fontSize: height * 0.025,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+            )),
+        Checkbox(
+            checkColor: Colors.white,
+            fillColor: MaterialStateColor.resolveWith(
+                (states) => Colors.green),
+            value: option.selected,
+            onChanged: changeSelected
+            ),
       ],
     );
   }
