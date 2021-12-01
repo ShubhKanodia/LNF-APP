@@ -91,7 +91,7 @@ class _LevelEvaluationState extends State<LevelEvaluation> {
                   Container(
                     alignment: Alignment.centerRight,
                     padding: EdgeInsets.only(right: width*0.1),
-                    child: Text((overallPercent*100).toString()+"%",
+                    child: Text((overallPercent*100).toStringAsFixed(2)+"%",
                     style: GoogleFonts.quicksand(
                       color: Color(0xff16697a),
                       fontWeight: FontWeight.w500,
