@@ -14,7 +14,7 @@ class Farm extends StatefulWidget {
 class _FarmState extends State<Farm> {
 
   int coins=0;
-
+  List<int> l = List.filled(15,0);
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -90,41 +90,17 @@ class _FarmState extends State<Farm> {
                 ],
               ),
             ),
-            Row(
-              children: [
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-              ],
-            ),
-            Row(
-              children: [
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-              ],
-            ),
-            Row(
-              children: [
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-              ],
-            ),
-            Row(
-              children: [
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-              ],
-            ),
-            Row(
-              children: [
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-                FarmLand(level:0,vegetableCode: 0,),
-              ],
-            ),
+        Expanded(
+          child: GridView.count(
+            // Create a grid with 2 columns. If you change the scrollDirection to
+            // horizontal, this produces 2 rows.
+            crossAxisCount: 3,
+            // Generate 100 widgets that display their index in the List.
+            children: List.generate(15, (index) {
+              return FarmLand(level:0,vegetableCode: l[index], index: index, vegetables: l);
+            }),
+          ),
+        ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -157,20 +133,34 @@ class _FarmState extends State<Farm> {
         )));
   }
 }
+class FarmLand extends StatefulWidget {
 
-class FarmLand extends StatelessWidget {
+  final int vegetableCode;
+  ///4 Levels (0-3)
+  final int level;
+  final int index;
+  final List<int> vegetables;
+  const FarmLand({@required this.vegetableCode,  @required this.level, @required this.index,@required this.vegetables ,Key key}) : super(key: key);
+  //FarmLand({@required vegetableCode,  @required level, @required index}) : assert(vegetableCode >=0 && vegetableCode<4 && level>=0 && level<4),super(key: key);
+  @override
+  _FarmLandState createState() => _FarmLandState();
+}
+class _FarmLandState extends State<FarmLand> {
   ///Vegetable Code
   ///0 - Undecided
   ///1 - Pumpkin
   ///2 - Wheat
   ///3 - Corn
-  int vegetableCode;
 
+  int vegetableCode;
   ///4 Levels (0-3)
   int level;
+  int index;
+  List<int> vegetables;
+  List<String> strings = ["assets/BMC/F1.svg","assets/BMC/F2.svg","assets/BMC/F2.svg","assets/BMC/F2.svg"];
 
-
-  Future<void> buyPopup(BuildContext context) async {
+  Future<void> buyPopup(BuildContext context, List<int> l,int index ) async {
+    print(l);
     return await showDialog(context: context,
         builder: (context){
           return Dialog(
@@ -186,14 +176,20 @@ class FarmLand extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     buyItem(
+                      vegetables: l,
+                      index: index,
                       item: "Pumpkin",
                       buyingPrice: 20,
                       image: "assets/BMC/Pumpkin2.svg",),
                     buyItem(
+                      vegetables: l,
+                      index: index,
                       item: "Wheat",
                       buyingPrice: 20,
                       image: "assets/BMC/Wheat2.svg",),
                     buyItem(
+                      vegetables: l,
+                      index: index,
                       item: "Corn",
                       buyingPrice: 20,
                       image: "assets/BMC/Corn2.svg",),
@@ -205,17 +201,32 @@ class FarmLand extends StatelessWidget {
         });
   }
 
-  FarmLand({Key key, @required vegetableCode,  @required level}) : assert(vegetableCode >=0 && vegetableCode<4 && level>=0 && level<4),super(key: key);
 
+@override
+  void initState() {
+
+  vegetableCode = widget.vegetableCode;
+  ///4 Levels (0-3)
+  level = widget.level;
+  index = widget.index;
+  vegetables = widget.vegetables;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await buyPopup(context);
+          //print(vegetables);
+        await buyPopup(context,vegetables,index);
+        setState(() {
+          vegetableCode = vegetables[index];
+          //vegetables[index] = vegetableCode;
+          //TODO save state
+        });
       },
       child: Container(
           padding: EdgeInsets.all(3),
-          child: SvgPicture.asset("assets/BMC/F1.svg")),
+          child: SvgPicture.asset(strings[vegetableCode??0])),
     );
   }
 }
@@ -236,10 +247,14 @@ class buyItem extends StatelessWidget{
   final String item;
   final int buyingPrice;
   final String image;
+  final List<int> vegetables;
+  final int index;
 
   buyItem({
     Key key,
     @required this.item,
+    @required this.vegetables,
+    @required this.index,
     @required this.buyingPrice,
     @required this.image,
   }) : super(key: key);
@@ -247,7 +262,6 @@ class buyItem extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Row(
       children: [
         SvgPicture.asset("$image"),
@@ -283,7 +297,14 @@ class buyItem extends StatelessWidget{
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ))),
-                onPressed: () => null),
+                onPressed: (){
+                  int vegetable = item=="Pumpkin"?1:(item=="Wheat"?2:3);
+                  /// save in db vegetable
+                 // print(vegetables);
+                  vegetables[index] = vegetable;
+                  //print(vegetables);
+                  Navigator.pop(context);
+                }),
           ],
         )
       ],
