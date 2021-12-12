@@ -104,7 +104,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                   right: width * 0.03,
                                   top: height * 0.01),
                               child: Text(
-                                "Hey John! It’s nice to meet you. I heard you wanted to get to know me. What would you like to know?",
+                                "Hey Johnm! It’s nice to meet you. I heard you wanted to get to know me. What would you like to know?",
                                 textAlign: TextAlign.left,
                                 style: GoogleFonts.quicksand(
                                   color: Color(0xff1a1b41),
