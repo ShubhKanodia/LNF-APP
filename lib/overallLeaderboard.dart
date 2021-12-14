@@ -16,7 +16,6 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
   void initState() {
     leaderboard = FirebaseFirestore.instance
         .collection("users")
-        .orderBy("trophies", descending: true)
         .orderBy("rewards", descending: true)
         .limit(6)
         .get();
