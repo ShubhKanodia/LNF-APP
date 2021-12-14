@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/menupage.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
+import 'BusinessModelCanvas/IntroCard.dart';
+import 'BusinessModelCanvas/data.dart';
 import 'BusinessModelCanvas/homeScreen.dart';
 import 'DesignThinking/Persona.dart';
 import 'DesignThinking/data.dart';
@@ -141,11 +143,35 @@ class GameSelection extends StatelessWidget {
               number: false,
               light: true,
               text: "Business Model Canvas",
-              onTap: () {
+              onTap: () async {
+                var value = await userDocReference.get();
+                currentProgress.rewards = value.data()["rewards"];
+                var farmInfoFB = await userDocReference.collection("BMCFarmFields").get();
+                var farmScoresFB = await userDocReference.collection("BMCFarmScores").get();
+                List<FarmLandData> farmLandInfo = List.filled(9, FarmLandData());
+                if (farmInfoFB.docs.isNotEmpty){
+                  farmInfoFB.docs.forEach((element) {
+                    if(element.data()["deadline"]!=null)
+                    farmLandInfo[int.parse(element.id)] = FarmLandData(vegetableCode: element.data()["vegetable"], deadline: DateTime.fromMillisecondsSinceEpoch(element.data()["deadline"]));
+                  });
+                }
+                farmScoresFB.docs.forEach((element) {
+                  element.data().forEach((key, value) {
+                    farmScores[element.id].elementAt(int.parse(key)).selected=value;
+                });
+                });
+                if(farmInfoFB.docs.isEmpty && farmScoresFB.docs.isEmpty){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => BMCIntro(farmLandInfo: farmLandInfo,),
+                        settings: RouteSettings(name: 'Business Model Canvas')),
+                  );
+                }
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Farm(),
+                      builder: (context) => Farm(farmLandInfo: farmLandInfo,),
                       settings: RouteSettings(name: 'Business Model Canvas')),
                 );
               }),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:learnnfun/DesignThinking/assets.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
+import 'package:learnnfun/auth.dart';
 
 import 'data.dart';
 
 class ListScreen extends StatefulWidget {
-  bool silo;
 
-  ListScreen({Key key, @required this.silo}) : super(key: key);
+  ListScreen({Key key}) : super(key: key);
 
   @override
   _ListScreenState createState() => _ListScreenState();
@@ -21,17 +22,10 @@ class _ListScreenState extends State<ListScreen> {
 
 
   void initState() {
-    if (widget.silo) {
-      horizontalCircles = Map.fromIterables(
-          siloTextOptions,
-          List.generate(siloTextOptions.length,
-              (index) => Colors.white.withOpacity(0.2)));
-    } else {
       horizontalCircles = Map.fromIterables(
           farmScores.keys,
           List.generate(
               farmScores.length, (index) => Colors.white.withOpacity(0.2)));
-    }
     itemSelected = horizontalCircles.keys.elementAt(0);
     //List bmcSelected = List.filled(farmScores[itemSelected].length,false);
     horizontalCircles.update(
@@ -39,10 +33,20 @@ class _ListScreenState extends State<ListScreen> {
     super.initState();
   }
 
-  changeSelected(selected ,index){
+  changeSelected(selected ,bmcElement, index) async {
     setState(() {
-      index.selected = selected;
+      bmcElement.selected = selected;
     });
+    var farmScores = await userDocReference.collection("BMCFarmScores").doc(
+        itemSelected).get();
+    if (farmScores.exists) {
+      userDocReference.collection("BMCFarmScores").doc(itemSelected).update(
+          {index.toString(): selected});
+    }
+    else{
+      userDocReference.collection("BMCFarmScores").doc(itemSelected).set(
+          {index.toString(): selected});
+    }
   }
 
   @override
@@ -56,11 +60,15 @@ class _ListScreenState extends State<ListScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            widget.silo
-                ? SvgPicture.asset("assets/BMC/Silo.svg")
-                : SvgPicture.asset("assets/BMC/BMC.svg"),
-            new Text(
-                widget.silo ? "Farm Resources and Products" : "Farm Business",
+            Row(
+              children: [
+                StdBackButton(),
+                    Align(
+                      alignment: Alignment.center,
+                        child: SvgPicture.asset("assets/BMC/BMC.svg")),
+              ],
+            ),
+            new Text("Farm Business",
                 style: TextStyle(
                   fontFamily: 'MohaveMedium',
                   color: Color(0xfff8ff20),
@@ -79,31 +87,10 @@ class _ListScreenState extends State<ListScreen> {
                       width: width * 0.9,
                       elevation: 2,
                       padding: 10,
-                      children: widget.silo
-                          ? [
-                        ItemRow(
-                          sellingPrice: 20,
-                          item: "Pumpkin",
-                          quantity: 3000,
-                          image: "assets/BMC/Pumpkin2.svg",
-                        ),
-                        ItemRow(
-                          sellingPrice: 20,
-                          item: "Wheat",
-                          quantity: 3000,
-                          image: "assets/BMC/Wheat2.svg",
-                        ),
-                        ItemRow(
-                          sellingPrice: 20,
-                          item: "Corn",
-                          quantity: 3000,
-                          image: "assets/BMC/Corn2.svg",
-                        )
-                      ]
-                          : List.generate(farmScores[itemSelected].length, (index) {
+                      children: List.generate(farmScores[itemSelected].length, (index) {
                           //print(farmScores[itemSelected]);
                         return BMCRow(option: farmScores[itemSelected][index],
-                    changeSelected:(b)=>changeSelected(b,farmScores[itemSelected][index]));
+                    changeSelected:(b)=>changeSelected(b,farmScores[itemSelected][index],index));
                 }),
                     ),
                   Container(
@@ -178,7 +165,7 @@ class _ListScreenState extends State<ListScreen> {
   }
 }
 
-class ItemRow extends StatelessWidget {
+/*class ItemRow extends StatelessWidget {
   final String item;
   final int quantity;
   final int sellingPrice;
@@ -264,7 +251,7 @@ class ItemRow extends StatelessWidget {
       ],
     );
   }
-}
+}*/
 
 class BMCRow extends StatelessWidget {
   BMCElement option;
@@ -279,17 +266,21 @@ class BMCRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("${option.name}",
-            style: TextStyle(
-              fontFamily: 'MohaveMedium',
-              color: Color(0xff945437),
-              fontSize: height * 0.025,
-              fontWeight: FontWeight.w400,
-              fontStyle: FontStyle.normal,
-            )),
+        Container(
+          width: width*0.3,
+          child: Text("${option.name}",
+              style: TextStyle(
+                fontFamily: 'MohaveMedium',
+                color: Color(0xff945437),
+                fontSize: height * 0.025,
+                fontWeight: FontWeight.w400,
+                fontStyle: FontStyle.normal,
+              ), overflow: TextOverflow.fade ,),
+        ),
         Checkbox(
             checkColor: Colors.white,
             fillColor: MaterialStateColor.resolveWith(
