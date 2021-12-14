@@ -28,6 +28,12 @@ class _FarmLandState extends State<FarmLand> {
   ///2 - Wheat
   ///3 - Corn
 
+  Duration timediff;
+  Timer _everySecond;
+  var inProgress = false;
+  int vegetableCode;
+  DateTime deadline;
+
   Future<int> buyPopup(BuildContext context, int index) async {
     print(index);
     return await showDialog(
@@ -84,7 +90,7 @@ class _FarmLandState extends State<FarmLand> {
     return score;
   }
 
-  Future<int> sellPopup(BuildContext context, int index, int vegetable, FarmLandData farm) async {
+  Future<int> sellPopup(BuildContext context, int index, int vegetable) async {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var item;
@@ -161,8 +167,8 @@ class _FarmLandState extends State<FarmLand> {
                                       }
                                       setState(() {
                                         inProgress=false;
-                                        widget.farm.vegetableCode=0;
-                                        widget.farm.deadline=null;
+                                        vegetableCode=0;
+                                        deadline=null;
                                         currentProgress.rewards=currentProgress.rewards+sellingPrice;
                                       });
                                       widget.callback();
@@ -195,30 +201,30 @@ class _FarmLandState extends State<FarmLand> {
   }
 
   ///Indicate Level Here
-  String getImage(FarmLandData farm) {
-    if (farm.deadline == null) {
+  String getImage() {
+    if (deadline == null) {
       return "assets/BMC/F1.svg";
     } else {
-      Duration timediff = farm.deadline.difference(DateTime.now());
+      Duration timediff = deadline.difference(DateTime.now());
       if (timediff.isNegative) {
         _everySecond.cancel();
         //Deadline crossed
-        if (farm.vegetableCode == 1) {
+        if (vegetableCode == 1) {
           return "assets/BMC/Pumpkin2.svg";
-        } else if (farm.vegetableCode == 2) {
+        } else if (vegetableCode == 2) {
           return "assets/BMC/Wheat2.svg";
-        } else if (farm.vegetableCode == 3) {
+        } else if (vegetableCode == 3) {
           return "assets/BMC/Corn2.svg";
         } else {
           return "assets/BMC/F1.svg";
         }
       } else if (timediff.inMinutes < HalfwayTime) {
         //Deadline almost over
-        if (farm.vegetableCode == 1) {
+        if (vegetableCode == 1) {
           return "assets/BMC/Pumpkin1.svg";
-        } else if (farm.vegetableCode == 2) {
+        } else if (vegetableCode == 2) {
           return "assets/BMC/Wheat1.svg";
-        } else if (farm.vegetableCode == 3) {
+        } else if (vegetableCode == 3) {
           return "assets/BMC/Corn1.svg";
         } else {
           return "assets/BMC/F1.svg";
@@ -228,20 +234,18 @@ class _FarmLandState extends State<FarmLand> {
       }
     }
   }
-  Duration timediff;
-  Timer _everySecond;
-  var inProgress = false;
   void initState() {
-
-    if (widget.farm.deadline != null) {
-      timediff = widget.farm.deadline.difference(DateTime.now());
+    vegetableCode = widget.farm.vegetableCode;
+    deadline = widget.farm.deadline;
+    if (deadline != null) {
+      timediff = deadline.difference(DateTime.now());
       inProgress = true;
     }
     if (inProgress) {
       _everySecond = Timer.periodic(Duration(seconds: 10), (Timer t) {
         if(mounted) {
           setState(() {
-            timediff = widget.farm.deadline.difference(DateTime.now());
+            timediff = deadline.difference(DateTime.now());
           });
         }
       });
@@ -255,24 +259,25 @@ class _FarmLandState extends State<FarmLand> {
       GestureDetector(
         onTap: () async {
           //print(vegetables);
-          print(widget.farm);
-          if (widget.farm.vegetableCode == 0) {
+          if (vegetableCode == 0) {
             if(currentProgress.rewards<4){
               showSimpleNotification(Text("You do not have enough money to make the purchase. First go attempt the design thinking module to earn some more coins"), duration : Duration(seconds:5));
             }else {
               var code = await buyPopup(context, widget.index);
               if (code != null) {
                 setState(() {
-                  widget.farm.vegetableCode = code;
-                  widget.farm.deadline =
+                  vegetableCode = code;
+                  deadline =
                       DateTime.now().add(Duration(minutes: totalTime));
+                  //widget.farm.vegetableCode = code;
+                  //widget.farm.deadline = DateTime.now().add(Duration(minutes: totalTime));
                   inProgress = true;
-                  timediff = widget.farm.deadline.difference(DateTime.now());
+                  timediff = deadline.difference(DateTime.now());
                 });
                 _everySecond = Timer.periodic(Duration(seconds: 10), (Timer t) {
                   if (mounted) {
                     setState(() {
-                      timediff = widget.farm.deadline.difference(
+                      timediff = deadline.difference(
                           DateTime.now());
                     });
                   }
@@ -281,8 +286,8 @@ class _FarmLandState extends State<FarmLand> {
                     .collection("BMCFarmFields")
                     .doc("${widget.index}")
                     .set({
-                  "vegetable": widget.farm.vegetableCode,
-                  "deadline": widget.farm.deadline.millisecondsSinceEpoch
+                  "vegetable": vegetableCode,
+                  "deadline": deadline.millisecondsSinceEpoch
                 });
               }
             }
@@ -293,16 +298,17 @@ class _FarmLandState extends State<FarmLand> {
               showSimpleNotification(Text(
                   "You have not selected good ${farmScores.entries.elementAt(widget.index).key} and will have to sell at a loss. We recommend going through the farm management and looking at better ways to set up your farm"), duration: Duration(seconds: 5),background: Colors.redAccent );
             }else{
-              await sellPopup(context, widget.index, widget.farm.vegetableCode, widget.farm);
+              await sellPopup(context, widget.index, vegetableCode);
             }
           }
           else{
+            timediff = deadline.difference(DateTime.now());
             showSimpleNotification(Text("Your plot is still farming and is not ready for harvest. Please wait for ${timediff.inMinutes+1} minutes"),background: Colors.redAccent);
           }
         },
         child: Container(
             padding: EdgeInsets.all(3),
-            child: SvgPicture.asset(getImage(widget.farm))),
+            child: SvgPicture.asset(getImage())),
       ),
       inProgress
           ? timediff.isNegative
