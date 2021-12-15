@@ -134,7 +134,8 @@ class QuizIntro extends StatelessWidget {
                     ),
                   ]),
                   StandardButton( text: "Let's Play!", onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(
+                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(
                         builder: (context) => CatchTheNut(start: true),
                         settings: RouteSettings(name: 'Tasks')),);
                   })

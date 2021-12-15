@@ -13,6 +13,7 @@ import 'DesignThinking/overallPages/levels.dart';
 import 'DesignThinking/commonPages/Leaderboard.dart';
 import 'auth.dart';
 import 'library.dart';
+import 'overallLeaderboard.dart';
 
 class GameSelection extends StatelessWidget {
   final BaseAuth auth = Auth();
@@ -50,7 +51,7 @@ class GameSelection extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => LeaderBoard(),
+                        builder: (context) => OverallLeaderBoard(),
                         settings: RouteSettings(name: 'Leaderboard')));
               }),
         ),

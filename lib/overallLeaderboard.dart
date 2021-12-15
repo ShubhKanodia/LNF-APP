@@ -67,11 +67,6 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                       height: height * 0.1,
                       child: Stack(children: [
                         Positioned(
-                            right: width * 0.15,
-                            child: RewardLogo(
-                              isTrophy: true,
-                            )),
-                        Positioned(
                           right: 0,
                           child: RewardLogo(
                             isTrophy: false,
@@ -142,7 +137,7 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                                               mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
                                               children: [
-                                                Text(
+                                                /*Text(
                                                   userData
                                                       .data()["trophies"]
                                                       .toString(),
@@ -152,7 +147,7 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                                                     fontStyle: FontStyle.normal,
                                                     fontSize: height * 0.03,
                                                   ),
-                                                ),
+                                                ),*/
                                                 Text(
                                                   userData
                                                       .data()["rewards"]

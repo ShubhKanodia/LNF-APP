@@ -46,20 +46,34 @@ class _FarmState extends State<Farm> {
               child: Column(
                 children: [
                   Row(
+                    children: [
+                      StdBackButton(),
+                      Padding(
+                        padding: EdgeInsets.only(left:width*0.2),
+                        child: Text("BMC Farm",
+                          style: TextStyle(
+                            fontFamily: 'MohaveMedium',
+                            color: Color(0xff73402a),
+                            fontSize: height * 0.035,
+                            fontWeight: FontWeight.w700,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          StdBackButton(),
-                        ],
-                      ),
                       Row(
                         children: [
                           Text("Coins",
                               style: TextStyle(
                                 fontFamily: 'MohaveMedium',
                                 color: Color(0xff73402a),
-                                fontSize: height * 0.03,
+                                fontSize: height * 0.025,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                               )),
@@ -68,22 +82,20 @@ class _FarmState extends State<Farm> {
                               style: TextStyle(
                                 fontFamily: 'MohaveBold',
                                 color: Color(0xfff8ff20),
-                                fontSize: height * 0.04,
+                                fontSize: height * 0.035,
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                               )),
                         ],
                       ),
-                      Row(children: [
-                        IconButton(onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => BMCIntro(farmLandInfo: widget.farmLandInfo,),
-                                settings: RouteSettings(name: 'Business Model Canvas')),
-                          );
-                        }, icon: Icon(Icons.info))
-                      ],)
+                      IconButton(onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BMCIntro(farmLandInfo: widget.farmLandInfo,),
+                              settings: RouteSettings(name: 'Business Model Canvas')),
+                        );
+                      }, icon: Icon(Icons.info))
                     ],
                   )
                 ],
@@ -107,20 +119,31 @@ class _FarmState extends State<Farm> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left:width*0.1,right:width*0.1),
-                  child: Text("Manage your farm by filling up your Business Model Canvas",
+                  child: Text("Manage your farm by modifying your Business Model Canvas below",
                       style: TextStyle(
                         fontFamily: 'MohaveMedium',
                         color: Color(0xff73402a),
                         fontSize: height * 0.025,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w600,
                         fontStyle: FontStyle.normal,
 
                       ),
                       textAlign: TextAlign.center,
 
-                  ),
+                  ), ),
+                    Text("Each block corresponds to a block of BMC. Control your yield by changing your farm's BMC. Compete to earn more than your friends!",
+                      style: TextStyle(
+                        fontFamily: 'MohaveMedium',
+                        color: Color(0xff73402a),
+                        fontSize: height * 0.020,
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
 
-                ),
+                      ),
+                      textAlign: TextAlign.center,
+
+                    ),
+
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
