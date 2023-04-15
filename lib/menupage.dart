@@ -17,63 +17,126 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f4),
+      backgroundColor: Color(0xFFFFFFFF),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               StdBackButton(),
-              Text('Options',
-                style: GoogleFonts.quicksand(
+              Text(
+                "Options",
+                style: GoogleFonts.signika(
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Color(0xff489fb5),
+                  fontSize: 40,
                 ),
               ),
+
+              // Text(
+              //   'Options',
+              //   style: GoogleFonts.quicksand(
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 25,
+              //     color: Color(0xA020F0),
+              //   ),
+              // ),
               Padding(
-                padding: EdgeInsets.only(top:height*0.08),
-                child: StandardButton( text: 'Profile', onTap: (){
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => RegistrationInfo(),
-    settings: RouteSettings(name: 'Actual game')));}),
+                padding: EdgeInsets.only(top: height * 0.08),
+                child: ElevatedButton(
+                    child: Text(
+                      'Profile',
+                      style: GoogleFonts.signika(fontSize: 25),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(87, 12, 87, 12),
+                        backgroundColor: Color(0xFF9c27b0),
+                        shadowColor: Color(0xff9400d3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegistrationInfo(),
+                              settings: RouteSettings(name: 'Actual game')));
+                    }),
               ),
               Padding(
-                padding: EdgeInsets.only(top:height*0.07),
-                child: StandardButton( text: 'Setting', onTap: null),
+                padding: EdgeInsets.only(top: height * 0.07),
+                child: ElevatedButton(
+                    child: Text(
+                      'Setting',
+                      style: GoogleFonts.signika(fontSize: 25),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(85, 12, 85, 12),
+                        backgroundColor: Color(0xFF9c27b0),
+                        shadowColor: Color(0xff9400d3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {}),
               ),
               Padding(
-                padding: EdgeInsets.only(top:height*0.07),
-                child: StandardButton( text: 'Change Game', onTap: (){
-                Navigator.push(
-                context,
-                MaterialPageRoute(
-                builder: (context) => GameSelection(),
-                settings: RouteSettings(name: 'Choosing Game')));}),
+                padding: EdgeInsets.only(top: height * 0.07),
+                child: ElevatedButton(
+                    child: Text(
+                      'Change Game',
+                      style: GoogleFonts.signika(fontSize: 25),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(49, 12, 49, 12),
+                        backgroundColor: Color(0xFF9c27b0),
+                        shadowColor: Color(0xff9400d3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GameSelection(),
+                              settings: RouteSettings(name: 'Choosing Game')));
+                    }),
               ),
               Padding(
-                padding: EdgeInsets.only(top:height*0.07),
-                child: StandardButton( text: 'Help', onTap: null),
+                padding: EdgeInsets.only(top: height * 0.07),
+                child: ElevatedButton(
+                    child: Text(
+                      'Help',
+                      style: GoogleFonts.signika(fontSize: 25),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.fromLTRB(97, 12, 97, 12),
+                        backgroundColor: Color(0xFF9c27b0),
+                        shadowColor: Color(0xff9400d3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {}),
               ),
               Padding(
-                padding: EdgeInsets.only(top:height*0.07),
-                child: StandardButton( text: 'Log Out', onTap: (){
-                  Auth().signOut();
-  Navigator.pushAndRemoveUntil(
-  context,
-  MaterialPageRoute(
-  builder: (context) => Login(),
-  settings: RouteSettings(
-  name: 'Login')),
-  (Route<dynamic> route) => false,
-  );
-  })
-              )
+                  padding: EdgeInsets.only(top: height * 0.07),
+                  child: ElevatedButton(
+                      child: Text(
+                        'Log Out',
+                        style: GoogleFonts.signika(fontSize: 25),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.fromLTRB(80, 12, 80, 12),
+                          backgroundColor: Color(0xFF9c27b0),
+                          shadowColor: Color(0xff9400d3),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20))),
+                      onPressed: () {
+                        Auth().signOut();
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Login(),
+                              settings: RouteSettings(name: 'Login')),
+                          (Route<dynamic> route) => false,
+                        );
+                      }))
             ],
           ),
-
         ),
       ),
     );

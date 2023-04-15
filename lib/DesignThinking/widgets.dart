@@ -42,7 +42,7 @@ class StandardButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: ElevatedButton(
           child: Text(text,
-              style: GoogleFonts.quicksand(
+              style: GoogleFonts.signika(
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.normal,
                   fontSize: height * 0.03),
@@ -50,7 +50,7 @@ class StandardButton extends StatelessWidget {
           style: ButtonStyle(
             shadowColor: MaterialStateProperty.all<Color>(Color(0xffcb7703)),
             elevation: MaterialStateProperty.resolveWith<double>(
-                  (Set<MaterialState> states) {
+              (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed)) return 0;
                 return 8; // Use the component's default.
               },
@@ -59,10 +59,10 @@ class StandardButton extends StatelessWidget {
                 Size(width * 0.6, height * 0.65)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
+              borderRadius: BorderRadius.circular(20),
+            )),
             backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
+              (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed))
                   return Color(0xfaffa62b);
                 return Color(0xffffa62b); // Use the component's default.
@@ -74,18 +74,15 @@ class StandardButton extends StatelessWidget {
   }
 }
 
-
 class TrophyAndRewards extends StatelessWidget {
-  const TrophyAndRewards({
-    Key key,
-    this.mainAxisAlignment = MainAxisAlignment.spaceAround
-  }) : super(key: key);
+  const TrophyAndRewards(
+      {Key key, this.mainAxisAlignment = MainAxisAlignment.spaceAround})
+      : super(key: key);
 
   final MainAxisAlignment mainAxisAlignment;
 
   @override
   Widget build(BuildContext context) {
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Row(
@@ -183,15 +180,15 @@ class RewardLogo extends StatelessWidget {
           color: Color(0xff489fb5),
         ),
         child: Padding(
-          padding: EdgeInsets.only(
-              left: width * 0.03, right: width * 0.03),
-          child: isTrophy?Image.asset("assets/trophy.png"):SvgPicture.asset("assets/medal.svg"),
+          padding: EdgeInsets.only(left: width * 0.03, right: width * 0.03),
+          child: isTrophy
+              ? Image.asset("assets/trophy.png")
+              : SvgPicture.asset("assets/medal.svg"),
         ));
   }
 }
 
 class WhiteScreen extends StatelessWidget {
-
   ///Gives a white screen with some slight elevation as is used across the entire application.
   ///You need to pass a List of widgets (Similar to what you pass into column) [Widget1,Widget2]
   ///You can also pass a padding variable if you feel you want some padding on all sides
@@ -204,13 +201,12 @@ class WhiteScreen extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.mainAxisAlignment = MainAxisAlignment.spaceEvenly,
     this.children,
-
   }) : super(key: key);
 
   final double width;
   final double height;
   final double padding;
-  final double elevation ;
+  final double elevation;
   final MainAxisSize mainAxisSize;
   final MainAxisAlignment mainAxisAlignment;
   final List<Widget> children;
@@ -218,7 +214,7 @@ class WhiteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: width==null?MediaQuery.of(context).size.width * 0.80:width,
+        width: width == null ? MediaQuery.of(context).size.width * 0.80 : width,
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
@@ -244,7 +240,8 @@ class WhiteScreen extends StatelessWidget {
 class StdBackButton extends StatelessWidget {
   ///Use this for the default back button. Using this as the first element of your column will make it standard everywhere
   const StdBackButton({
-    Key key, this.onTap,
+    Key key,
+    this.onTap,
   }) : super(key: key);
 
   final Function onTap;
@@ -255,17 +252,14 @@ class StdBackButton extends StatelessWidget {
       child: IconButton(
           iconSize: 50,
           icon: Icon(Icons.chevron_left),
-          onPressed: onTap==null?() => Navigator.pop(context):onTap),
+          onPressed: onTap == null ? () => Navigator.pop(context) : onTap),
     );
   }
 }
 
 class SquareBlueButton extends StatelessWidget {
-  const SquareBlueButton({
-    Key key,
-    @required this.insideImageUrl,  this.onTap
-  }) : super(key: key);
-
+  const SquareBlueButton({Key key, @required this.insideImageUrl, this.onTap})
+      : super(key: key);
 
   final String insideImageUrl;
   final Function onTap;
@@ -273,12 +267,12 @@ class SquareBlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return Container(
-      height:width * 0.15,
-      width:width * 0.15,
+      height: width * 0.15,
+      width: width * 0.15,
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Color(0xff489fb5),
+              color: Color(0xff9400d3),
               blurRadius: 1.0, // soften the shadow
               spreadRadius: 1.0, //extend the shadow
               offset: Offset(
@@ -295,22 +289,22 @@ class SquareBlueButton extends StatelessWidget {
           style: ButtonStyle(
             shadowColor: MaterialStateProperty.all<Color>(Color(0xff489fb5)),
             elevation: MaterialStateProperty.resolveWith<double>(
-                  (Set<MaterialState> states) {
+              (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed)) return 0;
                 return 8; // Use the component's default.
               },
             ),
-            minimumSize:
-            MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+            minimumSize: MaterialStateProperty.all<Size>(
+                Size(width * 0.15, width * 0.15)),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                )),
+              borderRadius: BorderRadius.circular(20),
+            )),
             backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
+              (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed))
-                  return Color(0xfa489fb5);
-                return Color(0xff489fb5); // Use the component's default.
+                  return Color(0xFF9400d3);
+                return Color(0xFF9400d3); // Use the component's default.
               },
             ),
           ),
@@ -319,38 +313,35 @@ class SquareBlueButton extends StatelessWidget {
   }
 }
 
-
 class CircularOrangeButton extends StatelessWidget {
-  CircularOrangeButton({
-    Key key,
-    @required this.text,
-    @required this.enabled,
-    @required this.number,
-    this.light = false,
-    @required this.onTap
-  }) : super(key: key);
+  CircularOrangeButton(
+      {Key key,
+      @required this.text,
+      @required this.enabled,
+      @required this.number,
+      this.light = false,
+      @required this.onTap})
+      : super(key: key);
 
   final String text;
   final bool enabled;
-  final  bool number;
+  final bool number;
   final bool light;
   final Function onTap;
 
-  final ConfettiController confettiController = ConfettiController(duration : Duration(seconds:1));
-
+  final ConfettiController confettiController =
+      ConfettiController(duration: Duration(seconds: 1));
 
   @override
   Widget build(BuildContext context) {
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    if(light) confettiController.play();
+    if (light) confettiController.play();
     return ConfettiWidget(
         confettiController: confettiController,
         blastDirectionality: BlastDirectionality
             .explosive, // don't specify a direction, blast randomly
-        shouldLoop:
-        false, // start again as soon as the animation is finished
+        shouldLoop: false, // start again as soon as the animation is finished
         colors: const [
           Colors.green,
           Colors.blue,
@@ -358,7 +349,7 @@ class CircularOrangeButton extends StatelessWidget {
           Colors.orange,
           Colors.purple
         ],
-        child:  Container(
+        child: Container(
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -386,32 +377,30 @@ class CircularOrangeButton extends StatelessWidget {
                 shadowColor: MaterialStateProperty.all<Color>(
                     light ? Color(0xfffad207) : Color(0x66cb7703)),
                 elevation: MaterialStateProperty.resolveWith<double>(
-                      (Set<MaterialState> states) {
+                  (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) return 0;
                     return 8; // Use the component's default.
                   },
                 ),
-                minimumSize:
-                MaterialStateProperty.all<Size>(Size(width * 0.15, width * 0.15)),
+                minimumSize: MaterialStateProperty.all<Size>(
+                    Size(width * 0.15, width * 0.15)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    )),
+                  borderRadius: BorderRadius.circular(100),
+                )),
                 backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
+                  (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed))
                       return enabled ? Color(0xfafbc67e) : Color(0xfffbc67e);
                     return enabled
                         ? light
-                        ? Color(0xfafaf063)
-                        : Color(0xffffa62b)
+                            ? Color(0xfafaf063)
+                            : Color(0xffffa62b)
                         : Color(0xfffbc67e); // Use the component's default.
                   },
                 ),
               ),
-              onPressed: enabled?onTap:null),
+              onPressed: enabled ? onTap : null),
         ));
   }
 }
-
-

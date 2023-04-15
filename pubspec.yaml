@@ -79,3 +79,8 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
+  fonts:
+    - family: SofiaSansSemiCondensed-VariableFont_wght
+      fonts:
+        - asset: assets\fonts\SofiaSansSemiCondensed-VariableFont_wght.ttf
+
