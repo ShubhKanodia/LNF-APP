@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:learnnfun/DesignThinking/quiz/catchthenut.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
+Color primary = Color(0xff9400d3);
+Color secondary = Color(0xff16697a);
+
 class QuizIntro extends StatelessWidget {
   const QuizIntro({
     Key key,
@@ -24,7 +27,7 @@ class QuizIntro extends StatelessWidget {
         body: SafeArea(
           //child: Center(
           child: Container(
-            width:width,
+            width: width,
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -106,18 +109,18 @@ class QuizIntro extends StatelessWidget {
                       ),
                     ],
                   )*/
-                  WhiteScreen( height: height * 0.45, children: [
+                  WhiteScreen(height: height * 0.45, children: [
                     Text(name,
-                        style: GoogleFonts.quicksand(
-                            color: const Color(0xffffa62b),
+                        style: GoogleFonts.signika(
+                            color: primary,
                             fontWeight: FontWeight.w700,
                             fontStyle: FontStyle.normal,
                             fontSize: height * 0.05),
                         textAlign: TextAlign.center),
                     Text(
                       text2,
-                      style: GoogleFonts.quicksand(
-                          color: const Color(0xff16697a),
+                      style: GoogleFonts.signika(
+                          color: secondary,
                           fontWeight: FontWeight.w500,
                           fontStyle: FontStyle.normal,
                           fontSize: height * 0.028),
@@ -125,7 +128,7 @@ class QuizIntro extends StatelessWidget {
                     ),
                     Text(
                       text3,
-                      style: GoogleFonts.quicksand(
+                      style: GoogleFonts.signika(
                           color: const Color(0xff1a1b41),
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -133,12 +136,17 @@ class QuizIntro extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ]),
-                  StandardButton( text: "Let's Play!", onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => CatchTheNut(start: true),
-                        settings: RouteSettings(name: 'Tasks')),);
-                  })
+                  StandardButton(
+                      text: "Let's Play!",
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CatchTheNut(start: true),
+                              settings: RouteSettings(name: 'Tasks')),
+                        );
+                      })
                 ]),
           ),
         ));

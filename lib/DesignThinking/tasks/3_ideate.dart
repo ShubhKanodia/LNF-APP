@@ -18,6 +18,8 @@ class Ideate extends StatefulWidget {
 }
 
 class _IdeateState extends State<Ideate> {
+  Color primary = Color(0xff9400d3);
+  Color secondary = Color(0xff16697a);
   get currentPersona =>
       currentProgress.playingLevel2 ? currentPersonaL2 : currentPersonaL1;
   get score => currentProgress.playingLevel2 ? l2Score : l1Score;
@@ -91,12 +93,14 @@ class _IdeateState extends State<Ideate> {
           children: [
             Container(
                 height: height * 0.1,
+                padding:
+                    EdgeInsets.only(left: width * 0.1, right: width * 0.05),
                 decoration: BoxDecoration(color: Color(0xfff4f4f4)),
                 child: Row(
                   children: [
                     Text("Time left- $time seconds",
-                        style: GoogleFonts.quicksand(
-                            color: const Color(0xffffa62b),
+                        style: GoogleFonts.signika(
+                            color: primary,
                             fontWeight: FontWeight.w500,
                             fontStyle: FontStyle.normal,
                             fontSize: height * 0.04),
@@ -122,12 +126,13 @@ class _IdeateState extends State<Ideate> {
               ]),
             ),
             Container(
+              padding: EdgeInsets.only(left: width * 0.1, right: width * 0.05),
               width: width,
               height: height * 0.1,
               decoration: BoxDecoration(color: Color(0xfff4f4f4)),
               child: Text("Pop the bubbles with the best ideas",
-                  style: GoogleFonts.quicksand(
-                      color: const Color(0xffffa62b),
+                  style: GoogleFonts.signika(
+                      color: primary,
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.normal,
                       fontSize: height * 0.028),
@@ -153,8 +158,8 @@ class _IdeateState extends State<Ideate> {
             },
             color: colors[index],
             child: Text(text,
-                style: GoogleFonts.quicksand(
-                    color: const Color(0xff489fb5),
+                style: GoogleFonts.signika(
+                    color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: height * 0.02),
@@ -197,6 +202,8 @@ class _Ideate2State extends State<Ideate2> {
 
   @override
   Widget build(BuildContext context) {
+    Color primary = Color(0xff9400d3);
+    Color secondary = Color(0xff16697a);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -206,8 +213,8 @@ class _Ideate2State extends State<Ideate2> {
           children: [
             StdBackButton(),
             Text("Ideate",
-                style: GoogleFonts.quicksand(
-                    color: const Color(0xff489fb5),
+                style: GoogleFonts.signika(
+                    color: secondary,
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: height * 0.05)),
@@ -219,7 +226,7 @@ class _Ideate2State extends State<Ideate2> {
                   bottom: height * 0.001),
               child: Text(
                   "List all the ideas you come up with for gifts in the next 5 minutes. The timer will begin once you tap on the page.",
-                  style: GoogleFonts.quicksand(
+                  style: GoogleFonts.signika(
                       color: const Color(0xff1a1b41),
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -267,8 +274,8 @@ class _Ideate2State extends State<Ideate2> {
                           ? "Time left- ${(time ~/ 60)}:${(time % 60)} minutes"
                           : "Time left- ${(time ~/ 60)}:0${(time % 60)} minutes"
                       : "Time left- $time seconds",
-                  style: GoogleFonts.quicksand(
-                      color: const Color(0xffffa62b),
+                  style: GoogleFonts.signika(
+                      color: primary,
                       fontWeight: FontWeight.w500,
                       fontStyle: FontStyle.normal,
                       fontSize: height * 0.04),

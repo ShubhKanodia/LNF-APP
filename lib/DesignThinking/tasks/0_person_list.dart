@@ -42,7 +42,7 @@ class _PersonListState extends State<PersonList> {
                 ),
                 Text("Click on the person card to know more",
                     style: GoogleFonts.quicksand(
-                      color: Color(0xff16697A),
+                      color: Color(0xff9c27b0),
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     )),
@@ -98,7 +98,7 @@ class _PersonListState extends State<PersonList> {
                                                 " " +
                                                 person.lastName,
                                             style: GoogleFonts.quicksand(
-                                                color: const Color(0xff489fb5),
+                                                color: const Color(0xff9c27b0),
                                                 fontWeight: FontWeight.w700,
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: height * 0.02),
@@ -108,7 +108,7 @@ class _PersonListState extends State<PersonList> {
                                             maxLines: 2,
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.quicksand(
-                                                color: const Color(0xff16697a),
+                                                color: const Color(0xff9c27b0),
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: height * 0.02),
@@ -140,174 +140,177 @@ class _PersonPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return BackdropFilter(
-        filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-        child: Dialog(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(22),
+      filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+      child: Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        child: WhiteScreen(
+          height: MediaQuery.of(context).size.height * 0.7,
+          children: [
+            Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context))),
+            Row(
+              children: [
+                Container(
+                  height: height * 0.2,
+                  child: SvgPicture.asset(person.imageUrl),
+                ),
+                // Jessica Pearson
+                RichText(
+                    text: TextSpan(children: [
+                  TextSpan(
+                      style: GoogleFonts.quicksand(
+                          color: const Color(0xff9c27b0),
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height * 0.04),
+                      text: person.firstName + "\n"),
+                  TextSpan(
+                      style: GoogleFonts.quicksand(
+                          color: const Color(0xff9c27b0),
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: height * 0.03),
+                      text: person.lastName)
+                ]))
+              ],
             ),
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            child: WhiteScreen(
-                height: MediaQuery.of(context).size.height * 0.7,
-                children: [
-                  Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                          icon: Icon(Icons.close),
-                          onPressed: () => Navigator.pop(context))),
-                  Row(
-                    children: [
-                      Container(
-                        height: height * 0.2,
-                        child: SvgPicture.asset(person.imageUrl),
-                      ),
-                      // Jessica Pearson
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(
-                            style: GoogleFonts.quicksand(
-                                color: const Color(0xff489fb5),
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: height * 0.04),
-                            text: person.firstName + "\n"),
-                        TextSpan(
-                            style: GoogleFonts.quicksand(
-                                color: const Color(0xff489fb5),
-                                fontWeight: FontWeight.w400,
-                                fontStyle: FontStyle.normal,
-                                fontSize: height * 0.03),
-                            text: person.lastName)
-                      ]))
-                    ],
-                  ),
-                  Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Age:" + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              "Profession:" + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              "Likes:" + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              "Dislikes:" + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              "Hobbies:" + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                          ]),
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              person.age.toString() + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              person.profession + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              person.likes + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              person.dislikes + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                            Text(
-                              person.hobbies + "\n",
-                              style: GoogleFonts.quicksand(
-                                  color: const Color(0xff489fb5),
-                                  fontWeight: FontWeight.w400,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: height * 0.02),
-                            ),
-                          ])
-                    ],
-                  ),
-                  StandardButton(
-                      text: "Select Receiver",
-                      onTap: () {
-                        if (currentProgress.playingLevel2) {
-                          userDocReference.update(
-                              {"taskUnlocked": 9, "l2personIndex": index});
-                          currentPersonaL2 = person;
-                          currentProgress.taskUnlocked = 9;
-                          currentProgress.rewards += 1;
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TasksLevel2(),
-                                settings: RouteSettings(name: 'Tasks')),
-                            (Route<dynamic> route) => false,
-                          );
-                        } else {
-                          userDocReference.update(
-                              {"taskUnlocked": 1, "l1personIndex": index});
-                          currentPersonaL1 = person;
-                          currentProgress.taskUnlocked = 1;
-                          currentProgress.rewards = 1;
-                          currentProgress.trophies = 1;
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Tasks(),
-                                settings: RouteSettings(name: 'Tasks')),
-                            (Route<dynamic> route) => false,
-                          );
-                        }
-                      })
-                ])));
+                      Text(
+                        "Age:" + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        "Profession:" + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        "Likes:" + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        "Dislikes:" + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        "Hobbies:" + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                    ]),
+                Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        person.age.toString() + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        person.profession + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        person.likes + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        person.dislikes + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                      Text(
+                        person.hobbies + "\n",
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff9c27b0),
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.normal,
+                            fontSize: height * 0.02),
+                      ),
+                    ])
+              ],
+            ),
+            StandardButton(
+                text: "Select Receiver",
+                onTap: () {
+                  if (currentProgress.playingLevel2) {
+                    userDocReference
+                        .update({"taskUnlocked": 9, "l2personIndex": index});
+                    currentPersonaL2 = person;
+                    currentProgress.taskUnlocked = 9;
+                    currentProgress.rewards += 1;
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TasksLevel2(),
+                          settings: RouteSettings(name: 'Tasks')),
+                      (Route<dynamic> route) => false,
+                    );
+                  } else {
+                    userDocReference
+                        .update({"taskUnlocked": 1, "l1personIndex": index});
+                    currentPersonaL1 = person;
+                    currentProgress.taskUnlocked = 1;
+                    currentProgress.rewards = 1;
+                    currentProgress.trophies = 1;
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Tasks(),
+                          settings: RouteSettings(name: 'Tasks')),
+                      (Route<dynamic> route) => false,
+                    );
+                  }
+                })
+          ],
+        ),
+      ),
+    );
   }
 }

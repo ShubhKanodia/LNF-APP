@@ -14,6 +14,10 @@ import 'package:learnnfun/auth.dart';
 import '../data.dart';
 import '../widgets.dart';
 
+Color primary = Color(0xff9400d3);
+Color secondary = Color(0xff16697a);
+Color tertiary = Color.fromARGB(255, 230, 211, 238);
+
 class CatchTheNut extends StatefulWidget {
   CatchTheNut({Key key, @required this.start}) : super(key: key);
 
@@ -29,12 +33,13 @@ class _CatchTheNutState extends State<CatchTheNut> {
   NutDetails nut3 = NutDetails(3);
   bool correct;
   double height;
-  int currentOptionCount = 2; //Needs to be one less than the number of nuts defined
+  int currentOptionCount =
+      2; //Needs to be one less than the number of nuts defined
   final double speed = 1.6; //Keep value below 2
   final int timeLagInSeconds = 3;
 
   void initState() {
-    if(widget.start) {
+    if (widget.start) {
       nut1.visible = true;
       timer = Timer.periodic(Duration(milliseconds: 20), (timer) {
         if (mounted) {
@@ -60,16 +65,19 @@ class _CatchTheNutState extends State<CatchTheNut> {
         ///Control to finish
         if (!nut1.visible && !nut2.visible && !nut3.visible) {
           timer.cancel();
-          Future.delayed(Duration(seconds: correct==null?timeLagInSeconds:0), ()
-          {
+          Future.delayed(
+              Duration(seconds: correct == null ? timeLagInSeconds : 0), () {
             if (currentQuizProgress.currentQuestionNumber + 1 <
                 catchTheNutMap.length) {
               currentQuizProgress.currentQuestionNumber += 1;
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => CatchTheNut(start: true),
-                  settings: RouteSettings(name: 'Tasks')),);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CatchTheNut(start: true),
+                    settings: RouteSettings(name: 'Tasks')),
+              );
             } else {
-              if(currentProgress.playingLevel2){
+              if (currentProgress.playingLevel2) {
                 userDocReference.update({
                   "trophies": 2,
                   "taskUnlocked": 15,
@@ -80,7 +88,7 @@ class _CatchTheNutState extends State<CatchTheNut> {
                 currentProgress.rewards += currentQuizProgress.score;
                 currentProgress.trophies = 2;
                 l2Score.quiz = currentQuizProgress.score;
-              }else {
+              } else {
                 userDocReference.update({
                   "trophies": 1,
                   "taskUnlocked": 7,
@@ -92,9 +100,12 @@ class _CatchTheNutState extends State<CatchTheNut> {
                 currentProgress.trophies = 1;
                 l1Score.quiz = currentQuizProgress.score;
               }
-              Navigator.pushReplacement(context, MaterialPageRoute(
-                  builder: (context) => LevelEvaluation(),
-                  settings: RouteSettings(name: 'Tasks')),);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => LevelEvaluation(),
+                    settings: RouteSettings(name: 'Tasks')),
+              );
             }
           });
         }
@@ -106,21 +117,27 @@ class _CatchTheNutState extends State<CatchTheNut> {
           nut3.visible = true;
         });
       });
-    }else{
+    } else {
       WidgetsBinding.instance.addPostFrameCallback((_) async {
-        showDialog(context: context, builder: (context){
-          return QuizIntro(name: 'Catch the Correct Nuts',text2: "Match the following",text3: "Move the Squirrel to catch the correct answers!\n\nCatch all the correct answers to finish the game.",);
-        });
+        showDialog(
+            context: context,
+            builder: (context) {
+              return QuizIntro(
+                name: 'Catch the Correct Nuts',
+                text2: "Match the following",
+                text3:
+                    "Move the Squirrel to catch the correct answers!\n\nCatch all the correct answers to finish the game.",
+              );
+            });
       });
-
     }
     super.initState();
   }
 
   void nutHit(NutDetails nut) {
-    if(nut.correct){
+    if (nut.correct) {
       currentQuizProgress.score++;
-    }else{
+    } else {
       currentQuizProgress.score--;
     }
     print("Nut hit");
@@ -138,175 +155,176 @@ class _CatchTheNutState extends State<CatchTheNut> {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SafeArea(
+      child: Container(
+          decoration: new BoxDecoration(
+            image: new DecorationImage(
+              image: new AssetImage("assets/quiz/Background.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Container(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new AssetImage("assets/quiz/Background.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Container(
-                  child: Column(
+              child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      StdBackButton(),
-                      Container(
-                        alignment: Alignment.topRight,
-                        width: width * 0.5,
-                        height: height * 0.1,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Positioned(
-                                top: height * 0.04,
-                                right: -width * 0.06,
-                                child: Container(
-                                    height: height * 0.05,
-                                    width: width * 0.5,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(30)),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: const Color(0x6616697a),
-                                              offset: Offset(-4, 8),
-                                              blurRadius: 10,
-                                              spreadRadius: 0)
-                                        ],
-                                        color: const Color(0xffffffff)),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: width * 0.05,
-                                          top: height * 0.025),
-                                      child: Text(
-                                        "Catch the nuts",
-                                        style: GoogleFonts.quicksand(
-                                            color: const Color(0xff000000),
-                                            fontWeight: FontWeight.w700,
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: height * 0.015),
-                                      ),
-                                    ))),
-                            Positioned(
-                              top: height * 0.01,
-                              right: -width * 0.03,
-                              child: Container(
-                                  height: height * 0.05,
-                                  width: width * 0.5,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(25)),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: const Color(0xb216697a),
-                                            offset: Offset(-4, 4),
-                                            blurRadius: 8,
-                                            spreadRadius: 0)
-                                      ],
-                                      color: const Color(0xff16697a)),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: width * 0.05, top: height * 0.005),
-                                    child: Text(
-                                      "Have Fun",
-                                      style: GoogleFonts.quicksand(
-                                          color: const Color(0xffffffff),
-                                          fontWeight: FontWeight.w700,
-                                          fontStyle: FontStyle.normal,
-                                          fontSize: height * 0.03),
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.31, vertical: height * 0.04),
-                    child: Text(
-                        catchTheNutMap.entries.elementAt(currentQuizProgress.currentQuestionNumber).key,
-                        style: GoogleFonts.quicksand(
-                            color: const Color(0xff1a1b41),
-                            fontWeight: FontWeight.w500,
-                            fontStyle: FontStyle.normal,
-                            fontSize: height * 0.023),
-                        textAlign: TextAlign.center),
-                  ),
-                  Expanded(
+                  StdBackButton(),
+                  Container(
+                    alignment: Alignment.topRight,
+                    width: width * 0.5,
+                    height: height * 0.1,
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
                         Positioned(
-                          left: width * 0.6,
-                          top: nut1.top,
-                          child: Visibility(
-                            visible: nut1.visible,
-                            child: Transform.rotate(
-                                angle: nut1.angle,
-                                child: _Nut(
-                                    height: height, nut: nut1, nutHit: nutHit)),
-                          ),
-                        ),
+                            top: height * 0.04,
+                            right: -width * 0.06,
+                            child: Container(
+                                height: height * 0.05,
+                                width: width * 0.5,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: const Color(0x6616697a),
+                                          offset: Offset(-4, 8),
+                                          blurRadius: 10,
+                                          spreadRadius: 0)
+                                    ],
+                                    color: const Color(0xffffffff)),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.05, top: height * 0.025),
+                                  child: Text(
+                                    "Catch the nuts",
+                                    style: GoogleFonts.signika(
+                                        color: const Color(0xff000000),
+                                        fontWeight: FontWeight.w700,
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: height * 0.015),
+                                  ),
+                                ))),
                         Positioned(
-                          left: width * 0.4,
-                          top: nut2.top,
-                          child: Visibility(
-                            visible: nut2.visible,
-                            child: Transform.rotate(
-                                angle: nut2.angle,
-                                child: _Nut(
-                                    height: height, nut: nut2, nutHit: nutHit)),
-                          ),
-                        ),
-                        Positioned(
-                          left: width * 0.1,
-                          top: nut3.top,
-                          child: Visibility(
-                            visible: nut3.visible,
-                            child: Transform.rotate(
-                                angle: nut3.angle,
-                                child: _Nut(
-                                    height: height, nut: nut3, nutHit: nutHit)),
-                          ),
-                        ),
-                        Positioned(
-                          right:-10,
-                          top:0,
-                          child: QuizProgressBar(width: width, height: height)),
-                        // Ellipse 42
-                        Positioned(
-                          bottom: 0,
-                          child: Draggable(
-                              axis: Axis.horizontal,
-                              data: true,
-                              childWhenDragging: Container(),
-                              feedback: SvgPicture.asset(
-                                "assets/quiz/squirrel.svg",
-                                height: height * 0.2,
-                              ),
-                              child: SvgPicture.asset(
-                                "assets/quiz/squirrel.svg",
-                                height: height * 0.2,
+                          top: height * 0.01,
+                          right: -width * 0.03,
+                          child: Container(
+                              height: height * 0.05,
+                              width: width * 0.5,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(25)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: const Color(0xb216697a),
+                                        offset: Offset(-4, 4),
+                                        blurRadius: 8,
+                                        spreadRadius: 0)
+                                  ],
+                                  color: const Color(0xff16697a)),
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: width * 0.05, top: height * 0.005),
+                                child: Text(
+                                  "Have Fun",
+                                  style: GoogleFonts.signika(
+                                      color: const Color(0xffffffff),
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: height * 0.03),
+                                ),
                               )),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          child: Visibility(
-                            visible: correct != null,
-                            child: _AnswerBar(
-                                width: width, height: height, correct: correct),
-                          ),
                         ),
                       ],
                     ),
                   ),
                 ],
-              ))),
-        ));
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: width * 0.31, vertical: height * 0.04),
+                child: Text(
+                    catchTheNutMap.entries
+                        .elementAt(currentQuizProgress.currentQuestionNumber)
+                        .key,
+                    style: GoogleFonts.signika(
+                        color: const Color(0xff1a1b41),
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.normal,
+                        fontSize: height * 0.023),
+                    textAlign: TextAlign.center),
+              ),
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Positioned(
+                      left: width * 0.6,
+                      top: nut1.top,
+                      child: Visibility(
+                        visible: nut1.visible,
+                        child: Transform.rotate(
+                            angle: nut1.angle,
+                            child: _Nut(
+                                height: height, nut: nut1, nutHit: nutHit)),
+                      ),
+                    ),
+                    Positioned(
+                      left: width * 0.4,
+                      top: nut2.top,
+                      child: Visibility(
+                        visible: nut2.visible,
+                        child: Transform.rotate(
+                            angle: nut2.angle,
+                            child: _Nut(
+                                height: height, nut: nut2, nutHit: nutHit)),
+                      ),
+                    ),
+                    Positioned(
+                      left: width * 0.1,
+                      top: nut3.top,
+                      child: Visibility(
+                        visible: nut3.visible,
+                        child: Transform.rotate(
+                            angle: nut3.angle,
+                            child: _Nut(
+                                height: height, nut: nut3, nutHit: nutHit)),
+                      ),
+                    ),
+                    Positioned(
+                        right: -10,
+                        top: 0,
+                        child: QuizProgressBar(width: width, height: height)),
+                    // Ellipse 42
+                    Positioned(
+                      bottom: 0,
+                      child: Draggable(
+                          axis: Axis.horizontal,
+                          data: true,
+                          childWhenDragging: Container(),
+                          feedback: SvgPicture.asset(
+                            "assets/quiz/squirrel.svg",
+                            height: height * 0.2,
+                          ),
+                          child: SvgPicture.asset(
+                            "assets/quiz/squirrel.svg",
+                            height: height * 0.2,
+                          )),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      child: Visibility(
+                        visible: correct != null,
+                        child: _AnswerBar(
+                            width: width, height: height, correct: correct),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ))),
+    ));
   }
 }
 
@@ -323,9 +341,9 @@ class QuizProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:width*0.2,
-      height:height*0.4,
-        /*decoration: BoxDecoration(
+      width: width * 0.2,
+      height: height * 0.4,
+      /*decoration: BoxDecoration(
           boxShadow: [BoxShadow(
               color: const Color(0x33000000),
               offset: Offset(2,4),
@@ -338,36 +356,29 @@ class QuizProgressBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius:
-              BorderRadius.all(Radius.circular(100)),
+              borderRadius: BorderRadius.all(Radius.circular(100)),
               child: Container(
-                  width: width*0.1,
-                  height: width*0.1,
+                  width: width * 0.1,
+                  height: width * 0.1,
                   decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color(0xffffa62b),
-                          width: 4
-                      ),
-                      boxShadow: [BoxShadow(
-                          color: const Color(0x40000000),
-                          offset: Offset(3,4),
-                          blurRadius: 8,
-                          spreadRadius: 0
-                      )] ,
-                      color: const Color(0xffffa62b)
-                  )
-              ),
+                      border: Border.all(color: primary, width: 4),
+                      boxShadow: [
+                        BoxShadow(
+                            color: const Color(0x40000000),
+                            offset: Offset(3, 4),
+                            blurRadius: 8,
+                            spreadRadius: 0)
+                      ],
+                      color: primary)),
             ),
             Expanded(
               child: ClipRRect(
-                  borderRadius:
-                  BorderRadius.all(Radius.circular(15)),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
                 child: LinearProgressIndicator(
-                  minHeight: height*0.02,
-                  backgroundColor: Color(0xfff8eddf),
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Color(0xffffa62b)),
-                  value: currentQuizProgress.score /totalQuizPossibleScore,
+                  minHeight: height * 0.02,
+                  backgroundColor: tertiary,
+                  valueColor: AlwaysStoppedAnimation<Color>(primary),
+                  value: currentQuizProgress.score / totalQuizPossibleScore,
                 ),
               ),
             ),
@@ -411,7 +422,7 @@ class _AnswerBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Text("You’re Right!",
-                style: GoogleFonts.quicksand(
+                style: GoogleFonts.signika(
                     color: const Color(0xffffffff),
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
@@ -439,7 +450,7 @@ class _AnswerBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Text("Oh no! That's wrong",
-                style: GoogleFonts.quicksand(
+                style: GoogleFonts.signika(
                     color: const Color(0xffffffff),
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
@@ -476,7 +487,7 @@ class _Nut extends StatelessWidget {
         return Column(
           children: [
             Text(nut.name,
-                style: GoogleFonts.quicksand(
+                style: GoogleFonts.signika(
                     color: const Color(0xff1a1b41),
                     fontWeight: FontWeight.w500,
                     fontStyle: FontStyle.normal,
@@ -502,8 +513,9 @@ class NutDetails {
   double angle;
 
   NutDetails(this.number) {
-    Map<String, bool> currentQuestion =
-        catchTheNutMap.entries.elementAt(currentQuizProgress.currentQuestionNumber).value;
+    Map<String, bool> currentQuestion = catchTheNutMap.entries
+        .elementAt(currentQuizProgress.currentQuestionNumber)
+        .value;
     this.name = currentQuestion.keys.elementAt(number - 1);
     this.top = 0;
     this.visible = false;
@@ -512,13 +524,14 @@ class NutDetails {
   }
 
   void next(int currentOptionCount) {
-    Map<String, bool> currentQuestion =
-        catchTheNutMap.entries.elementAt(currentQuizProgress.currentQuestionNumber).value;
+    Map<String, bool> currentQuestion = catchTheNutMap.entries
+        .elementAt(currentQuizProgress.currentQuestionNumber)
+        .value;
     if (currentOptionCount + 1 < currentQuestion.keys.length) {
       this.name = currentQuestion.keys.elementAt(currentOptionCount + 1);
       this.correct = currentQuestion[this.name];
       this.top = 0;
-      this.angle = Random().nextDouble() * (Random().nextBool()?-1:1);
+      this.angle = Random().nextDouble() * (Random().nextBool() ? -1 : 1);
       this.visible = true;
     } else {
       this.top = 0;

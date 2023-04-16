@@ -1,4 +1,4 @@
-  import 'dart:ui';
+import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +9,9 @@ import 'package:learnnfun/DesignThinking/commonPages/informationCard.dart';
 import 'package:learnnfun/DesignThinking/widgets.dart';
 
 import '../Persona.dart';
+
+Color primary = Color(0xff9400d3);
+Color secondary = Color(0xff1e88e5);
 
 class EmpathizeOneOne extends StatefulWidget {
   EmpathizeOneOne({Key key}) : super(key: key);
@@ -55,9 +58,9 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                   Padding(
                     padding: EdgeInsets.only(left: width * 0.13),
                     child: Text("Empathise",
-                        style: GoogleFonts.quicksand(
+                        style: GoogleFonts.signika(
                             textStyle: TextStyle(
-                                color: const Color(0xff489fb5),
+                                color: const Color(0xff9400d3),
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                                 fontSize: height * 0.05)),
@@ -75,7 +78,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                           width: width * 0.15,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xffffa62b),
+                            color: Color(0xFF9c27b0),
                           ),
                           child: Padding(
                             padding: EdgeInsets.only(
@@ -112,6 +115,10 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                 ),
                               ),
                             ),
+                            Divider(
+                              thickness: height * 0.001,
+                              color: Colors.black,
+                            ),
                             Expanded(
                               child: ListView.builder(
                                 shrinkWrap: true,
@@ -139,7 +146,8 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                               ? Colors.white
                                               : questionSelected[0] ==
                                                       currentPersona.chat[index]
-                                                  ? Colors.green
+                                                  ? Color(0xFF9c27b0)
+                                                  // ? Colors.green
                                                   : Colors.white,
                                           child: Padding(
                                             padding: EdgeInsets.only(
@@ -148,8 +156,18 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                 left: width * 0.01),
                                             child: Text(question.quesText,
                                                 style: GoogleFonts.quicksand(
-                                                    color:
-                                                        const Color(0xff1a1b41),
+                                                    color: questionSelected
+                                                            .isEmpty
+                                                        ? Colors
+                                                            .black // Default color
+                                                        : questionSelected[0] ==
+                                                                currentPersona
+                                                                    .chat[index]
+                                                            ? Colors
+                                                                .white // Color when selected
+                                                            : Colors.black,
+                                                    // color:
+                                                    //     const Color(0xff1a1b41),
                                                     fontStyle: FontStyle.normal,
                                                     fontSize: height * 0.018),
                                                 textAlign: TextAlign.center),
@@ -183,20 +201,18 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                       top: height * 0.02,
                       bottom: height * 0.02,
                     ),
-                    child: Column(
-                        children: [
+                    child: Column(children: [
                       //2
                       Padding(
                         padding: EdgeInsets.only(
-                          bottom: height * 0.02,
-                        ),
+                            bottom: height * 0.02, left: width * 0.04),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex:6,
+                              flex: 6,
                               child: Container(
-                                padding: EdgeInsets.all(height*0.01),
+                                padding: EdgeInsets.all(height * 0.01),
                                 decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(12)),
@@ -209,20 +225,20 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                     ],
                                     color: const Color(0xffffffff)),
                                 child: Padding(
-                                      padding: EdgeInsets.only(
-                                        left: width * 0.03,
-                                        right: width * 0.03,
-                                        top: height * 0.01,
-                                      ),
-                                      child: Text(
-                                        qSel.quesText,
-                                        textAlign: TextAlign.left,
-                                        style: GoogleFonts.quicksand(
-                                          color: Color(0xff1a1b41),
-                                          fontSize: height * 0.018,
-                                        ),
-                                      ),
+                                  padding: EdgeInsets.only(
+                                    left: width * 0.03,
+                                    right: width * 0.03,
+                                    top: height * 0.01,
+                                  ),
+                                  child: Text(
+                                    qSel.quesText,
+                                    textAlign: TextAlign.left,
+                                    style: GoogleFonts.quicksand(
+                                      color: Color(0xff1a1b41),
+                                      fontSize: height * 0.018,
                                     ),
+                                  ),
+                                ),
                               ),
                             ),
                             Expanded(
@@ -232,7 +248,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                 width: width * 0.15,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Color(0xff489fb5),
+                                  color: Color(0xff1e88e5),
                                 ),
                               ),
                             ),
@@ -250,7 +266,7 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                   width: width * 0.15,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color(0xffffa62b),
+                                    color: primary,
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.only(
@@ -290,6 +306,10 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                         ),
                                       ),
                                     ),
+                                    Divider(
+                                      thickness: height * 0.001,
+                                      color: Colors.black,
+                                    ),
                                     qSel.qFollowUp != null
                                         ? Expanded(
                                             child: ListView.builder(
@@ -321,31 +341,41 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                                         color: questionSelected
                                                                 .contains(
                                                                     question)
-                                                            ? Colors.green
+                                                            ? primary
                                                             : Colors.white,
                                                         child: Padding(
-                                                            padding: EdgeInsets.only(
-                                                                top: height *
-                                                                    0.016,
-                                                                bottom: height *
-                                                                    0.016,
-                                                                left: width *
-                                                                    0.01),
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: height *
+                                                                        0.016,
+                                                                    bottom:
+                                                                        height *
+                                                                            0.016,
+                                                                    left: width *
+                                                                        0.01),
                                                             child: Text(
                                                                 question
                                                                     .quesText,
-                                                                style: GoogleFonts.quicksand(
-                                                                    color:
-                                                                        const Color(
-                                                                            0xff1a1b41),
-                                                                    fontStyle:
-                                                                        FontStyle
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        height *
-                                                                            0.018),
-                                                                textAlign: TextAlign
-                                                                    .center)),
+                                                                style: GoogleFonts
+                                                                    .quicksand(
+                                                                        color: questionSelected.contains(
+                                                                                question)
+                                                                            ? Colors
+                                                                                .white // Color when selected
+                                                                            : Colors
+                                                                                .black,
+                                                                        // color:
+                                                                        //     const Color(
+                                                                        //         0xff1a1b41),
+                                                                        fontStyle:
+                                                                            FontStyle
+                                                                                .normal,
+                                                                        fontSize:
+                                                                            height *
+                                                                                0.018),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center)),
                                                       ),
                                                       Divider(
                                                         thickness:
@@ -357,43 +387,51 @@ class _EmpathizeOneOne extends State<EmpathizeOneOne> {
                                               },
                                             ),
                                           )
-                                        : StandardButton(
-                                            text: "Continue",
-                                            onTap: () {
-                                              score.task[1] =
-                                                  currentPersona.taskMax[1] -
+                                        : Padding(
+                                            padding: EdgeInsets.only(
+                                                top: height * 0.02),
+                                            child: StandardButton(
+                                                text: "Continue",
+                                                onTap: () {
+                                                  score.task[1] = currentPersona
+                                                          .taskMax[1] -
                                                       questionSelected.length;
-                                              if (currentProgress
-                                                  .playingLevel2) {
-                                                userDocReference.update({
-                                                  "rewards": FieldValue.increment(1),
-                                                  "taskUnlocked": 10,
-                                                  "L2T1": score.task[1]
-                                                });
-                                                currentProgress.taskUnlocked =
-                                                    10;
-                                                currentProgress.rewards += 1;
-                                              } else {
-                                                userDocReference.update({
-                                                  "rewards": 1,
-                                                  "taskUnlocked": 2,
-                                                  "L1T1": score.task[1]
-                                                });
-                                                currentProgress.taskUnlocked =
-                                                    2;
-                                                currentProgress.rewards = 1;
-                                              }
+                                                  if (currentProgress
+                                                      .playingLevel2) {
+                                                    userDocReference.update({
+                                                      "rewards":
+                                                          FieldValue.increment(
+                                                              1),
+                                                      "taskUnlocked": 10,
+                                                      "L2T1": score.task[1]
+                                                    });
+                                                    currentProgress
+                                                        .taskUnlocked = 10;
+                                                    currentProgress.rewards +=
+                                                        1;
+                                                  } else {
+                                                    userDocReference.update({
+                                                      "rewards": 1,
+                                                      "taskUnlocked": 2,
+                                                      "L1T1": score.task[1]
+                                                    });
+                                                    currentProgress
+                                                        .taskUnlocked = 2;
+                                                    currentProgress.rewards = 1;
+                                                  }
 
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          InformationCard(
-                                                              cardNumber: 0),
-                                                      settings: RouteSettings(
-                                                          name:
-                                                              'Actual game')));
-                                            }),
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              InformationCard(
+                                                                  cardNumber:
+                                                                      0),
+                                                          settings: RouteSettings(
+                                                              name:
+                                                                  'Actual game')));
+                                                }),
+                                          ),
                                   ],
                                 ),
                               ),
