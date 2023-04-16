@@ -26,7 +26,7 @@ class StandardButton extends StatelessWidget {
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Color(0xffca7602),
+              color: Color(0xffa020f0),
               blurRadius: 0.0, // soften the shadow
               spreadRadius: 1.0, //extend the shadow
               offset: Offset(
@@ -35,9 +35,9 @@ class StandardButton extends StatelessWidget {
               ),
             )
           ],
-          color: Color(0xffffa62b),
+          color: Color(0xff9c27b0),
           border: Border.all(
-            color: Color(0xffffa62b),
+            color: Color(0xff9c27b0),
           ),
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: ElevatedButton(
@@ -48,7 +48,7 @@ class StandardButton extends StatelessWidget {
                   fontSize: height * 0.03),
               textAlign: TextAlign.left),
           style: ButtonStyle(
-            shadowColor: MaterialStateProperty.all<Color>(Color(0xffcb7703)),
+            shadowColor: MaterialStateProperty.all<Color>(Color(0xff5946b2)),
             elevation: MaterialStateProperty.resolveWith<double>(
               (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed)) return 0;
@@ -64,8 +64,8 @@ class StandardButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.resolveWith<Color>(
               (Set<MaterialState> states) {
                 if (states.contains(MaterialState.pressed))
-                  return Color(0xfaffa62b);
-                return Color(0xffffa62b); // Use the component's default.
+                  return Color(0xff8a72be);
+                return Color(0xff8a72be); // Use the component's default.
               },
             ),
           ),
@@ -107,7 +107,7 @@ class TrophyAndRewards extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(currentProgress.trophies.toString(),
-                    style: GoogleFonts.quicksand(
+                    style: GoogleFonts.signika(
                       color: Color(0xff16697a),
                       fontSize: height * 0.045,
                       fontWeight: FontWeight.w500,
@@ -136,7 +136,7 @@ class TrophyAndRewards extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Text(currentProgress.rewards.toString(),
-                    style: GoogleFonts.quicksand(
+                    style: GoogleFonts.signika(
                       color: Color(0xff16697a),
                       fontSize: height * 0.045,
                       fontWeight: FontWeight.w500,

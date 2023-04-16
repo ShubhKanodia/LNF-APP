@@ -16,10 +16,8 @@ class TaskCompleted extends StatefulWidget {
 }
 
 class _TaskCompletedState extends State<TaskCompleted> {
-
   void initState() {
     super.initState();
-
   }
 
   @override
@@ -33,7 +31,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f4),
+      backgroundColor: Color(0xffffffff),
       body: SafeArea(
         child: Center(
 
@@ -43,7 +41,7 @@ class _TaskCompletedState extends State<TaskCompleted> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TrophyAndRewards(),
-            WhiteScreen( height: height * 0.6, children: [
+            WhiteScreen(height: height * 0.6, children: [
               Container(
                 height: height * 0.2,
                 width: width * 0.6,
@@ -51,9 +49,14 @@ class _TaskCompletedState extends State<TaskCompleted> {
                   fit: BoxFit.cover,
                   child: Padding(
                       padding: EdgeInsets.only(
-                          left: width * 0.05, right: width * 0.05, top: height*0.2),
+                          left: width * 0.05,
+                          right: width * 0.05,
+                          top: height * 0.2),
                       child: widget.isTask
-                          ? Image.asset("assets/taskdone.png", height:height*0.5,)
+                          ? Image.asset(
+                              "assets/taskdone.png",
+                              height: height * 0.5,
+                            )
                           : Image.asset("assets/awardGuy.png")),
                 ),
               ),
@@ -66,58 +69,59 @@ class _TaskCompletedState extends State<TaskCompleted> {
                   Text(
                     widget.isTask ? "Task Completed" : "Level Completed",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.quicksand(
-                      color: Color(0xff489fb5),
+                    style: GoogleFonts.signika(
+                      color: Color(0xff7851a9),
                       fontSize: height * 0.04,
                     ),
                   ),
                   Text(
                     "YAY!",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.quicksand(
-                        color: Color(0xff489fb5),
+                    style: GoogleFonts.signika(
+                        color: Color(0xff7851a9),
                         fontSize: height * 0.04,
                         fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ]),
-            StandardButton( text: "Continue", onTap: () {
-              if (currentProgress.taskUnlocked==6 ){
-                currentQuizProgress.reset();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CatchTheNut(start:false),
-                      settings: RouteSettings(name: 'Tasks')),
+            StandardButton(
+                text: "Continue",
+                onTap: () {
+                  if (currentProgress.taskUnlocked == 6) {
+                    currentQuizProgress.reset();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CatchTheNut(start: false),
+                          settings: RouteSettings(name: 'Tasks')),
                       (Route<dynamic> route) => false,
-                );
-              }
-              else if(widget.isTask && currentProgress.playingLevel2)
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TasksLevel2(),
-                      settings: RouteSettings(name: 'Tasks Level 2')),
-                  (Route<dynamic> route) => false,
-                );
-              else if(widget.isTask)
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Tasks(),
-                      settings: RouteSettings(name: 'Tasks')),
+                    );
+                  } else if (widget.isTask && currentProgress.playingLevel2)
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TasksLevel2(),
+                          settings: RouteSettings(name: 'Tasks Level 2')),
                       (Route<dynamic> route) => false,
-                );
-              else
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Levels(),
-                      settings: RouteSettings(name: 'Levels')),
-                  (Route<dynamic> route) => false,
-                );
-            })
+                    );
+                  else if (widget.isTask)
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Tasks(),
+                          settings: RouteSettings(name: 'Tasks')),
+                      (Route<dynamic> route) => false,
+                    );
+                  else
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Levels(),
+                          settings: RouteSettings(name: 'Levels')),
+                      (Route<dynamic> route) => false,
+                    );
+                })
           ],
         )),
       ),
@@ -126,4 +130,3 @@ class _TaskCompletedState extends State<TaskCompleted> {
     );
   }
 }
-

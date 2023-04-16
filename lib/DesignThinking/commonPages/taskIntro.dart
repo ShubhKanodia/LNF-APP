@@ -9,15 +9,18 @@ import '../data.dart';
 class TaskIntro extends StatefulWidget {
   final int taskNumber;
 
-  TaskIntro({Key key, @required this.taskNumber, }) : super(key: key);
+  TaskIntro({
+    Key key,
+    @required this.taskNumber,
+  }) : super(key: key);
 
   @override
   _TaskIntroState createState() => _TaskIntroState();
 }
 
 class _TaskIntroState extends State<TaskIntro> {
-  get pageContent => currentProgress.playingLevel2?taskIntroData2:taskIntroData;
-
+  get pageContent =>
+      currentProgress.playingLevel2 ? taskIntroData2 : taskIntroData;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class _TaskIntroState extends State<TaskIntro> {
               padding: EdgeInsets.only(left: width * 0.25),
               child: Text(
                 pageContent[widget.taskNumber][0],
-                style: GoogleFonts.quicksand(
+                style: GoogleFonts.signika(
                     color: const Color(0xff202842),
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -49,8 +52,8 @@ class _TaskIntroState extends State<TaskIntro> {
           ]),
           Text(
             pageContent[widget.taskNumber][1],
-            style: GoogleFonts.quicksand(
-                color: const Color(0xff489fb5),
+            style: GoogleFonts.signika(
+                color: const Color(0xff8a72be),
                 fontWeight: FontWeight.w700,
                 fontStyle: FontStyle.normal,
                 fontSize: height * 0.05),
@@ -61,7 +64,7 @@ class _TaskIntroState extends State<TaskIntro> {
               child: Text(
                 pageContent[widget.taskNumber][2],
                 maxLines: null,
-                style: GoogleFonts.quicksand(
+                style: GoogleFonts.signika(
                     color: const Color(0xff1a1b41),
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -70,57 +73,57 @@ class _TaskIntroState extends State<TaskIntro> {
               )),
           Padding(
             padding: EdgeInsets.only(top: height * 0.03),
-            child: WhiteScreen(
-                height: height * 0.65,
-                padding: 14,
-                children: [
-                  Text(
-                    "Instructions",
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff16697a),
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.normal,
-                        fontSize: height * 0.04),
-                  ),
-                  Text(
-                    pageContent[widget.taskNumber][3],
-                    maxLines: null,
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff1a1b41),
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: height * 0.025),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    pageContent[widget.taskNumber][4],
-                    maxLines: null,
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff1a1b41),
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: height * 0.025),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    pageContent[widget.taskNumber][5],
-                    maxLines: null,
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xff1a1b41),
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: height * 0.025),
-                    textAlign: TextAlign.center,
-                  ),
-                  StandardButton( text: "Continue", onTap: () {
-                      Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => pageContent[widget.taskNumber][6],
-                        settings: RouteSettings(name: 'Actual game')),
-                  );
+            child: WhiteScreen(height: height * 0.65, padding: 14, children: [
+              Text(
+                "Instructions",
+                style: GoogleFonts.signika(
+                    color: const Color(0xff8a72be),
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.04),
+              ),
+              Text(
+                pageContent[widget.taskNumber][3],
+                maxLines: null,
+                style: GoogleFonts.signika(
+                    color: const Color(0xff1a1b41),
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.025),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                pageContent[widget.taskNumber][4],
+                maxLines: null,
+                style: GoogleFonts.signika(
+                    color: const Color(0xff1a1b41),
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.025),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                pageContent[widget.taskNumber][5],
+                maxLines: null,
+                style: GoogleFonts.signika(
+                    color: const Color(0xff1a1b41),
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: height * 0.025),
+                textAlign: TextAlign.center,
+              ),
+              StandardButton(
+                  text: "Continue",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              pageContent[widget.taskNumber][6],
+                          settings: RouteSettings(name: 'Actual game')),
+                    );
                   })
-                ]),
+            ]),
           )
         ])));
   }

@@ -11,37 +11,40 @@ import 'package:learnnfun/auth.dart';
 import '../Persona.dart';
 
 class Basketball extends StatefulWidget {
-
   @override
   _BasketballState createState() => _BasketballState();
 }
 
 class _BasketballState extends State<Basketball> {
-  get currentPersona => currentProgress.playingLevel2?currentPersonaL2:currentPersonaL1;
-  get score => currentProgress.playingLevel2?l2Score:l1Score;
-  int hoopsLeft = currentProgress.playingLevel2?currentPersonaL2.likeChoices.length:currentPersonaL1.likeChoices.length;
+  get currentPersona =>
+      currentProgress.playingLevel2 ? currentPersonaL2 : currentPersonaL1;
+  get score => currentProgress.playingLevel2 ? l2Score : l1Score;
+  int hoopsLeft = currentProgress.playingLevel2
+      ? currentPersonaL2.likeChoices.length
+      : currentPersonaL1.likeChoices.length;
 
   int points = 0;
 
   void checkHoop(bool left) {
     ///Left is whether the left hoop is activated.
     /// If the left hoop is activated, need to check if first is correct, otherwise last
-    if (left && currentPersona
-            .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
-        currentPersona
-            .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
-            .keys
-            .first] ||
-            !left && currentPersona
-                .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
+    if (left &&
             currentPersona
-                .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
-                .keys
-                .last ]) points++;
+                    .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
+                currentPersona
+                    .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
+                    .keys
+                    .first] ||
+        !left &&
+            currentPersona
+                    .likeChoices[currentPersona.likeChoices.length - hoopsLeft][
+                currentPersona
+                    .likeChoices[currentPersona.likeChoices.length - hoopsLeft]
+                    .keys
+                    .last]) points++;
     if (hoopsLeft == 1) {
-
       score.task[2] = points;
-      if(currentProgress.playingLevel2){
+      if (currentProgress.playingLevel2) {
         userDocReference.update({
           "rewards": FieldValue.increment(points),
           "taskUnlocked": 11,
@@ -49,7 +52,7 @@ class _BasketballState extends State<Basketball> {
         });
         currentProgress.taskUnlocked = 11;
         currentProgress.rewards += points;
-      }else{
+      } else {
         userDocReference.update({
           "rewards": FieldValue.increment(points),
           "taskUnlocked": 3,
@@ -58,7 +61,6 @@ class _BasketballState extends State<Basketball> {
         currentProgress.taskUnlocked = 3;
         currentProgress.rewards += points;
       }
-
 
       Navigator.push(
           context,
@@ -83,7 +85,7 @@ class _BasketballState extends State<Basketball> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        backgroundColor: Color(0xfff4f4f4),
+        backgroundColor: Color(0xffffffff),
         body: SafeArea(
             child: Column(children: [
           Row(
@@ -93,8 +95,8 @@ class _BasketballState extends State<Basketball> {
               Padding(
                 padding: EdgeInsets.only(left: width * 0.06),
                 child: Text("Hoops left - $hoopsLeft",
-                    style: GoogleFonts.quicksand(
-                        color: const Color(0xffffa62b),
+                    style: GoogleFonts.signika(
+                        color: const Color(0xff9c27b0),
                         fontWeight: FontWeight.w500,
                         fontStyle: FontStyle.normal,
                         fontSize: height * 0.03),
@@ -119,8 +121,8 @@ class _BasketballState extends State<Basketball> {
                               currentPersona.likeChoices.length - hoopsLeft]
                           .keys
                           .first,
-                      style: GoogleFonts.quicksand(
-                          color: const Color(0xff489fb5),
+                      style: GoogleFonts.signika(
+                          color: const Color(0xff9c27b0),
                           fontWeight: FontWeight.w700,
                           fontStyle: FontStyle.normal,
                           fontSize: height * 0.03),
@@ -147,8 +149,8 @@ class _BasketballState extends State<Basketball> {
                               currentPersona.likeChoices.length - hoopsLeft]
                           .keys
                           .last,
-                      style: GoogleFonts.quicksand(
-                          color: Color(0xff489fb5),
+                      style: GoogleFonts.signika(
+                          color: Color(0xff9c27b0),
                           fontWeight: FontWeight.w700,
                           fontStyle: FontStyle.normal,
                           fontSize: height * 0.03),
@@ -174,8 +176,8 @@ class _BasketballState extends State<Basketball> {
             padding: EdgeInsets.symmetric(vertical: height * 0.1),
             child: Text(
               "Drag to Shoot",
-              style: GoogleFonts.quicksand(
-                  color: const Color(0xff1a1b41),
+              style: GoogleFonts.signika(
+                  color: const Color(0xffa689e1),
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                   fontSize: height * 0.03),
