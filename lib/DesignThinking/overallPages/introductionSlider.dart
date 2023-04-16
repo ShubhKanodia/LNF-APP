@@ -87,9 +87,9 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
                     child: Text(
                       "Learn N Fun",
                       style: GoogleFonts.quicksand(
-                          color:  const Color(0xffffa62b),
+                          color: Color(0xFF9400d3),
                           fontWeight: FontWeight.w700,
-                          fontStyle:  FontStyle.normal,
+                          fontStyle: FontStyle.normal,
                           fontSize: height * 0.04),
                       textAlign: TextAlign.center,
                     ),
@@ -111,10 +111,14 @@ class _IntroductionSliderState extends State<IntroductionSlider> {
                 ),
                 Visibility(
                     visible: buttonVisible,
-                    child: StandardButton( text: "Get Started", onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Levels()));
-                    }))
+                    child: StandardButton(
+                        text: "Get Started",
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Levels()));
+                        }))
               ],
             ),
           ),
@@ -138,7 +142,7 @@ class SlideItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        WhiteScreen( height: height * 0.5, children: [
+        WhiteScreen(height: height * 0.5, children: [
           SvgPicture.asset(slideList[index].imageUrl,
               width: width / 3, height: height / 3.5, fit: BoxFit.fitHeight)
         ]),

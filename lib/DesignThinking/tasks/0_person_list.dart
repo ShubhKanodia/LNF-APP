@@ -17,7 +17,8 @@ class PersonList extends StatefulWidget {
 }
 
 class _PersonListState extends State<PersonList> {
-  get personaList => currentProgress.playingLevel2?level2Persona:level1Persona;
+  get personaList =>
+      currentProgress.playingLevel2 ? level2Persona : level1Persona;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -34,7 +35,7 @@ class _PersonListState extends State<PersonList> {
                   "Select a Gift Receiver",
                   style: GoogleFonts.quicksand(
                       textStyle: TextStyle(
-                          color: const Color(0xffffa62b),
+                          color: Color(0xFF9400d3),
                           fontWeight: FontWeight.w700,
                           fontStyle: FontStyle.normal,
                           fontSize: height * 0.04)),
@@ -54,10 +55,9 @@ class _PersonListState extends State<PersonList> {
                       Person person = personaList[index];
                       return GestureDetector(
                         onTap: () => showDialog(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              _PersonPopup(person:person, index:index)
-                        ),
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _PersonPopup(person: person, index: index)),
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Container(
@@ -128,13 +128,11 @@ class _PersonListState extends State<PersonList> {
           ),
         ));
   }
-
 }
 
 class _PersonPopup extends StatelessWidget {
-  const _PersonPopup({
-    Key key, @required this.person, this.index
-  }) : super(key: key);
+  const _PersonPopup({Key key, @required this.person, this.index})
+      : super(key: key);
 
   final Person person;
   final int index;
@@ -278,44 +276,38 @@ class _PersonPopup extends StatelessWidget {
                           ])
                     ],
                   ),
-                  StandardButton( text: "Select Receiver", onTap: () {
-                    if(currentProgress.playingLevel2){
-                      userDocReference.update({
-                        "taskUnlocked":9,
-                        "l2personIndex" : index
-                      });
-                      currentPersonaL2 = person;
-                      currentProgress.taskUnlocked = 9;
-                      currentProgress.rewards+=1;
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TasksLevel2(),
-                            settings: RouteSettings(name: 'Tasks')),
+                  StandardButton(
+                      text: "Select Receiver",
+                      onTap: () {
+                        if (currentProgress.playingLevel2) {
+                          userDocReference.update(
+                              {"taskUnlocked": 9, "l2personIndex": index});
+                          currentPersonaL2 = person;
+                          currentProgress.taskUnlocked = 9;
+                          currentProgress.rewards += 1;
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TasksLevel2(),
+                                settings: RouteSettings(name: 'Tasks')),
                             (Route<dynamic> route) => false,
-                      );
-                    }else{
-                      userDocReference.update({
-                        "taskUnlocked":1,
-                        "l1personIndex" : index
-                      });
-                      currentPersonaL1 = person;
-                      currentProgress.taskUnlocked = 1;
-                      currentProgress.rewards=1;
-                      currentProgress.trophies=1;
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Tasks(),
-                            settings: RouteSettings(name: 'Tasks')),
+                          );
+                        } else {
+                          userDocReference.update(
+                              {"taskUnlocked": 1, "l1personIndex": index});
+                          currentPersonaL1 = person;
+                          currentProgress.taskUnlocked = 1;
+                          currentProgress.rewards = 1;
+                          currentProgress.trophies = 1;
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Tasks(),
+                                settings: RouteSettings(name: 'Tasks')),
                             (Route<dynamic> route) => false,
-                      );
-                    }
-
-                  })
+                          );
+                        }
+                      })
                 ])));
   }
 }
-
-
-

@@ -353,7 +353,7 @@ class CircularOrangeButton extends StatelessWidget {
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: light ? Color(0xfffad207) : Color(0x66cb7703),
+                  color: light ? Color(0xffb19cd9) : Color(0xffffffff),
                   blurRadius: 1.0, // soften the shadow
                   spreadRadius: 0.0, //extend the shadow
                   offset: Offset(
@@ -362,20 +362,20 @@ class CircularOrangeButton extends StatelessWidget {
                   ),
                 )
               ],
-              color: light ? Color(0xfffaf063) : Color(0xfffbc67e),
+              color: light ? Color(0xffb19cd9) : Color(0xffffffff),
               borderRadius: BorderRadius.all(Radius.circular(100))),
           child: ElevatedButton(
               child: Text(
                 text.toString(),
                 style: GoogleFonts.quicksand(
-                    color: light ? Color(0xff16697a) : Color(0xffffffff),
+                    color: Color(0xffffffff),
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.normal,
                     fontSize: number ? height * 0.04 : height * 0.02),
               ),
               style: ButtonStyle(
                 shadowColor: MaterialStateProperty.all<Color>(
-                    light ? Color(0xfffad207) : Color(0x66cb7703)),
+                    light ? Color(0xffb19cd9) : Color(0xffffffff)),
                 elevation: MaterialStateProperty.resolveWith<double>(
                   (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed)) return 0;
@@ -391,12 +391,14 @@ class CircularOrangeButton extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.resolveWith<Color>(
                   (Set<MaterialState> states) {
                     if (states.contains(MaterialState.pressed))
-                      return enabled ? Color(0xfafbc67e) : Color(0xfffbc67e);
+                      return enabled
+                          ? const Color(0xff9c27b0)
+                          : Color(0xffb19cd9);
                     return enabled
                         ? light
-                            ? Color(0xfafaf063)
-                            : Color(0xffffa62b)
-                        : Color(0xfffbc67e); // Use the component's default.
+                            ? const Color(0xff9c27b0)
+                            : Color(0xffb19cd9)
+                        : Color(0xffb19cd9); // Use the component's default.
                   },
                 ),
               ),

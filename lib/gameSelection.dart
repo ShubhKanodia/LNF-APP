@@ -135,7 +135,7 @@ class GameSelection extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => IntroductionSlider(),
+                            builder: (context) => Levels(),
                             settings:
                                 RouteSettings(name: 'Introduction Slider')),
                       );

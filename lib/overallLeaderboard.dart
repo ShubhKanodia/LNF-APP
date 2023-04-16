@@ -78,7 +78,7 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                         future: leaderboard,
                         builder: (context,
                             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
+                                snapshot) {
                           if (snapshot.hasData &&
                               snapshot.connectionState ==
                                   ConnectionState.done) {
@@ -86,58 +86,63 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                               itemCount: snapshot.data.docs.length,
                               itemBuilder: (BuildContext context, int index) {
                                 DocumentSnapshot<Map<String, dynamic>>
-                                userData = snapshot.data.docs[index];
+                                    userData = snapshot.data.docs[index];
                                 return Padding(
-                                  padding:
-                                  EdgeInsets.only(bottom: height * 0.03),
+                                  padding: EdgeInsets.only(
+                                      bottom: height * 0.03,
+                                      right: width * 0.01),
                                   child: Container(
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              height: height * 0.045,
-                                              width: width * 0.12,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Color(0xffcb7703),
-                                                    blurRadius: 4,
-                                                    offset: Offset(0, 4),
-                                                  ),
-                                                ],
-                                                color: Color(0xffffa62b),
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          height: height * 0.045,
+                                          width: width * 0.12,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0xfffffff3),
+                                                blurRadius: 4,
+                                                offset: Offset(0, 4),
                                               ),
-                                              child: Center(
-                                                child: Text(
-                                                  (index + 1).toString(),
-                                                  textAlign: TextAlign.center,
-                                                  style: GoogleFonts.quicksand(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: height * 0.025,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              )),
-                                          Container(
-                                            width: width * 0.4,
+                                            ],
+                                            color: Color(0xFF9c27b0),
+                                          ),
+                                          child: Center(
                                             child: Text(
-                                              userData.data()["name"],
+                                              (index + 1).toString(),
+                                              textAlign: TextAlign.center,
                                               style: GoogleFonts.quicksand(
-                                                color: Color(0xff489fb5),
-                                                fontWeight: FontWeight.w700,
+                                                fontWeight: FontWeight.w500,
                                                 fontStyle: FontStyle.normal,
-                                                fontSize: height * 0.03,
+                                                fontSize: height * 0.025,
+                                                color: Colors.white,
                                               ),
                                             ),
+                                          )),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Container(
+                                          width: width * 0.4,
+                                          child: Text(
+                                            userData.data()["name"],
+                                            style: GoogleFonts.quicksand(
+                                              color: Color(0xff489fb5),
+                                              fontWeight: FontWeight.w700,
+                                              fontStyle: FontStyle.normal,
+                                              fontSize: height * 0.03,
+                                            ),
                                           ),
-                                          Expanded(
-                                            child: Row(
-                                              mainAxisAlignment:
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
-                                              children: [
-                                                /*Text(
+                                          children: [
+                                            /*Text(
                                                   userData
                                                       .data()["trophies"]
                                                       .toString(),
@@ -148,22 +153,22 @@ class _OverallLeaderBoardState extends State<OverallLeaderBoard> {
                                                     fontSize: height * 0.03,
                                                   ),
                                                 ),*/
-                                                Text(
-                                                  userData
-                                                      .data()["rewards"]
-                                                      .toString(),
-                                                  style: GoogleFonts.quicksand(
-                                                    color: Color(0xff489fb5),
-                                                    fontWeight: FontWeight.w700,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: height * 0.03,
-                                                  ),
-                                                ),
-                                              ],
+                                            Text(
+                                              userData
+                                                  .data()["rewards"]
+                                                  .toString(),
+                                              style: GoogleFonts.quicksand(
+                                                color: Color(0xFF9c27b0),
+                                                fontWeight: FontWeight.w700,
+                                                fontStyle: FontStyle.normal,
+                                                fontSize: height * 0.03,
+                                              ),
                                             ),
-                                          )
-                                        ],
-                                      )),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )),
                                 );
                               },
                               shrinkWrap: true,
