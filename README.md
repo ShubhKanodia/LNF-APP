@@ -1,6 +1,6 @@
 # Learn-N-Fun
 
-A new Flutter project.
+Flutter project to gamify learning 
 
 ## Getting Started
 
